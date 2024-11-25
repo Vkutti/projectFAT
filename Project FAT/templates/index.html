@@ -8,37 +8,59 @@
 </head>
 <style>
     header {
-        background-color: #666;
-        padding: 25px;
-        text-align: center;
-        font-size: 35px;
+        background-color: white;
+        padding:5px;
+        text-align: left;
+        font-size: 15px;
         color: black;
         font-family: Verdana;
   }
 
   button {
-        background-color: #666;
+        background-color: #b4b4b4;
         padding: 10px;
         text-align: left;
         font-size: 15px;
         font-family: Verdana;
         color: black;
-        border-radius: 25px;
+        border-radius: 10px;
+        width: 300px;
   }
+
+
+
+  .searchbox {
+    background-color: #545454;
+    padding: 10px;
+    text-align: start;
+    font-size: 20px;
+    padding-left: 25px;
+    font-family: Verdana;
+    color: rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 600px;
+    height: 50px;
+  }
+
+  .searchdiv {
+    float: center;
+    margin-left: 30px;
+    padding: center;
+    font-family: Verdana;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
 
 </style>
 <body>
-    
-
-
     <header>
         <h1>For All of Tracy</h1>
     </header>
 
-    <div>
-        <form action="/business1">
-            <button name="businessex1">Business Example 1</button>
-        </form>
+    <div class="searchdiv">
+        
+
+        <input class="searchbox" type="text" placeholder="Search for a business near you">
     </div>
 </body>
 </html>
