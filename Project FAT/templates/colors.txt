@@ -1,0 +1,7 @@
+yellow - #f2cf63
+white - #f2e6df
+orange - #f24405
+brown/gray - #a6958f
+red - #f21905
+dark brown - #1a1410
+
