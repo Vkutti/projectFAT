@@ -8,9 +8,16 @@ def main():
 
 @app.route("/submitquery")
 def business1():
+    global submissionquery
     submissionquery = str(request.args.get('query'))
     print(submissionquery)
-    return render_template("submission.html")
+
+    if submissionquery == '1':
+        return render_template("submission.html")
+    elif submissionquery == '2':
+        return render_template("hackpgage.html")
+
+
     
 if __name__ == "__main__":
     app.run()
