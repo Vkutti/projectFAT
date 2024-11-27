@@ -19,8 +19,8 @@ window.onload = () => {
     document.title = document.title += " " + inputPrompt
     searchTitle.innerText += " " + inputPrompt
     
-    for (let i=0; i<10; i++) {
-        createBusinessCard("business " + i);
+    for (let i=1; i<=10; i++) {
+        createBusinessCard("Business " + i);
     }
     
 }
