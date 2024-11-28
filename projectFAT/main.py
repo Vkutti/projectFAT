@@ -18,6 +18,7 @@ def main():
 @app.route("/enterinfo")
 def business1():
     data = str(request.args.get("enter"))
+
     if data.lower() == "daycare":
         print(data)
         idnumber = 11111
@@ -25,14 +26,17 @@ def business1():
         selected_business = str(b_name[0]['BusinessName'])  
         print(selected_business) 
     
-    if data.lower() == "catering":
+    elif data.lower() == "catering":
         print(data)
         idnumber = 11112
         b_name = db.execute(f"SELECT `BusinessName` FROM FAT WHERE ID = {idnumber}")
         selected_business = str(b_name[0]['BusinessName'])
         print(selected_business)
+
+    else:
+        selected_business = f"No businesses in the {(data.lower())} category were found"
         
-    return render_template("business1.html", selected_business=selected_business)
+    return render_template("business1.html", sb=selected_business)
     
 if __name__ == "__main__":
     app.run()
