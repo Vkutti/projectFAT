@@ -17,9 +17,11 @@ window.onload = () => {
     const searchTitle = document.getElementById("search-title")
 
     document.title = document.title += " " + inputPrompt
-    searchTitle.innerText += " " + inputPrompt
-    
-    for (let i=1; i<=10; i++) {
+    // searchTitle.innerText += " " + inputPrompt
+
+    // need to change that 1 to the number of results that the database can return
+
+    for (let i=0; bn+1; i++) {
         createBusinessCard("Business " + i);
     }
     

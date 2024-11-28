@@ -3,13 +3,14 @@ import sqlite3
 from cs50 import SQL
 
 
+# db = SQL("sqlite:////absolute/path/to/FAT.db")
 
 # Create a new database or connect to an existing one
-db = SQL("sqlite://FAT.db")
 
 
 app = Flask(__name__)
 
+db = SQL("sqlite:///FAT.db")
 
 @app.route("/")
 def main():
@@ -18,25 +19,22 @@ def main():
 @app.route("/enterinfo")
 def business1():
     data = str(request.args.get("enter"))
+    businesses = []
 
-    if data.lower() == "daycare":
-        print(data)
-        idnumber = 11111
-        b_name = db.execute(f"SELECT `BusinessName` FROM FAT WHERE ID = {idnumber}")
-        selected_business = str(b_name[0]['BusinessName'])  
-        print(selected_business) 
-    
-    elif data.lower() == "catering":
-        print(data)
-        idnumber = 11112
-        b_name = db.execute(f"SELECT `BusinessName` FROM FAT WHERE ID = {idnumber}")
-        selected_business = str(b_name[0]['BusinessName'])
-        print(selected_business)
+    print(data)
 
-    else:
-        selected_business = f"No businesses in the {(data.lower())} category were found"
+    b_name = db.execute(f"SELECT `BusinessName` FROM fat WHERE SPECS = '{str(data.upper())}'")
+    vals = int(len(b_name))
+
+    print(b_name)
+    print(vals)
+
+    for val in range(vals):
+        businesses.append(b_name[val]['BusinessName'])
+        # selected_business = b_name[0]['BusinessName'] 
+        print(businesses) 
         
-    return render_template("business1.html", sb=selected_business)
+    return render_template("searchResults.html", sb=businesses[0], category=data.lower())
     
 if __name__ == "__main__":
     app.run()
