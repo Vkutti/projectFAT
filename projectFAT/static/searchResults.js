@@ -21,7 +21,7 @@ window.onload = () => {
 
     // need to change that 1 to the number of results that the database can return
 
-    for (let i=0; bn+1; i++) {
+    for (let i=0; i <= bn; i++) {
         createBusinessCard("Business " + i);
     }
     

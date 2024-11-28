@@ -34,7 +34,7 @@ def business1():
         # selected_business = b_name[0]['BusinessName'] 
         print(businesses) 
         
-    return render_template("searchResults.html", sb=businesses[0], category=data.lower())
+    return render_template("searchResults.html", sb=businesses[0], category=data.lower(), values=vals)
     
 if __name__ == "__main__":
     app.run()

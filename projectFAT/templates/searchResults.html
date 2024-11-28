@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/templates/index.html" class="fs-4 ms-3 mt-2 position-fixed">FAT</a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed">For All of Tracy</a>
         <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
          <h2 id="search-title" class="mb-4">Search Results for: {{ category }}</h2>
             <div id="cards-container" class="card" style="height: 37rem; overflow-y: scroll;">
@@ -18,8 +18,44 @@
                 </div>
         </div>
     </div>
+    <!--src="../static/searchResults.js"-->
+    <script type="text/javascript">
+        const vals = "{{ values }}";
+        const businessName = "{{ sb }}";
+        console.log(vals)
+        
+        const searchResultsContainer = document.getElementById("search-results-container")
 
-    <script src="../static/searchResults.js" type="text/javascript"></script>
+        const createBusinessCard = (businessName) => {
+            const card = document.createElement("div")
+            card.className = "card my-2"
+            card.innerHTML = `<div class="card-body">
+                <h5 class="card-title">${businessName}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">Business Description blah blah blah blah</h6>
+                <a href="#" class="card-link">View Details</a>
+                <a href="#" class="card-link">Contact</a>
+            </div>`
+            searchResultsContainer.appendChild(card)
+        }
+        
+        window.onload = () => {
+            const inputPrompt = localStorage.getItem("prompt");
+            const searchTitle = document.getElementById("search-title")
+
+            document.title = document.title += " " + inputPrompt
+            // searchTitle.innerText += " " + inputPrompt
+
+            // right now the page will display the business sb that is passed in through python return rendertemplate
+            // need to somehow iterate through the list of business and create each care for each business
+            // iteration is the key to success but idk js
+
+            for (let i=0; i < vals; i++) {
+                createBusinessCard(businessName);
+                
+            }
+        
+        }
+    </script>
 
 </body>
 </html>
