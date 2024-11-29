@@ -14,16 +14,17 @@
          <h2 id="search-title" class="mb-4">Search Results for: {{ category }}</h2>
             <div id="cards-container" class="card" style="height: 37rem; overflow-y: scroll;">
                 <div class="card-body d-flex flex-column justify-content-center" style="width: 34rem;" id="search-results-container">
-                {{ vals }}
                 </div>
         </div>
     </div>
     <!--src="../static/searchResults.js"-->
     <script type="text/javascript">
         const vals = "{{ values }}";
-        const businessName = "{{ sb }}";
+        var businessName = {{ sb | tojson }};
+
         console.log(vals)
-        
+        console.log(businessName)
+
         const searchResultsContainer = document.getElementById("search-results-container")
 
         const createBusinessCard = (businessName) => {
@@ -31,7 +32,7 @@
             card.className = "card my-2"
             card.innerHTML = `<div class="card-body">
                 <h5 class="card-title">${businessName}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Business Description blah blah blah blah</h6>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ businessinfo }}</h6>
                 <a href="#" class="card-link">View Details</a>
                 <a href="#" class="card-link">Contact</a>
             </div>`
@@ -50,7 +51,9 @@
             // iteration is the key to success but idk js
 
             for (let i=0; i < vals; i++) {
-                createBusinessCard(businessName);  
+                // console.log(businessName[i])
+                createBusinessCard(businessName[i]);
+                
             }
         
         }
