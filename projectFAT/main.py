@@ -7,6 +7,7 @@ import imaplib
 import email
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.utils import parsedate_to_datetime
 import time
 import threading
 
@@ -54,7 +55,7 @@ def check_for_reply(email_user, email_password):
                 for response_part in msg_data:
                     if isinstance(response_part, tuple):
                         raw_email = response_part[1]
-                        print(f"Raw email fetched: {raw_email[:50]}...")  # Debug: show a snippet of the raw email
+                        print(f"Raw email fetched: {raw_email[:50]}...")  
 
                         try:
                             # Decode the email
@@ -71,12 +72,20 @@ def check_for_reply(email_user, email_password):
                                 # Handle single-part emails
                                 email_body = msg.get_payload(decode=True).decode()
 
-                            print(f"Email body: {email_body[:50]}...")  # Debug: show a snippet of the email body
+                            print(f"Email body: {email_body[:50]}...") 
 
                             # Check if the reply contains "yes"
                             if "yes" in email_body.lower():
+                                global email_date_yes 
+                                email_date_yes= msg["Date"]
                                 print("Reply contains 'yes'. Running additional code...")
-                                run_additional_code()  # Trigger additional logic
+                                run_additional_code_yes()  # Trigger additional logic
+                            # Check if the reply contains "no"
+                            elif "no" in email_body.lower():
+                                global email_date_no 
+                                emial_date_no = msg["Date"]
+                                print("Reply contains 'no'. Running additional code...")
+                                run_additional_code_no()  # Trigger additional logic
 
                         except Exception as e:
                             print(f"Error decoding email: {e}")
@@ -92,8 +101,9 @@ def check_for_reply(email_user, email_password):
 
 
 # Additional code to run when 'yes' is detected in the email reply
-def run_additional_code():
+def run_additional_code_yes():
     print("\nRunning additional code as the user replied 'yes'.")
+    Time= parsedate_to_datetime(email_date_yes)
     try:
         print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing btw")
         db.execute(
@@ -107,11 +117,43 @@ def run_additional_code():
                 businessHours=glblBusinessHours,
                 businessLocation= glblBusinessLocation,
                 )
+        print("adding to the Log Database")
+        db.execute(
+                """
+                INSERT INTO BusinessRequestLogs (businessName, Status, Time)
+                VALUES (:businessName, :Status, :Time)
+                """,
+                businessName = glblBusinessName,
+                Status= "Yes",
+                Time= Time,
+
+                )
         print("added to db")
         
         
     except:
         ("shit didnt work")
+def run_additional_code_no():
+    print("\nRunning additional code as the user replied 'yes'.")
+    Time= parsedate_to_datetime(email_date_yes)
+    try:
+        print( "Adding to the Log Database")
+
+        db.execute(
+                """
+                INSERT INTO BusinessRequestLogs (businessName, Status, Time)
+                VALUES (:businessName, :Status, :Time)
+                """,
+                businessName = glblBusinessName,
+                Status= "NO",
+                Time= Time,
+ 
+                )
+        print("added to db")
+        
+        
+    except:
+        ("failed to add to the Log Database")
 
 def start_email_checking_thread(email_user,email_password):
     while True:
