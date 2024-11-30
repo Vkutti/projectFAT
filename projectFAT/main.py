@@ -18,7 +18,7 @@ def main():
     return render_template("index.html")
 
 @app.route("/enterinfo")
-def business1():
+def return_searches():
     data = str(request.args.get("enter"))
     businesses = []
 
@@ -36,15 +36,20 @@ def business1():
         # selected_business = b_name[0]['BusinessName'] 
         print(businesses) 
 
-        if businesses == []:
-            businesses.append("No business in {} category were found")
-        
-    # businessnamejson = json.dumps(businesses)
-    # print(businessnamejson)
-
-
+    if businesses == []:
+        vals=1
+        businesses.append(f"No businesses in the {data.lower()} category were found")
+        print(businesses)
 
     return render_template("searchResults.html", sb=businesses, category=data.lower(), values=vals)
+
+@app.route("/requestbusinessform")
+def requestform():
+    return render_template("businessForm.html")
+
+@app.route("/aboutus")
+def aboutus():
+    return render_template("about.html")
     
 if __name__ == "__main__":
     app.run()
