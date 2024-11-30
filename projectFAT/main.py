@@ -82,8 +82,8 @@ def check_for_reply(email_user, email_password):
                                 run_additional_code_yes()  # Trigger additional logic
                             # Check if the reply contains "no"
                             elif "no" in email_body.lower():
-                                global email_date_no 
-                                emial_date_no = msg["Date"]
+                                global email_date_no
+                                email_date_no= msg["Date"]
                                 print("Reply contains 'no'. Running additional code...")
                                 run_additional_code_no()  # Trigger additional logic
 
@@ -105,7 +105,7 @@ def run_additional_code_yes():
     print("\nRunning additional code as the user replied 'yes'.")
     Time= parsedate_to_datetime(email_date_yes)
     try:
-        print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing btw")
+        print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing by the way")
         db.execute(
                 """
                 INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation)
@@ -134,8 +134,8 @@ def run_additional_code_yes():
     except:
         ("shit didnt work")
 def run_additional_code_no():
-    print("\nRunning additional code as the user replied 'yes'.")
-    Time= parsedate_to_datetime(email_date_yes)
+    print("\nRunning additional code as the user replied 'no'.")
+    Time= parsedate_to_datetime(email_date_no)
     try:
         print( "Adding to the Log Database")
 
@@ -183,6 +183,7 @@ def form():
         global glblOwnername
         global glblEmail 
         global glblPhoneNumber 
+
         glblBusinessName = request.form.get("businessName")
         glblBusinessLocation = request.form.get("businessLocation")
         glblBusinessType = request.form.get("businessType")
@@ -245,78 +246,6 @@ def form():
             print("Logged out successfully.")
         threading.Thread(target=start_email_checking_thread, args=("khs.hack.club@gmail.com", "yvwj gsdd dbpg cdti"), daemon=True).start()
 
-
-        # def check_for_reply(email_user, email_password, imap_server="imap.gmail.com"):
-        #     try:
-        #         print("Checking for replies...")
-        #         # Connect to the IMAP server
-        #         mail = imaplib.IMAP4_SSL(imap_server)
-        #         mail.login(email_user, email_password)
-        #         mail.select("inbox")  # Select the inbox
-
-        #         # Search for unread messages
-        #         status, messages = mail.search(None, '(UNSEEN)')  # Only fetch unread emails
-        #         if status != "OK":
-        #             print("No messages found.")
-        #             return None
-
-        #         # Process each unread email
-        #         for msg_id in messages[0].split():
-        #             status, msg_data = mail.fetch(msg_id, "(RFC822)")  # Fetch the full message
-        #             if status != "OK":
-        #                 print("Failed to fetch email.")
-        #                 continue
-                    
-        #             for response_part in msg_data:
-        #                 if isinstance(response_part, tuple):
-        #                     msg = email.message_from_bytes(response_part[1])
-        #                     email_subject = msg["subject"]
-        #                     email_from = msg["from"]
-        #                     print(f"New email from {email_from}: {email_subject}")
-
-        #                     # Extract the email body
-        #                     if msg.is_multipart():
-        #                         for part in msg.walk():
-        #                             if part.get_content_type() == "text/plain":
-        #                                 email_body = part.get_payload(decode=True).decode()
-        #                                 print(f"Email body: {email_body}")
-        #                                 if "yes" in email_body.lower():  # Check for 'yes' in the reply
-        #                                     return True
-        #                     else:
-        #                         email_body = msg.get_payload(decode=True).decode()
-        #                         print(f"Email body: {email_body}")
-        #                         if "yes" in email_body.lower():  # Check for 'yes' in the reply
-        #                             return True
-
-        #         return False  # No 'yes' found in the replies
-        #     except Exception as e:
-        #         print(f"Error checking email: {e}")
-        #         return None
-
-        #     finally:
-        #         mail.logout()
-
-
-        # def another_piece_of_code():
-        #     db.execute(
-        #     """
-        #     INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation)
-        #     VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation)
-        #     """,
-        #     businessName=businessName,
-        #     ownername=ownername,
-        #     businessType=businessType,
-        #     businessHours=businessHours,
-        #     businessLocation=businessLocation,
-        #     )
-        # print("Waiting for a reply...")
-        # while True:
-        #     reply = check_for_reply(email_user=sender_email, email_password=password)
-        #     if reply:
-        #         another_piece_of_code()
-        #         break
-
-        
    
 
 

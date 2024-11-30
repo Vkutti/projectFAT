@@ -14,7 +14,7 @@
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
         <div class="card" style="height: 50rem">
             <div class="card-body d-flex flex-column" style="width: 40rem;" id="search-results-container">
-                <form action="/businessForm" method="POST">
+                <form id="BusinessF" action="/businessForm" method="POST">
                     <h4>Business Information</h4>
                     <div class="form-floating mb-3">
                         <input id="businessName" type="text" class="form-control" placeholder="Business Name"  name="businessName" required>
@@ -42,15 +42,20 @@
                         <label for="ownerName">Owner Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="email" type="text" class="form-control" placeholder="Email" name="email" required>
+                        <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" name="phoneNumber" required>
+                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" required>
                         <label for="phoneNumber">Phone Number</label>
                     </div> <!-- Close the div properly here -->
                     <button class="btn btn-primary" type="submit">Submit</button>
             </form>
+            <script>
+                document.getElementById("BusinessF").addEventListener("submit", function (event) {
+                    alert("Form submission completed!");
+                });
+            </script>
                 </div>
             </div>
         </div>
