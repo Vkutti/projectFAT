@@ -17,6 +17,8 @@ db = SQL("sqlite:///FAT.db")
 @app.route("/")
 def main():
     return render_template("index.html")
+
+
 @app.route("/businessForm", methods=["GET", "POST"])
 def form():
     if request.method == "POST":
@@ -46,6 +48,8 @@ def form():
 
     # Render the form for GET requests
     return render_template("businessForm.html")
+
+
 @app.route("/enterinfo")
 def return_searches():
     data = str(request.args.get("enter"))
@@ -53,7 +57,7 @@ def return_searches():
 
     print(data)
 
-    b_name = db.execute(f"SELECT `BusinessName` FROM fat WHERE SPECS = '{str(data.upper())}'")
+    b_name = db.execute(f"SELECT `BusinessName` FROM fat WHERE businessType = '{str(data.upper())}'")
 
     vals = int(len(b_name))
 
