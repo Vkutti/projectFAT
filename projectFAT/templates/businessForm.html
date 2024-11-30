@@ -9,32 +9,48 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/templates/index.html" class="fs-4 ms-3 mt-2 position-fixed">< return</a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed">return</a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
-        <div class="card" style="height: 38rem">
+        <div class="card" style="height: 50rem">
             <div class="card-body d-flex flex-column" style="width: 40rem;" id="search-results-container">
-                <h4>Business Information</h4>
-                <div class="form-floating mb-3">
-                    <input id="businessName" type="text" class="form-control" placeholder="Business Name">
-                    <label for="businessName">Business Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input id="businessLocation" type="text" class="form-control" placeholder="Business Name">
-                    <label for="businessLocation">Business Location</label>
-                </div>
-                <h4>Contact Information</h4>
-                <div class="form-floating mb-3">
-                    <input id="ownerName" type="text" class="form-control" placeholder="Business Name">
-                    <label for="ownerName">Owner Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input id="email" type="text" class="form-control" placeholder="Business Name">
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input id="phoneNumber" type="text" class="form-control" placeholder="Business Name">
-                    <label for="phoneNumber">Phone Number</label>
+                <form action="/businessForm" method="POST">
+                    <h4>Business Information</h4>
+                    <div class="form-floating mb-3">
+                        <input id="businessName" type="text" class="form-control" placeholder="Business Name"  name="businessName" required>
+                        <label for="businessName">Business Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
+                        <label for="businessLocation">Business Location</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="businessType" type="text" class="form-control" placeholder="Business Type" name="businessType" required>
+                        <label for="businessLocation">Business Type</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="businessHours" type="text" class="form-control" placeholder="Business Hours" name="businessHours" required>
+                        <label for="businessLocation">Business Hours</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
+                        <label for="businessLocation">Business Location</label>
+                    </div>
+                    <h4>Contact Information</h4>
+                    <div class="form-floating mb-3">
+                        <input id="ownerName" type="text" class="form-control" placeholder="Owner Name" name="ownername" required> 
+                        <label for="ownerName">Owner Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="email" type="text" class="form-control" placeholder="Email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" name="phoneNumber" required>
+                        <label for="phoneNumber">Phone Number</label>
+                    </div> <!-- Close the div properly here -->
+                    <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
                 </div>
             </div>
         </div>
