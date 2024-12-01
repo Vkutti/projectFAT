@@ -16,7 +16,6 @@ import threading
 
 # Create a new database or connect to an existing one
 
-global db
 
 db = SQL("sqlite:///projectFAT/FAT.db")
 app = Flask(__name__)
