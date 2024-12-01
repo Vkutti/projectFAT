@@ -16,11 +16,14 @@ import threading
 
 # Create a new database or connect to an existing one
 
+global db
 
+db = SQL("sqlite:///projectFAT/FAT.db")
 app = Flask(__name__)
 
 
-db = SQL("sqlite:///FAT.db")
+
+
 email_user = "khs.hack.club@gmail.com"  # Replace with your email
 email_password = "yvwj gsdd dbpg cdti"  # Use app password here
 imap_server="imap.gmail.com"
@@ -279,8 +282,9 @@ def business1():
         # selected_business = b_name[0]['BusinessName'] 
         print(businesses) 
 
-        if businesses == []:
-            businesses.append("No business in {} category were found")
+    if businesses == []:
+        businesses.append(f"No business in {data.lower()} category were found")
+        vals = 1
         
     # businessnamejson = json.dumps(businesses)
     # print(businessnamejson)
@@ -288,6 +292,10 @@ def business1():
 
 
     return render_template("searchResults.html", sb=businesses, category=data.lower(), values=vals)
+
+@app.route("/aboutus")
+def aboutusrequest():
+    return render_template("about.html")
     
 if __name__ == "__main__":
     app.run()
