@@ -84,8 +84,8 @@
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" required>
-                        <label for="phoneNumber">Phone Number</label>
+                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
+                        <label for="phoneNumber">"Phone number format: (123) 456-7890"</label>
                     </div> <!-- Close the div properly here -->
                     <button class="btn btn-primary" type="submit">Submit</button>
             </form>

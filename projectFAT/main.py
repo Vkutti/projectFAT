@@ -265,7 +265,7 @@ def business1():
 
     print(data)
 
-    b_name = db.execute(f"SELECT `BusinessName` FROM fat WHERE businessType = '{str(data.upper())}'")
+    b_name = db.execute(f"SELECT `businessName` FROM fat WHERE businessType = '{str(data.upper())}'")
 
     vals = int(len(b_name))
 
@@ -273,7 +273,7 @@ def business1():
     print(vals)
 
     for val in range(vals):
-        businesses.append(b_name[val]['BusinessName'])
+        businesses.append(b_name[val]['businessName'])
         # selected_business = b_name[0]['BusinessName'] 
         print(businesses) 
 
