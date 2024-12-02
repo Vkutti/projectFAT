@@ -42,34 +42,7 @@ category-btn {
     margin: 0;
 }
 
-/* Reset HTML and body styles */
-html, body {
-    margin: 0; /* Remove default margins */
-    padding: 0; /* Remove default padding */
-    overflow: visible; /* Ensure scrolling is possible */
-    position: static; /* Ensure no relative positioning */
-    width: 100%; /* Force body to take full width */
-    height: 100%; /* Force body to take full height */
-}
 
-/* Optional: Prevent body scroll when modal is open */
-body.modal-open {
-    overflow: hidden; /* Disable background scrolling */
-}
-/* Center the modal dialog as a big square */
-.modal-dialog {
-    width: 80vw; /* 80% of the viewport width */
-    height: 80vw; /* Match height for a square */
-    max-width: 800px; /* Limit max width */
-    max-height: 800px; /* Limit max height */
-
-    /* Centering the modal */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0; /* Reset any margins */
-}
 
 /* Ensure modal content stretches */
 .modal-content {
@@ -78,9 +51,4 @@ body.modal-open {
     flex-direction: column;
 }
 
-/* Add scrolling to the modal body if necessary */
-.modal-body {
-    overflow-y: auto;
-    flex-grow: 1; /* Take available space */
-}
 
