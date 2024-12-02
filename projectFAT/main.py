@@ -112,14 +112,16 @@ def run_additional_code_yes():
         print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing by the way")
         db.execute(
                 """
-                INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation)
-                VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation)
+                INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation, Email, PhoneNumber)
+                VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation,:Email ,:PhoneNumber)
                 """,
                 businessName = glblBusinessName,
                 ownername= glblOwnername,
                 businessType= glblBusinessType,
                 businessHours=glblBusinessHours,
                 businessLocation= glblBusinessLocation,
+                Email = glblEmail, 
+                PhoneNumber = glblPhoneNumber 
                 )
         print("adding to the Log Database")
         db.execute(
