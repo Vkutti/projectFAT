@@ -1,5 +1,5 @@
 category-btn {
-    font-size: 4px !important;
+    font-size: 3px !important;
 }
 
 /* Hovering business cards */
@@ -33,12 +33,13 @@ category-btn {
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 10px;
-    color: #3b3b3b;
+    color: #3a3a3a;
+    text-align: center;
 }
 
 .card-description {
     font-size: 14px;
-    color: #6e6e73;
+    color: #515151;
     margin: 0;
 }
 
@@ -81,4 +82,26 @@ category-btn {
 /* Prevent scrolling when modal is open */
 .modal-open {
     overflow: hidden;
+}
+
+.return-btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #2d63a0;
+    padding: 10px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.return-btn:hover {
+    background-color: #38597c;
+    transform: scale(1.05);
+}
+
+.return-btn:active {
+    background-color: #000a15;
+    box-shadow: none;
 }

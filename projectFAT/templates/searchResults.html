@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For All of Tracy - Results for </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>For All of Tracy - Results for {{ category }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/" class="fs-4 ms-3 mt-2 position-fixed">For All of Tracy</a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">For All of Tracy</a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="search-title" class="mb-4">Search Results for: {{ category }}</h2>
         <div id="cards-container" class="card" style="height: 37rem; overflow-y: scroll;">
             <div class="card-body d-flex flex-column justify-content-center" style="width: 34rem;" id="search-results-container">
+                {% for business in businesses %}
+                    <div class="card my-2">
+                        <div class="card-body" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showBusinessDetails('{{ business['businessName'] }}', {{ business | tojson }});">
+                            <h5 class="card-title">{{ business['businessName'] }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal">Open Modal</button>
+
+    <!-- Modal for displaying business details -->
     <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" style="max-height: 60vh; height: 60vh;"> <!-- Increased height -->
-            <div class="modal-content" style="height: 100%;"> 
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailsModalLabel">Business Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" style="overflow-y: auto;">
+                <div class="modal-body">
                     <h5 id="modal-business-name"></h5>
-                    <p id="modal-business-info">Content here</p>
+                    <div id="modal-business-info"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -36,42 +43,55 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        const vals = "{{ values }}";
-        var businessName = {{ sb | tojson }};
-        const searchResultsContainer = document.getElementById("search-results-container");
-
+    <script>
+        // Parse businesses data from Python
+        const businesses = {{ businesses | tojson }};
+        console.log(businesses);
+    
         const showBusinessDetails = (businessName, businessInfo) => {
             document.getElementById("modal-business-name").innerText = businessName;
-            document.getElementById("modal-business-info").innerText = "";
-            // Display the modal
+    
+            document.getElementById("modal-business-info").innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-top: 20px;">
+                    <div style="flex: 1; text-align: left;">
+                        <p><strong>Owner Name:</strong> ${businessInfo.ownername || "N/A"}</p>
+                        <p><strong>Location:</strong> ${businessInfo.businessLocation || "N/A"}</p>
+                        <p><strong>Hours:</strong> ${businessInfo.businessHours || "N/A"}</p>
+                    </div>
+                    <div style="flex: 1; text-align: right;">
+                        <p><strong>Contact Phone:</strong> ${businessInfo.PhoneNumber || "N/A"}</p>
+                        <p><strong>Contact Email:</strong> ${businessInfo.Email || "N/A"}</p>
+                    </div>
+                </div>
+            `;
             new bootstrap.Modal(document.getElementById('detailsModal')).show();
-        }
-
-        const createBusinessCard = (businessName, businessInfo) => {
+        };
+    
+        // Dynamically create business cards
+        const createBusinessCard = (business) => {
             const card = document.createElement("div");
             card.className = "card my-2";
             card.innerHTML = `
                 <div class="card-body" style="cursor: pointer;">
-                    <h5 class="card-title">${businessName}</h5>
+                    <h5 class="card-title">${business.businessName}</h5>
                 </div>
             `;
             card.querySelector('.card-body').addEventListener('click', () => {
-                showBusinessDetails(businessName, businessInfo);
+                showBusinessDetails(business.businessName, business);
             });
-            searchResultsContainer.appendChild(card);
-        }
-
+            document.getElementById("search-results-container").appendChild(card);
+        };
+    
+        // Ensure no duplicate rendering
         window.onload = () => {
-            const inputPrompt = localStorage.getItem("prompt");
-            const searchTitle = document.getElementById("search-title");
-            document.title += " " + inputPrompt;
-
-            for (let i = 0; i < vals; i++) {
-                createBusinessCard(businessName[i]);
-            }
-        }
+            const container = document.getElementById("search-results-container");
+            container.innerHTML = ""; // Clear existing content
+            businesses.forEach((business) => {
+                createBusinessCard(business);
+            });
+        };
     </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

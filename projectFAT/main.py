@@ -261,38 +261,146 @@ def form():
     # Render the form for GET requests
     return render_template("businessForm.html")
 
-   
-    
-    
+
 @app.route("/enterinfo")
 def business1():
     data = str(request.args.get("enter"))
-    businesses = []
 
-    print(data)
+    # Execute a single query to get all required fields
+    query = f"""
+        SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
+        FROM fat 
+        WHERE businessType = :businessType
+    """
+    results = db.execute(query, businessType=data.upper())
 
-    b_name = db.execute(f"SELECT `businessName` FROM fat WHERE businessType = '{str(data.upper())}'")
+    if not results:
+        results = [{"businessName": f"No businesses in {data.lower()} category were found"}]
+    else:
+        # Replace None with empty strings in each record
+        results = [
+            {key: (value if value is not None else "") for key, value in row.items()}
+            for row in results
+        ]
 
-    vals = int(len(b_name))
+    # Pass the grouped data to the template
+    return render_template("searchResults.html", businesses=results, category=data.lower())
 
-    print(b_name)
-    print(vals)
+    
+# @app.route("/enterinfo")
+# def business1():
+#     data = str(request.args.get("enter"))
+    
+#     # Execute a single query to get all the required fields
+#     query = f"""
+#         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
+#         FROM fat 
+#         WHERE businessType = :businessType
+#     """
+#     results = db.execute(query, businessType=data.upper())
 
-    for val in range(vals):
-        businesses.append(b_name[val]['businessName'])
-        # selected_business = b_name[0]['BusinessName'] 
-        print(businesses) 
+#     # Prepare lists for each field
+#     businesses = []
+#     Businesslocation = []
+#     BusinessHours = []
+#     OwnerName = []
+#     BusinessEmail = []
+#     BusinessPhone = []
 
-    if businesses == []:
-        businesses.append(f"No business in {data.lower()} category were found")
-        vals = 1
+#     # Iterate over the query results
+#     for business in results:
+#         businesses.append(business['businessName'])
+#         Businesslocation.append(business['businessLocation'])
+#         BusinessHours.append(business['businessHours'])
+#         OwnerName.append(business['ownername'])
+#         BusinessEmail.append(business['Email'])
+#         BusinessPhone.append(business['PhoneNumber'])
+
+#     # Handle case where no businesses are found
+#     if not businesses:
+#         businesses.append(f"No businesses in {data.lower()} category were found.")
+
+#     # Pass data to the template
+#     return render_template(
+#         "searchResults.html",
+#         sb=businesses,
+#         category=data.lower(),
+#         values=len(businesses),
+#         lk=Businesslocation,
+#         hk=BusinessHours,
+#         ok=OwnerName,
+#         ek=BusinessEmail,
+#         pk=BusinessPhone,
+#     )
+# @app.route("/enterinfo")
+# def business1():
+#     data = str(request.args.get("enter"))
+#     businesses = []
+#     Businesslocation =[]
+#     BusinessHours=[]
+#     OwnerName=[]
+#     BusinessEmail=[]
+#     BusinessPhone=[]
+
+#     print(data)
+
+#     b_name = db.execute(f"SELECT `businessName` FROM fat WHERE businessType = '{str(data.upper())}'")
+
+#     vals = int(len(b_name))
+
+#     print(b_name)
+#     print(vals)
+#     Bloc=  db.execute(f"SELECT `businessLocation` FROM fat WHERE businessType = '{str(data.upper())}'")
+#     BL= int(len(Bloc))
+
+#     OWNE=  db.execute(f"SELECT `ownername` FROM fat WHERE businessType = '{str(data.upper())}'") 
+#     ON= int(len(OWNE))
+
+#     BHO=  db.execute(f"SELECT `businessHours` FROM fat WHERE businessType = '{str(data.upper())}'")
+#     BH= int(len(BHO))
+
+#     BEmail=  db.execute(f"SELECT `Email` FROM fat WHERE businessType = '{str(data.upper())}'")
+#     BEM= int(len(BEmail))
+
+#     BPhoneN=  db.execute(f"SELECT `PhoneNumber` FROM fat WHERE businessType = '{str(data.upper())}'")
+#     BPP= int(len(BPhoneN))
+
+#     for val in range(vals):
+#         businesses.append(b_name[val]['businessName'])
+#         # selected_business = b_name[0]['BusinessName'] 
+#         print(businesses) 
+
+    # for Loc in range(BL):
+    #     Businesslocation.append(Bloc[Loc]['businessLocation'])
+
+    # for Own in range(ON):
+    #     OwnerName.append(OWNE[Own]['ownername'])
+
+    # for HB in range(BH):
+    #     BusinessHours.append(BHO[HB]['businessHours'])
+
+    # for BE in range(BEM):
+    #     BusinessEmail.append(BEmail[BE]['Email'])
+
+    # for BP in range(BPP):
+    #     BusinessPhone.append(BPhoneN[BP]['PhoneNumber'])
+    # for business in businesses:
+    #     Businesslocation.append(business['businessLocation'])
+    #     OwnerName.append(business['ownername'])
+    #     BusinessHours.append(business['businessHours'])
+    #     BusinessEmail.append(business['Email'])
+    #     BusinessPhone.append(business['PhoneNumber'])
+
+    #     if businesses == []:
+    #         businesses.append(f"No business in {data.lower()} category were found")
+    #         vals = 1
         
     # businessnamejson = json.dumps(businesses)
     # print(businessnamejson)
 
 
 
-    return render_template("searchResults.html", sb=businesses, category=data.lower(), values=vals)
+    # return render_template("searchResults.html", sb=businesses, category=data.lower(), values=vals, lk= Businesslocation , hk = BusinessHours, ok= OwnerName, ek= BusinessEmail, pk =BusinessPhone)
 
 @app.route("/aboutus")
 def aboutusrequest():
