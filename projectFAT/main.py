@@ -266,13 +266,18 @@ def form():
 def business1():
     data = str(request.args.get("enter"))
 
+
+
+
     # Execute a single query to get all required fields
     query = f"""
         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
         FROM fat 
-        WHERE businessType = :businessType
+        WHERE businessType  = :businessType
+        OR businessName LIKE '%' || :businessName || '%'
+        OR ownername LIKE '%'|| :ownername || '%'
     """
-    results = db.execute(query, businessType=data.upper())
+    results = db.execute(query, businessType=data.upper(), businessName=data, ownername=data)
 
     if not results:
         results = [{"businessName": f"No businesses in {data.lower()} category were found"}]
