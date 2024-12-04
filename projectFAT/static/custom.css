@@ -105,3 +105,18 @@ category-btn {
     background-color: #000a15;
     box-shadow: none;
 }
+
+.return-arrow {
+    display: inline-block;
+    font-size: 60px; /* Make it bigger */
+    font-weight: bold; /* Make it thicker */
+    color: rgb(40, 179, 198); /* Blue color */
+    text-decoration: none; /* Remove underline */
+    line-height: 1; /* Tight line spacing */
+    padding: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .return-arrow:hover {
+    color: rgb(107, 198, 255); /* Darken color on hover */
+  }
