@@ -10,6 +10,9 @@ from email.mime.multipart import MIMEMultipart
 from email.utils import parsedate_to_datetime
 import time
 import threading
+from email.mime.base import MIMEBase
+import os
+from email import encoders
 
 
 # db = SQL("sqlite:////absolute/path/to/FAT.db")
@@ -199,10 +202,15 @@ def form():
         glblOwnername = request.form.get("ownername")
         glblEmail = request.form.get("email")
         glblPhoneNumber = request.form.get("phoneNumber")
-        glblCommunity = request.form.get("Community")
-
+        glblCommunity = request.form.get("community")
+        uploaded_file = request.files.get('business_license')
+        print(glblBusinessLocation)
+        print(glblCommunity)
 
         # Insert into database
+        temp_file_path = os.path.join("temp", uploaded_file.filename)
+        os.makedirs("temp", exist_ok=True)  # Ensure temp directory exists
+        uploaded_file.save(temp_file_path)
 
 
 
@@ -232,6 +240,19 @@ def form():
             message["To"] = email_user
             message["Subject"] = subject
             message.attach(MIMEText(body, "plain"))
+
+            try:
+                with open(temp_file_path, "rb") as attachment:
+                    part = MIMEBase("application", "octet-stream")
+                    part.set_payload(attachment.read())
+                    encoders.encode_base64(part)
+                    part.add_header(
+                        "Content-Disposition",
+                        f"attachment; filename={uploaded_file.filename}",
+                    )
+                    message.attach(part)
+            except Exception as e:
+                print(f"Error attaching file: {e}")
             
             # Connect to SMTP server
             print("Connecting to the server...")
@@ -239,7 +260,7 @@ def form():
             server.starttls()  # Enable encryption
             print("Logging in...")
             server.login(email_user, email_password)
-            
+        
             # Send the email
             print("Sending email...")
             server.sendmail(email_user, email_user, message.as_string())
@@ -255,6 +276,9 @@ def form():
             server.quit()  # Ensure the session is closed
             print("Logged out successfully.")
         threading.Thread(target=start_email_checking_thread, args=("khs.hack.club@gmail.com", "yvwj gsdd dbpg cdti"), daemon=True).start()
+
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
 
    
 
