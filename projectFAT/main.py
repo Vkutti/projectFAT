@@ -112,8 +112,8 @@ def run_additional_code_yes():
         print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing by the way")
         db.execute(
                 """
-                INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation, Email, PhoneNumber)
-                VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation,:Email ,:PhoneNumber)
+                INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation, Email, PhoneNumber, Community)
+                VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation,:Email ,:PhoneNumber, :Community)
                 """,
                 businessName = glblBusinessName,
                 ownername= glblOwnername,
@@ -121,7 +121,8 @@ def run_additional_code_yes():
                 businessHours=glblBusinessHours,
                 businessLocation= glblBusinessLocation,
                 Email = glblEmail, 
-                PhoneNumber = glblPhoneNumber 
+                PhoneNumber = glblPhoneNumber, 
+                Community = glblCommunity
                 )
         print("adding to the Log Database")
         db.execute(
@@ -189,6 +190,7 @@ def form():
         global glblOwnername
         global glblEmail 
         global glblPhoneNumber 
+        global glblCommunity
 
         glblBusinessName = request.form.get("businessName")
         glblBusinessLocation = request.form.get("businessLocation")
@@ -197,6 +199,7 @@ def form():
         glblOwnername = request.form.get("ownername")
         glblEmail = request.form.get("email")
         glblPhoneNumber = request.form.get("phoneNumber")
+        glblCommunity = request.form.get("Community")
 
 
         # Insert into database
@@ -211,6 +214,7 @@ def form():
                  Owner/business email: {glblEmail}
                  Business type: {glblBusinessType}
                  Phone Number: {glblPhoneNumber}
+                 Community: {glblCommunity}
                          """
 
         # Set up the MIME
@@ -264,23 +268,36 @@ def form():
 
 @app.route("/enterinfo")
 def business1():
+    # Get the search input from the URL query parameter
     data = str(request.args.get("enter"))
 
+    if not data:
+        return render_template("searchResults.html", businesses=[], category="")
 
+    # Split the input into keywords (if there are multiple words)
+    keywords = data.split()
 
-
-    # Execute a single query to get all required fields
-    query = f"""
-        SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
-        FROM fat 
-        WHERE businessType  = :businessType
-        OR businessName LIKE '%' || :businessName || '%'
-        OR ownername LIKE '%'|| :ownername || '%'
+    # Start the query
+    query = """
+        SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber, Community
+        FROM fat
+        WHERE businessType = :businessType
     """
-    results = db.execute(query, businessType=data.upper(), businessName=data, ownername=data)
+
+    parameters = {
+        'businessType': data.upper()
+    }
+
+    for i, keyword in enumerate(keywords):
+        param_name = f"keyword{i}"  
+        query += f" OR businessName LIKE :{param_name} OR ownername LIKE :{param_name} OR Community LIKE :{param_name}"
+        parameters[param_name] = f"%{keyword}%"  
+
+ 
+    results = db.execute(query, **parameters)
 
     if not results:
-        results = [{"businessName": f"No businesses in {data.lower()} category were found"}]
+        results = [{"businessName": "No businesses were found"}]
     else:
         # Replace None with empty strings in each record
         results = [
@@ -288,8 +305,39 @@ def business1():
             for row in results
         ]
 
-    # Pass the grouped data to the template
+    # Pass the results to the template
     return render_template("searchResults.html", businesses=results, category=data.lower())
+
+
+
+# @app.route("/enterinfo")
+# def business1():
+#     data = str(request.args.get("enter"))
+
+
+
+
+#     # Execute a single query to get all required fields
+#     query = f"""
+#         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
+#         FROM fat 
+#         WHERE businessType  = :businessType
+#         OR businessName LIKE '%' || :businessName || '%'
+#         OR ownername LIKE '%'|| :ownername || '%'
+#     """
+#     results = db.execute(query, businessType=data.upper(), businessName=data, ownername=data)
+
+#     if not results:
+#         results = [{"businessName": f"No businesses were found"}]
+#     else:
+#         # Replace None with empty strings in each record
+#         results = [
+#             {key: (value if value is not None else "") for key, value in row.items()}
+#             for row in results
+#         ]
+
+#     # Pass the grouped data to the template
+#     return render_template("searchResults.html", businesses=results, category=data.lower())
 
     
 # @app.route("/enterinfo")

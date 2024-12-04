@@ -12,7 +12,7 @@
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Return  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
-        <div class="card" style="height: 50rem">
+        <div class="card" style="height: 60rem">
             <div class="card-body d-flex flex-column" style="width: 40rem;" id="search-results-container">
                 <form id="BusinessF" action="/businessForm" method="POST">
                     <h4>Business Information</h4>
@@ -36,6 +36,16 @@
                         <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
                         <label for="businessLocation">Business Location</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input id="Community" type="text" class="form-control" placeholder="Business Location" name="Community" required>
+                        <label for="Community">Community</label>
+                    </div>
+                    <h4>Business License</h4>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputGroupFile02">
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+                      
                     <h4>Contact Information</h4>
                     <div class="form-floating mb-3">
                         <input id="ownerName" type="text" class="form-control" placeholder="Owner Name" name="ownername" required> 
