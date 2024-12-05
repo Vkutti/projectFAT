@@ -292,44 +292,54 @@ def form():
 
 @app.route("/enterinfo")
 def business1():
-    # Get the search input from the URL query parameter
     data = str(request.args.get("enter"))
 
     if not data:
         return render_template("searchResults.html", businesses=[], category="")
 
-    # Split the input into keywords (if there are multiple words)
+    business_types_query = "SELECT DISTINCT businessType FROM fat"
+    business_types_result = db.execute(business_types_query)
+    business_types = [row["businessType"].upper() for row in business_types_result]
+
     keywords = data.split()
 
-    # Start the query
     query = """
         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber, Community
         FROM fat
-        WHERE businessType = :businessType
+        WHERE 1=1
     """
 
-    parameters = {
-        'businessType': data.upper()
-    }
+    parameters = {}
+    keyword_conditions = []
 
+    if keywords[0].upper() in business_types:
+        # First keyword is a business type
+        query += " AND businessType = :businessType"
+        parameters["businessType"] = keywords[0].upper()
+        keywords = keywords[1:]  
+
+    # Add conditions for remaining keywords
     for i, keyword in enumerate(keywords):
-        param_name = f"keyword{i}"  
-        query += f" OR businessName LIKE :{param_name} OR ownername LIKE :{param_name} OR Community LIKE :{param_name}"
-        parameters[param_name] = f"%{keyword}%"  
+        param_name = f"keyword{i}"
+        keyword_conditions.append(
+            f"businessName LIKE :{param_name} OR ownername LIKE :{param_name} OR Community LIKE :{param_name}"
+        )
+        parameters[param_name] = f"%{keyword}%"
 
- 
+
+    if keyword_conditions:
+        query += " AND (" + " OR ".join(keyword_conditions) + ")"
+
     results = db.execute(query, **parameters)
 
     if not results:
         results = [{"businessName": "No businesses were found"}]
     else:
-        # Replace None with empty strings in each record
         results = [
             {key: (value if value is not None else "") for key, value in row.items()}
             for row in results
         ]
 
-    # Pass the results to the template
     return render_template("searchResults.html", businesses=results, category=data.lower())
 
 

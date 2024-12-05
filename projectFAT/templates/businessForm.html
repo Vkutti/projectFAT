@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Return  </a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
         <div class="card" style="height: 50rem">
@@ -18,15 +18,19 @@
                     <h4>Business Information</h4>
                     <div class="form-floating mb-3">
                         <input id="businessName" type="text" class="form-control" placeholder="Business Name"  name="businessName" required>
-                        <label for="businessName">Business Name</label>
+                        <label for="businessName">Business Name <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="businessType" type="text" class="form-control" placeholder="Business Type" name="businessType" required>
-                        <label for="businessLocation">Business Type</label>
+                        <label for="businessLocation">Business Type <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="businessHours" type="text" class="form-control" placeholder="Business Hours" name="businessHours" required>
-                        <label for="businessLocation">Business Hours</label>
+                        <label for="businessLocation">Business Hours<span class="required-field"></span></label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
+                        <label for="businessLocation">Business Location <span class="required-field"></span></label>
                     </div>
                     <div class="input-group mb-3">
                         <button
@@ -44,50 +48,29 @@
                             <li><a class="dropdown-item" href="#" data-value="Redbridge">Redbridge</a></li>
                         </ul>
                         <!-- Hidden Input for Community -->
-                        <input
-                            id="community"
-                            type="text"
-                            class="form-control"
-                            name="community"
-                            placeholder="Selected Community"
-                            readonly
-                        >
+                        <input  id="community" type="text" class="form-control" name="community"  placeholder="Selected Community " readonly>
                     </div>
                 
                     <!-- Business Location Input -->
-                    <div class="mb-3">
-                        <input
-                            id="businessLocation"
-                            type="text"
-                            class="form-control"
-                            placeholder="Enter Business Location"
-                            name="businessLocation"
-                            aria-label="Business Location"
-                        >
-                    </div>
-                    <h4>Business License</h4>
+            
+                    <h4>Business License <span class="required-field"></span></h4>
                     <div class="input-group mb-3">
-                        <input
-                            type="file"
-                            class="form-control"
-                            id="inputGroupFile02"
-                            name="business_license"
-                        >
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license" required>
+                        <label class="input-group-text" for="inputGroupFile02">Upload </label>
                     </div>
                       
                     <h4>Contact Information</h4>
                     <div class="form-floating mb-3">
                         <input id="ownerName" type="text" class="form-control" placeholder="Owner Name" name="ownername" required> 
-                        <label for="ownerName">Owner Name</label>
+                        <label for="ownerName">Owner Name<span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
-                        <label for="email">Email</label>
+                        <label for="email">Email<span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
-                        <label for="phoneNumber">"Phone number format: (123) 456-7890"</label>
+                        <label for="phoneNumber">Phone Number <span class="required-field"></span></label>
                     </div> <!-- Close the div properly here -->
                     <button class="btn btn-primary" type="submit">Submit</button>
             </form>
@@ -127,6 +110,36 @@
                     form.submit();
                 }
             </script>
+             <script>
+                const phoneInput = document.getElementById('phoneNumber');
+            
+                function formatPhoneNumber(value) {
+                  // Remove all non-digit characters
+                  const numbers = value.replace(/\D/g, '');
+            
+                  // Format the phone number as (123) 456-789
+                  const match = numbers.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+            
+                  if (match) {
+                    const part1 = match[1] ? `(${match[1]}` : '';
+                    const part2 = match[2] ? `) ${match[2]}` : '';
+                    const part3 = match[3] ? `-${match[3]}` : '';
+                    return `${part1}${part2}${part3}`;
+                  }
+            
+                  return value; // Return unformatted value if no match
+                }
+            
+                phoneInput.addEventListener('input', (event) => {
+                  const formatted = formatPhoneNumber(event.target.value);
+                  phoneInput.value = formatted;
+                });
+            
+                // Handle autofill or paste events
+                phoneInput.addEventListener('blur', () => {
+                  phoneInput.value = formatPhoneNumber(phoneInput.value);
+                });
+              </script>
                 </div>
             </div>
         </div>
