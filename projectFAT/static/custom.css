@@ -131,3 +131,8 @@ category-btn {
     content: "*";
     color: red;
 }
+.required-bad::after {
+    content: "eg: 09:00-18:00 Mon-Sun";
+    color: rgb(0, 0, 0);
+}
+

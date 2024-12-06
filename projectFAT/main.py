@@ -204,7 +204,7 @@ def form():
         glblPhoneNumber = request.form.get("phoneNumber")
         glblCommunity = request.form.get("community")
         uploaded_file = request.files.get('business_license')
-        print(glblBusinessLocation)
+        print(glblBusinessHours)
         print(glblCommunity)
 
         # Insert into database

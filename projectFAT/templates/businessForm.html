@@ -13,7 +13,7 @@
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
         <div class="card" style="height: 50rem">
-            <div class="card-body d-flex flex-column" style="width: 40rem; overflow-y: scroll" id="search-results-container">
+            <div class="card-body d-flex flex-column" style="width: 49rem; overflow-y: scroll" id="search-results-container">
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4>Business Information</h4>
                     <div class="form-floating mb-3">
@@ -25,8 +25,88 @@
                         <label for="businessLocation">Business Type <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="businessHours" type="text" class="form-control" placeholder="Business Hours" name="businessHours" required>
-                        <label for="businessLocation">Business Hours<span class="required-field"></span></label>
+                        <!-- Single Editable Field for Hours and Days -->
+                        <div id="businessHoursEditable" class="d-flex">
+                            <!-- Opening Hour -->
+                            <select id="openingHour" class="form-control" aria-label="Opening Hour">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09" selected>09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span class="px-2">:</span>
+                            <!-- Opening Minute -->
+                            <select id="openingMinute" class="form-control" aria-label="Opening Minute">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Opening AM/PM -->
+                            <select id="openingAMPM" class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
+                                <option value="am" selected>am</option>
+                                <option value="pm">pm</option>
+                            </select>
+                            <span class="px-2"> - </span>
+                            <!-- Closing Hour -->
+                            <select id="closingHour" class="form-control" aria-label="Closing Hour">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12" selected>12</option>
+                            </select>
+                            <span class="px-2">:</span>
+                            <!-- Closing Minute -->
+                            <select id="closingMinute" class="form-control" aria-label="Closing Minute">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Closing AM/PM -->
+                            <select id="closingAMPM" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
+                                <option value="pm" selected>am</option>
+                                <option value="am">pm</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Days -->
+                            <select id="days" class="form-control" aria-label="Days of Operation">
+                                <option value="Mon-Fri" selected>Mon-Fri</option>
+                                <option value="Mon-Sun">Mon-Sun</option>
+                                <option value="Mon-Wed">Mon-Wed</option>
+                                <option value="Tue-Sun">Tue-Sun</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input id="businessHours" type="text" class="form-control" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
+                        <label for="businessHours">Business Hours <span class="required-field"></span></label>
+                    </div>
+
+                    
+        
+                    <div class="form-floating mb-3">
+                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
+                        <label for="businessLocation">Business Location <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
@@ -110,6 +190,7 @@
                     form.submit();
                 }
             </script>
+            
              <script>
                 const phoneInput = document.getElementById('phoneNumber');
             
@@ -140,6 +221,38 @@
                   phoneInput.value = formatPhoneNumber(phoneInput.value);
                 });
               </script>
+             <script>
+                const businessHoursInput = document.getElementById("businessHours");
+                const openingHour = document.getElementById("openingHour");
+                const openingMinute = document.getElementById("openingMinute");
+                const openingAMPM = document.getElementById("openingAMPM");
+                const closingHour = document.getElementById("closingHour");
+                const closingMinute = document.getElementById("closingMinute");
+                const closingAMPM = document.getElementById("closingAMPM");
+                const daysInput = document.getElementById("days");
+        
+                // Update the business hours field based on selections
+                function updateBusinessHours() {
+                    const openingTime = `${openingHour.value}:${openingMinute.value}${openingAMPM.value}`;
+                    const closingTime = `${closingHour.value}:${closingMinute.value}${closingAMPM.value}`;
+                    const days = daysInput.value;
+        
+                    const formattedHours = `${openingTime}-${closingTime} ${days}`;
+                    businessHoursInput.value = formattedHours;
+                }
+        
+                // Event listeners to update the business hours on selection change
+                openingHour.addEventListener("change", updateBusinessHours);
+                openingMinute.addEventListener("change", updateBusinessHours);
+                openingAMPM.addEventListener("change", updateBusinessHours);
+                closingHour.addEventListener("change", updateBusinessHours);
+                closingMinute.addEventListener("change", updateBusinessHours);
+                closingAMPM.addEventListener("change", updateBusinessHours);
+                daysInput.addEventListener("change", updateBusinessHours);
+        
+                // Initial call to set the value on load
+                updateBusinessHours();
+            </script>
                 </div>
             </div>
         </div>
