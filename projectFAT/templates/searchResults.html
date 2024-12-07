@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">For All of Tracy</a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn" >Back</a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="search-title" class="mb-4">Search Results for: {{ category }}</h2>
         <div id="cards-container" class="card" style="height: 37rem; overflow-y: scroll;">
@@ -26,8 +26,10 @@
 
     <!-- Modal for displaying business details -->
     <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl" class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered"></div>
             <div class="modal-content">
+            
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailsModalLabel">Business Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -40,6 +42,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
@@ -61,6 +64,7 @@
                     <div style="flex: 1; text-align: right;">
                         <p><strong>Contact Phone:</strong> ${businessInfo.PhoneNumber || "N/A"}</p>
                         <p><strong>Contact Email:</strong> ${businessInfo.Email || "N/A"}</p>
+                        <p><strong>Community:</strong> ${businessInfo.Community || "All"}</p>
                     </div>
                 </div>
             `;

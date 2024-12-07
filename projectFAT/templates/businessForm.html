@@ -9,55 +9,148 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
 </head>
 <body>
-    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Return  </a>
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4">Request a Business Form</h2>
-        <div class="card" style="height: 60rem">
-            <div class="card-body d-flex flex-column" style="width: 40rem;" id="search-results-container">
-                <form id="BusinessF" action="/businessForm" method="POST">
+        <div class="card" style="height: 50rem">
+            <div class="card-body d-flex flex-column" style="width: 49rem; overflow-y: scroll" id="search-results-container">
+                <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4>Business Information</h4>
                     <div class="form-floating mb-3">
                         <input id="businessName" type="text" class="form-control" placeholder="Business Name"  name="businessName" required>
-                        <label for="businessName">Business Name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
-                        <label for="businessLocation">Business Location</label>
+                        <label for="businessName">Business Name <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="businessType" type="text" class="form-control" placeholder="Business Type" name="businessType" required>
-                        <label for="businessLocation">Business Type</label>
+                        <label for="businessLocation">Business Type <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="businessHours" type="text" class="form-control" placeholder="Business Hours" name="businessHours" required>
-                        <label for="businessLocation">Business Hours</label>
+                        <!-- Single Editable Field for Hours and Days -->
+                        <div id="businessHoursEditable" class="d-flex">
+                            <!-- Opening Hour -->
+                            <select id="openingHour" class="form-control" aria-label="Opening Hour">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09" selected>09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span class="px-2">:</span>
+                            <!-- Opening Minute -->
+                            <select id="openingMinute" class="form-control" aria-label="Opening Minute">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Opening AM/PM -->
+                            <select id="openingAMPM" class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
+                                <option value="am" selected>am</option>
+                                <option value="pm">pm</option>
+                            </select>
+                            <span class="px-2"> - </span>
+                            <!-- Closing Hour -->
+                            <select id="closingHour" class="form-control" aria-label="Closing Hour">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12" selected>12</option>
+                            </select>
+                            <span class="px-2">:</span>
+                            <!-- Closing Minute -->
+                            <select id="closingMinute" class="form-control" aria-label="Closing Minute">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Closing AM/PM -->
+                            <select id="closingAMPM" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
+                                <option value="pm" selected>am</option>
+                                <option value="am">pm</option>
+                            </select>
+                            <span class="px-2"> </span>
+                            <!-- Days -->
+                            <select id="days" class="form-control" aria-label="Days of Operation">
+                                <option value="Mon-Fri" selected>Mon-Fri</option>
+                                <option value="Mon-Sun">Mon-Sun</option>
+                                <option value="Mon-Wed">Mon-Wed</option>
+                                <option value="Tue-Sun">Tue-Sun</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input id="businessHours" type="text" class="form-control" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
+                        <label for="businessHours">Business Hours <span class="required-field"></span></label>
+                    </div>
+
+                    
+        
+                    <div class="form-floating mb-3">
+                        <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
+                        <label for="businessLocation">Business Location <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="businessLocation" type="text" class="form-control" placeholder="Business Location" name="businessLocation" required>
-                        <label for="businessLocation">Business Location</label>
+                        <label for="businessLocation">Business Location <span class="required-field"></span></label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input id="Community" type="text" class="form-control" placeholder="Business Location" name="Community" required>
-                        <label for="Community">Community</label>
-                    </div>
-                    <h4>Business License</h4>
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputGroupFile02">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <button
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            Pick A Community
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-value="Tracy Hills">Tracy Hills</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Ellis">Ellis</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Edgewood">Edgewood</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="Redbridge">Redbridge</a></li>
+                        </ul>
+                        <!-- Hidden Input for Community -->
+                        <input  id="community" type="text" class="form-control" name="community"  placeholder="Selected Community " readonly>
+                    </div>
+                
+                    <!-- Business Location Input -->
+            
+                    <h4>Business License <span class="required-field"></span></h4>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license" required>
+                        <label class="input-group-text" for="inputGroupFile02">Upload </label>
                     </div>
                       
                     <h4>Contact Information</h4>
                     <div class="form-floating mb-3">
                         <input id="ownerName" type="text" class="form-control" placeholder="Owner Name" name="ownername" required> 
-                        <label for="ownerName">Owner Name</label>
+                        <label for="ownerName">Owner Name<span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
-                        <label for="email">Email</label>
+                        <label for="email">Email<span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
-                        <label for="phoneNumber">"Phone number format: (123) 456-7890"</label>
+                        <label for="phoneNumber">Phone Number <span class="required-field"></span></label>
                     </div> <!-- Close the div properly here -->
                     <button class="btn btn-primary" type="submit">Submit</button>
             </form>
@@ -97,11 +190,89 @@
                     form.submit();
                 }
             </script>
+            
+             <script>
+                const phoneInput = document.getElementById('phoneNumber');
+            
+                function formatPhoneNumber(value) {
+                  // Remove all non-digit characters
+                  const numbers = value.replace(/\D/g, '');
+            
+                  // Format the phone number as (123) 456-789
+                  const match = numbers.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+            
+                  if (match) {
+                    const part1 = match[1] ? `(${match[1]}` : '';
+                    const part2 = match[2] ? `) ${match[2]}` : '';
+                    const part3 = match[3] ? `-${match[3]}` : '';
+                    return `${part1}${part2}${part3}`;
+                  }
+            
+                  return value; // Return unformatted value if no match
+                }
+            
+                phoneInput.addEventListener('input', (event) => {
+                  const formatted = formatPhoneNumber(event.target.value);
+                  phoneInput.value = formatted;
+                });
+            
+                // Handle autofill or paste events
+                phoneInput.addEventListener('blur', () => {
+                  phoneInput.value = formatPhoneNumber(phoneInput.value);
+                });
+              </script>
+             <script>
+                const businessHoursInput = document.getElementById("businessHours");
+                const openingHour = document.getElementById("openingHour");
+                const openingMinute = document.getElementById("openingMinute");
+                const openingAMPM = document.getElementById("openingAMPM");
+                const closingHour = document.getElementById("closingHour");
+                const closingMinute = document.getElementById("closingMinute");
+                const closingAMPM = document.getElementById("closingAMPM");
+                const daysInput = document.getElementById("days");
+        
+                // Update the business hours field based on selections
+                function updateBusinessHours() {
+                    const openingTime = `${openingHour.value}:${openingMinute.value}${openingAMPM.value}`;
+                    const closingTime = `${closingHour.value}:${closingMinute.value}${closingAMPM.value}`;
+                    const days = daysInput.value;
+        
+                    const formattedHours = `${openingTime}-${closingTime} ${days}`;
+                    businessHoursInput.value = formattedHours;
+                }
+        
+                // Event listeners to update the business hours on selection change
+                openingHour.addEventListener("change", updateBusinessHours);
+                openingMinute.addEventListener("change", updateBusinessHours);
+                openingAMPM.addEventListener("change", updateBusinessHours);
+                closingHour.addEventListener("change", updateBusinessHours);
+                closingMinute.addEventListener("change", updateBusinessHours);
+                closingAMPM.addEventListener("change", updateBusinessHours);
+                daysInput.addEventListener("change", updateBusinessHours);
+        
+                // Initial call to set the value on load
+                updateBusinessHours();
+            </script>
                 </div>
             </div>
         </div>
     </div>
     <script src="../static/businessForm.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Get all dropdown items and the community input field
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const communityInput = document.getElementById('community');
+    
+        // Update community input field when a dropdown item is clicked
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault(); // Prevent default behavior
+                const selectedValue = item.getAttribute('data-value'); // Get the value from the dropdown
+                communityInput.value = selectedValue; // Update the input field
+            });
+        });
+    </script>
+    
 </body>
 </html>

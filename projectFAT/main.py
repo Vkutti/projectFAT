@@ -10,6 +10,9 @@ from email.mime.multipart import MIMEMultipart
 from email.utils import parsedate_to_datetime
 import time
 import threading
+from email.mime.base import MIMEBase
+import os
+from email import encoders
 
 
 # db = SQL("sqlite:////absolute/path/to/FAT.db")
@@ -199,10 +202,15 @@ def form():
         glblOwnername = request.form.get("ownername")
         glblEmail = request.form.get("email")
         glblPhoneNumber = request.form.get("phoneNumber")
-        glblCommunity = request.form.get("Community")
-
+        glblCommunity = request.form.get("community")
+        uploaded_file = request.files.get('business_license')
+        print(glblBusinessHours)
+        print(glblCommunity)
 
         # Insert into database
+        temp_file_path = os.path.join("temp", uploaded_file.filename)
+        os.makedirs("temp", exist_ok=True)  # Ensure temp directory exists
+        uploaded_file.save(temp_file_path)
 
 
 
@@ -232,6 +240,19 @@ def form():
             message["To"] = email_user
             message["Subject"] = subject
             message.attach(MIMEText(body, "plain"))
+
+            try:
+                with open(temp_file_path, "rb") as attachment:
+                    part = MIMEBase("application", "octet-stream")
+                    part.set_payload(attachment.read())
+                    encoders.encode_base64(part)
+                    part.add_header(
+                        "Content-Disposition",
+                        f"attachment; filename={uploaded_file.filename}",
+                    )
+                    message.attach(part)
+            except Exception as e:
+                print(f"Error attaching file: {e}")
             
             # Connect to SMTP server
             print("Connecting to the server...")
@@ -239,7 +260,7 @@ def form():
             server.starttls()  # Enable encryption
             print("Logging in...")
             server.login(email_user, email_password)
-            
+        
             # Send the email
             print("Sending email...")
             server.sendmail(email_user, email_user, message.as_string())
@@ -256,6 +277,9 @@ def form():
             print("Logged out successfully.")
         threading.Thread(target=start_email_checking_thread, args=("khs.hack.club@gmail.com", "yvwj gsdd dbpg cdti"), daemon=True).start()
 
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
+
    
 
 
@@ -268,192 +292,56 @@ def form():
 
 @app.route("/enterinfo")
 def business1():
-    # Get the search input from the URL query parameter
     data = str(request.args.get("enter"))
 
     if not data:
         return render_template("searchResults.html", businesses=[], category="")
 
-    # Split the input into keywords (if there are multiple words)
+    business_types_query = "SELECT DISTINCT businessType FROM fat"
+    business_types_result = db.execute(business_types_query)
+    business_types = [row["businessType"].upper() for row in business_types_result]
+
     keywords = data.split()
 
-    # Start the query
     query = """
         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber, Community
         FROM fat
-        WHERE businessType = :businessType
+        WHERE 1=1
     """
 
-    parameters = {
-        'businessType': data.upper()
-    }
+    parameters = {}
+    keyword_conditions = []
 
+    if keywords[0].upper() in business_types:
+        # First keyword is a business type
+        query += " AND businessType = :businessType"
+        parameters["businessType"] = keywords[0].upper()
+        keywords = keywords[1:]  
+
+    # Add conditions for remaining keywords
     for i, keyword in enumerate(keywords):
-        param_name = f"keyword{i}"  
-        query += f" OR businessName LIKE :{param_name} OR ownername LIKE :{param_name} OR Community LIKE :{param_name}"
-        parameters[param_name] = f"%{keyword}%"  
+        param_name = f"keyword{i}"
+        keyword_conditions.append(
+            f"businessName LIKE :{param_name} OR ownername LIKE :{param_name} OR Community LIKE :{param_name}"
+        )
+        parameters[param_name] = f"%{keyword}%"
 
- 
+
+    if keyword_conditions:
+        query += " AND (" + " OR ".join(keyword_conditions) + ")"
+
     results = db.execute(query, **parameters)
 
     if not results:
         results = [{"businessName": "No businesses were found"}]
     else:
-        # Replace None with empty strings in each record
         results = [
             {key: (value if value is not None else "") for key, value in row.items()}
             for row in results
         ]
 
-    # Pass the results to the template
     return render_template("searchResults.html", businesses=results, category=data.lower())
 
-
-
-# @app.route("/enterinfo")
-# def business1():
-#     data = str(request.args.get("enter"))
-
-
-
-
-#     # Execute a single query to get all required fields
-#     query = f"""
-#         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
-#         FROM fat 
-#         WHERE businessType  = :businessType
-#         OR businessName LIKE '%' || :businessName || '%'
-#         OR ownername LIKE '%'|| :ownername || '%'
-#     """
-#     results = db.execute(query, businessType=data.upper(), businessName=data, ownername=data)
-
-#     if not results:
-#         results = [{"businessName": f"No businesses were found"}]
-#     else:
-#         # Replace None with empty strings in each record
-#         results = [
-#             {key: (value if value is not None else "") for key, value in row.items()}
-#             for row in results
-#         ]
-
-#     # Pass the grouped data to the template
-#     return render_template("searchResults.html", businesses=results, category=data.lower())
-
-    
-# @app.route("/enterinfo")
-# def business1():
-#     data = str(request.args.get("enter"))
-    
-#     # Execute a single query to get all the required fields
-#     query = f"""
-#         SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber 
-#         FROM fat 
-#         WHERE businessType = :businessType
-#     """
-#     results = db.execute(query, businessType=data.upper())
-
-#     # Prepare lists for each field
-#     businesses = []
-#     Businesslocation = []
-#     BusinessHours = []
-#     OwnerName = []
-#     BusinessEmail = []
-#     BusinessPhone = []
-
-#     # Iterate over the query results
-#     for business in results:
-#         businesses.append(business['businessName'])
-#         Businesslocation.append(business['businessLocation'])
-#         BusinessHours.append(business['businessHours'])
-#         OwnerName.append(business['ownername'])
-#         BusinessEmail.append(business['Email'])
-#         BusinessPhone.append(business['PhoneNumber'])
-
-#     # Handle case where no businesses are found
-#     if not businesses:
-#         businesses.append(f"No businesses in {data.lower()} category were found.")
-
-#     # Pass data to the template
-#     return render_template(
-#         "searchResults.html",
-#         sb=businesses,
-#         category=data.lower(),
-#         values=len(businesses),
-#         lk=Businesslocation,
-#         hk=BusinessHours,
-#         ok=OwnerName,
-#         ek=BusinessEmail,
-#         pk=BusinessPhone,
-#     )
-# @app.route("/enterinfo")
-# def business1():
-#     data = str(request.args.get("enter"))
-#     businesses = []
-#     Businesslocation =[]
-#     BusinessHours=[]
-#     OwnerName=[]
-#     BusinessEmail=[]
-#     BusinessPhone=[]
-
-#     print(data)
-
-#     b_name = db.execute(f"SELECT `businessName` FROM fat WHERE businessType = '{str(data.upper())}'")
-
-#     vals = int(len(b_name))
-
-#     print(b_name)
-#     print(vals)
-#     Bloc=  db.execute(f"SELECT `businessLocation` FROM fat WHERE businessType = '{str(data.upper())}'")
-#     BL= int(len(Bloc))
-
-#     OWNE=  db.execute(f"SELECT `ownername` FROM fat WHERE businessType = '{str(data.upper())}'") 
-#     ON= int(len(OWNE))
-
-#     BHO=  db.execute(f"SELECT `businessHours` FROM fat WHERE businessType = '{str(data.upper())}'")
-#     BH= int(len(BHO))
-
-#     BEmail=  db.execute(f"SELECT `Email` FROM fat WHERE businessType = '{str(data.upper())}'")
-#     BEM= int(len(BEmail))
-
-#     BPhoneN=  db.execute(f"SELECT `PhoneNumber` FROM fat WHERE businessType = '{str(data.upper())}'")
-#     BPP= int(len(BPhoneN))
-
-#     for val in range(vals):
-#         businesses.append(b_name[val]['businessName'])
-#         # selected_business = b_name[0]['BusinessName'] 
-#         print(businesses) 
-
-    # for Loc in range(BL):
-    #     Businesslocation.append(Bloc[Loc]['businessLocation'])
-
-    # for Own in range(ON):
-    #     OwnerName.append(OWNE[Own]['ownername'])
-
-    # for HB in range(BH):
-    #     BusinessHours.append(BHO[HB]['businessHours'])
-
-    # for BE in range(BEM):
-    #     BusinessEmail.append(BEmail[BE]['Email'])
-
-    # for BP in range(BPP):
-    #     BusinessPhone.append(BPhoneN[BP]['PhoneNumber'])
-    # for business in businesses:
-    #     Businesslocation.append(business['businessLocation'])
-    #     OwnerName.append(business['ownername'])
-    #     BusinessHours.append(business['businessHours'])
-    #     BusinessEmail.append(business['Email'])
-    #     BusinessPhone.append(business['PhoneNumber'])
-
-    #     if businesses == []:
-    #         businesses.append(f"No business in {data.lower()} category were found")
-    #         vals = 1
-        
-    # businessnamejson = json.dumps(businesses)
-    # print(businessnamejson)
-
-
-
-    # return render_template("searchResults.html", sb=businesses, category=data.lower(), values=vals, lk= Businesslocation , hk = BusinessHours, ok= OwnerName, ek= BusinessEmail, pk =BusinessPhone)
 
 @app.route("/aboutus")
 def aboutusrequest():
