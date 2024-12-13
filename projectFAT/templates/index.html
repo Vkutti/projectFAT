@@ -13,6 +13,7 @@
         <div style="width: 34rem" class="justify-content-center d-flex flex-column">
             <h1 class="w-100 text-center fw-bold">For All of Tracy</h1>
             <form action="/enterinfo">
+                <div class="search-bar">
                 <div class="input-group mt-2 input-group-md d-flex">
                     <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input">
                     <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0" id="enter-btn" onclick="enterPrompt()">
@@ -24,6 +25,7 @@
             </form>
             <div class="mt-3 d-flex justify-content-center" id="category-btns">
             </div>
+        </div>
             <a type="button" class="btn btn-default " href="/businessForm" >Request a Business</a>
         </div>
     </div>
