@@ -123,11 +123,6 @@ category-btn {
     color: rgb(107, 198, 255); /* Darken color on hover */
   }
 
-  input:-webkit-autofill {
-    background-color: #e3e4e3; /* Light green background */
-    box-shadow: 0 0 5px 2px rgb(255, 177, 50);
-    color: #000;
-  }
 
   .required-field::after {
     content: "*";
