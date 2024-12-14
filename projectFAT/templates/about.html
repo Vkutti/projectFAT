@@ -12,7 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/carousel/">
   <link rel="stylesheet" type="text/css" href="../static/custom.css">
-    <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
+  <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
+  <link rel="stylesheet" type="text/css" href="../static/SearchBarOnNav.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -187,13 +188,38 @@
           <li></li>
       </ul>
       <form class="d-flex" action="/enterinfo" >
-        <input name="enter" id="prompt-input" type="text" class="form-control" placeholder="Search for businesses"  aria-label="Search" required>
-        <button id="enter-btn" class="btn btn-outline-primary" style="margin-left: 15px" onclick="enterPrompt()">Search</button>
+        <div class="search-header">
+          <input placeholder="Search" name= "enter" class="search-header__input" type="text" />
+          <button class="search-header__button" onclick="enterpromt()">
+            <svg
+              fill="none"
+              viewBox="0 0 18 18"
+              height="18"
+              width="18"
+              class="search-header__icon"
+            >
+              <path
+                fill="#3A3A3A"
+                d="M7.132 0C3.197 0 0 3.124 0 6.97c0 3.844 3.197 6.969 7.132 6.969 1.557 0 2.995-.49 4.169-1.32L16.82 18 18 16.847l-5.454-5.342a6.846 6.846 0 0 0 1.718-4.536C14.264 3.124 11.067 0 7.132 0zm0 .82c3.48 0 6.293 2.748 6.293 6.15 0 3.4-2.813 6.149-6.293 6.149S.839 10.37.839 6.969C.839 3.568 3.651.82 7.132.82z"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </form>
     </div>
   </div>
 
 
+<!-- <div class="container">
+  <input type="text" name="text" class="input" required="" placeholder="Type to search...">
+  <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+          <title>Search</title>
+          <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+      </svg>
+  </div>
+</div> -->
   <main>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
