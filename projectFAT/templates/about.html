@@ -7,10 +7,12 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.72.0">
-  <title>Jerry's CONTRIBUTION</title>
+  <title>About Us</title>
   <link rel="icon" type="image/x-icon" href="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/carousel/">
+  <link rel="stylesheet" type="text/css" href="../static/custom.css">
+    <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -20,6 +22,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
+    
 
   <style>
   .popup {
@@ -91,6 +94,10 @@
       padding-top: 3rem;
       padding-bottom: 3rem;
       color: #5a5a5a;
+      background-color: rgb(50, 50, 50);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
     }
 
     .carousel {
@@ -157,32 +164,30 @@
         margin-top: 7rem;
       }
     }
+    
   </style>
   <link href="carousel.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">For All Of Tracy</a>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto mb-2 mb-md-0">
-            <li class="nav-item active">
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#scrollspyHeading1">First</a>
-            </li>
-          </ul>
-          <form class="d-flex" action="/enterinfo" >
-            <input name="enter" id="prompt-input" type="text" class="form-control" placeholder="Search for businesses"  aria-label="Search" required>
-            <button id="enter-btn" class="btn btn-outline-primary" style="margin-left: 15px" onclick="enterPrompt()">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </header>
+
+  <div class="navbar">
+    <div class="logo"></div>
+    <ul class="nav-links">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <form class="d-flex" action="/enterinfo" >
+      <input name="enter" id="prompt-input" type="text" class="form-control" placeholder="Search for businesses"  aria-label="Search" required>
+      <button id="enter-btn" class="btn btn-outline-primary" style="margin-left: 15px" onclick="enterPrompt()">Search</button>
+    </form>
+  </div>
+
 
   <main>
 
