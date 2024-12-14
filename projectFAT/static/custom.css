@@ -137,6 +137,10 @@ category-btn {
     animation: slideIn 1.5s ease;
     transition: all 0.3s ease;
 }
+.nav-barslide {
+    animation: slideIn 1.5s ease;
+    transition: all 0.3s ease;
+}
 
 @keyframes fadeIn {
     0% { opacity: 0; }
