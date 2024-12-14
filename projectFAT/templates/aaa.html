@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Search Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow-x: hidden;
+            perspective: 1px;
+        }
+
+        .parallax {
+            height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            perspective: 1px;
+        }
+
+        .parallax-section {
+            position: relative;
+            height: 100vh;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .parallax-section:nth-child(1) {
+            background-image: url('https://source.unsplash.com/1920x1080/?nature');
+        }
+
+        .parallax-section:nth-child(3) {
+            background-image: url('https://source.unsplash.com/1920x1080/?sky');
+        }
+
+        .search-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .search-container h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 2s ease;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            animation: slideIn 1.5s ease;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            background-color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 0.5rem 0.7rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #ddd;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .content-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .content-section p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax">
+        <div class="parallax-section">
+            <div class="overlay"></div>
+            <div class="search-container">
+                <h1>Search Anything</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Type to search...">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="parallax-section" style="background-color: #f4f4f4;">
+            <div class="content-section">
+                <h2>Beautiful Design</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                <img src="https://source.unsplash.com/800x600/?design" alt="Beautiful design">
+            </div>
+        </div>
+
+        <div class="parallax-section">
+            <div class="overlay"></div>
+            <div class="content-section">
+                <h2>Explore the World</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                <img src="https://source.unsplash.com/800x600/?travel" alt="Explore the world">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

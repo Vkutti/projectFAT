@@ -19,6 +19,8 @@ category-btn {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
@@ -134,5 +136,46 @@ category-btn {
 .required-bad::after {
     content: "eg: 09:00-18:00 Mon-Sun";
     color: rgb(0, 0, 0);
+}
+
+.search-bar {
+    animation: slideIn 1.5s ease;
+    transition: all 0.3s ease;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.glass-box {
+
+    background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+
+    backdrop-filter: blur(20px); /* Adjust blur intensity */
+
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional subtle border */
+
+    border-radius: 12px; /* Rounded corners for a softer look */
+
+    padding: 20px;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    overflow: hidden;
+
+    transition: transform 0.2s, box-shadow 0.2s;
+
+
 }
 
