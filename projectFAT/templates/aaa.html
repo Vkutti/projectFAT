@@ -1,187 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Search Bar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Popup Box</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            overflow-x: hidden;
-            perspective: 1px;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        .parallax {
-            height: 100vh;
-            overflow-y: auto;
-            position: relative;
-            perspective: 1px;
-        }
+    /* Button to open popup */
+    #openPopup {
+      padding: 12px 25px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        .parallax-section {
-            position: relative;
-            height: 100vh;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
+    #openPopup:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
 
-        .parallax-section:nth-child(1) {
-            background-image: url('https://source.unsplash.com/1920x1080/?nature');
-        }
+    /* Popup background */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+      z-index: 1000;
+    }
 
-        .parallax-section:nth-child(3) {
-            background-image: url('https://source.unsplash.com/1920x1080/?sky');
-        }
+    /* Popup content box */
+    .popup-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.3s ease-out;
+    }
 
-        .search-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            text-align: center;
-        }
+    /* Popup animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
 
-        .search-container h1 {
-            color: #fff;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeIn 2s ease;
-        }
+    /* Close button */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
 
-        .search-bar {
-            position: relative;
-            width: 50%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            animation: slideIn 1.5s ease;
-        }
+    .close:hover {
+      color: #000;
+    }
 
-        .search-bar input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 30px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar input:focus {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #000;
-            border-color: rgba(255, 255, 255, 1);
-        }
-
-        .search-bar button {
-            position: absolute;
-            right: 10px;
-            background-color: #fff;
-            border: none;
-            border-radius: 50%;
-            padding: 0.5rem 0.7rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .search-bar button:hover {
-            background-color: #ddd;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        .content-section {
-            text-align: center;
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .content-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .content-section p {
-            font-size: 1.2rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .content-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-    </style>
+    /* Popup text */
+    p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-    <div class="parallax">
-        <div class="parallax-section">
-            <div class="overlay"></div>
-            <div class="search-container">
-                <h1>Search Anything</h1>
-                <div class="search-bar">
-                    <input type="text" placeholder="Type to search...">
-                    <button>🔍</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="parallax-section" style="background-color: #f4f4f4;">
-            <div class="content-section">
-                <h2>Beautiful Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-                <img src="https://source.unsplash.com/800x600/?design" alt="Beautiful design">
-            </div>
-        </div>
-
-        <div class="parallax-section">
-            <div class="overlay"></div>
-            <div class="content-section">
-                <h2>Explore the World</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-                <img src="https://source.unsplash.com/800x600/?travel" alt="Explore the world">
-            </div>
-        </div>
+  <!-- Popup box -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <p>Welcome to your modern popup box!</p>
+      <button id="closePopup" style="padding: 10px 20px; border: none; background-color: #007BFF; color: #fff; border-radius: 5px; cursor: pointer;">Close</button>
     </div>
+  </div>
+
+  <!-- Button to open popup -->
+  <button id="openPopup">Open Popup</button>
+
+  <script>
+    // Get elements
+    const popup = document.getElementById("popup");
+    const openButton = document.getElementById("openPopup");
+    const closeButton = document.querySelector(".close");
+    const closePopupButton = document.getElementById("closePopup");
+
+    // Open popup
+    openButton.addEventListener("click", () => {
+      popup.style.display = "block";
+    });
+
+    // Close popup
+    closeButton.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    // Close popup using the Close button inside the content
+    closePopupButton.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    // Close popup when clicking outside the content
+    window.addEventListener("click", (event) => {
+      if (event.target === popup) {
+        popup.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
