@@ -12,11 +12,12 @@ category-btn {
 }
 
 .card {
-    background: rgb(255, 255, 255);
+    background: #333333;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
+    border-color: #000000;
 }
 
 
@@ -35,13 +36,13 @@ category-btn {
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 10px;
-    color: #3a3a3a;
+    color: #ffffff;
     text-align: center;
 }
 
 .card-description {
     font-size: 14px;
-    color: #515151;
+    color: #ffffff;
     margin: 0;
 }
 
@@ -52,6 +53,8 @@ category-btn {
     height: 100%; /* Fill the dialog */
     display: flex;
     flex-direction: column;
+    background-color: #333333;
+    color: #ffffff;
 }
 
 
@@ -73,7 +76,7 @@ category-btn {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
+    background: #333333;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -90,7 +93,7 @@ category-btn {
     font-size: 1.2rem;
     font-weight: bold;
     color: #ffffff;
-    background-color: #2d63a0;
+    background-color: #23232542;
     padding: 10px 10px;
     border-radius: 10px;
     text-decoration: none;
@@ -99,7 +102,7 @@ category-btn {
 }
 
 .return-btn:hover {
-    background-color: #38597c;
+    background-color: #23232542;
     transform: scale(1.05);
 }
 
@@ -161,9 +164,10 @@ category-btn {
 
     background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
 
+
     backdrop-filter: blur(20px); /* Adjust blur intensity */
 
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional subtle border */
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
 
     border-radius: 12px; /* Rounded corners for a softer look */
 

@@ -8,6 +8,16 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
     <link rel="stylesheet" type="text/css" href="../static/Navbar.css">
 </head>
+<style>
+    body {
+        background-image: url('./static/Background.svg'); 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+        
+    
+</style>
 <body>
     <div class="nav-barslide">
     <div class="navbar">
@@ -30,12 +40,12 @@
     </div>
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn" >Back</a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
-        <h2 id="search-title" class="mb-4">Search Results for: {{ category }}</h2>
-        <div id="cards-container" class="card" style="height: 45rem; overflow-y: scroll;">
+        <h2 id="search-title" class="mb-4" style="font-size:x-large; font-family: sans-serif; color: white; font-weight: bold;">Search Results For: {{ category }}</h2>
+        <div id="cards-container" class="glass-box" style="height: 45rem; overflow-y: scroll;">
             <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem;" id="search-results-container">
                 {% for business in businesses %}
-                    <div class="card my-2">
-                        <div class="card-body" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showBusinessDetails('{{ business['businessName'] }}', {{ business | tojson }});">
+                    <div class="glass-box my-2">
+                        <div class="card-body" style="cursor: pointer;background-color: #333333;" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showBusinessDetails('{{ business['businessName'] }}', {{ business | tojson }});">
                             <h5 class="card-title">{{ business['businessName'] }}</h5>
                         </div>
                     </div>
