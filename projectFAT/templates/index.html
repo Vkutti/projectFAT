@@ -34,12 +34,12 @@
                 <div class="logo"></div>
             </a>
             <ul class="nav-links">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li  class="nav-tab" ></li>
+                <li class="nav-tab"></li>
+                <li class="nav-tab"></li>
+                <li class="nav-tab"></li>
+                <li class="nav-tab"></li>
+                <li class="nav-tab"></li>
             </ul>
             <div class="buttons">
                 <button class="login"></button>
@@ -71,6 +71,27 @@
         <a type="button" class="btn btn-default text-slide" href="/aboutus"style="color: white" >About Us</a>
     </div>
     <!-- <script src="../static/index.js" type="text/javascript"></script> -->
+    <script>
+        // Add event listeners to each tab
+        const tabs = document.querySelectorAll('.nav-tab');
+        const navbar = document.querySelector('.navbar');
+        const navbarInfo = document.querySelector('.navbar-info');
+        const infoContent = document.getElementById('info-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('mouseenter', function() {
+                navbar.classList.add('hover-expand'); // Expand the navbar
+                navbarInfo.classList.add('show'); // Show the info section
+                const info = tab.getAttribute('data-info'); // Get the info for the hovered tab
+                infoContent.innerText = info; // Update the info content
+            });
+
+            tab.addEventListener('mouseleave', function() {
+                navbar.classList.remove('hover-expand'); // Revert navbar height
+                navbarInfo.classList.remove('show'); // Hide the info section
+            });
+        });
+    </script>
 </body>
 </html>
 
