@@ -198,56 +198,86 @@
       transform: scale(2.5);
       transition: all 0.5s ease-in-out 0.5s;
     }
-
     .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      padding: 90px;
-      background-color: rgb(0, 0, 0);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 40px;
-      z-index: 1000;
-    }
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 90px;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  z-index: 1000;
+}
 
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      z-index: 999;
-    }
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 999;
+}
 
-    .button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-    }
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
 
-    .close-btn {
-      display: block;
-      position: absolute;
-      padding-right: 5px;
-      padding-left: 5px;
-      top: 15px;
-      right: 25px;
-      background-color: red;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #ffffff;
-    }
+.close-btn {
+  display: block;
+  position: absolute;
+  padding-right: 5px;
+  padding-left: 5px;
+  top: 15px;
+  right: 25px;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0.75;
+    transform: translate(-200%, -200%) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes popupSlideOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(150%, -40%) scale(0);
+  }
+}
+
+.popup.open {
+  display: block;
+  animation: popupSlideIn 0.6s ease-out forwards;
+}
+
+.popup.close {
+  animation: popupSlideOut 0.6s ease-out forwards;
+}
 
     body {
       font-family: 'Montserrat', sans-serif;
@@ -348,7 +378,6 @@
 </head>
 
 <body>
-
   <div class="nav-barslide">
     <div class="navbar">
       <a href="/" class="logo-link">
@@ -500,11 +529,11 @@
                 </div>
               </div>
             </div>
-            <div class="overlay" id="overlay" onclick="closePopup()"></div>
-            <div class="popup" id="popup">
-            <p style="color: white;">Description</p>
-            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
-          </div>
+              <div class="overlay" id="overlay" onclick="closePopup()"></div>
+              <div class="popup" id="popup">
+                <p style="color: white;">Description</p>
+                <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+              </div>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
           <div class="card">
@@ -829,6 +858,31 @@
     function closePopup() {
       document.getElementById('popup').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
+    }
+    
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+  
+    function openPopup() {
+      popup.classList.remove("close"); // Remove any closing animations
+      overlay.classList.remove("close");
+      popup.classList.add("open"); // Add opening animations
+      overlay.classList.add("open");
+      popup.style.display = "block"; // Ensure it's visible
+      overlay.style.display = "block";
+    }
+  
+    function closePopup() {
+      popup.classList.remove("open"); // Remove opening animations
+      overlay.classList.remove("open");
+      popup.classList.add("close"); // Add closing animations
+      overlay.classList.add("close");
+  
+      // Wait for the animation to finish before hiding the elements
+      setTimeout(() => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      }, 400); // Match this to the animation duration (0.4s)
     }
   </script>
 </body>
