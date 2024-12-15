@@ -19,7 +19,15 @@ category-btn {
     transition: transform 0.2s, box-shadow 0.2s;
     border-color: #000000;
 }
-
+.ICONONWEB {
+    height: 40px;
+    width: 40px;
+    background-image: url(./LOGOFAT.png);
+    background-size: 130%; /* Ensures the image scales to fit */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    border-radius: 50%; /* Keeps it circular */
+}
 
 
 .card:hover {

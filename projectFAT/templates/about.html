@@ -8,14 +8,12 @@
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.72.0">
   <title>About Us</title>
-  <link rel="icon" type="image/x-icon"
-    href="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png">
+  <link rel="icon" type="image/png" href="/projectFAT/static/LOGOFAT.png" class="ICONONWEB">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/carousel/">
   <link rel="stylesheet" type="text/css" href="../static/custom.css">
   <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
   <link rel="stylesheet" type="text/css" href="../static/SearchBarOnNav.css">
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
@@ -26,324 +24,354 @@
     crossorigin="anonymous"></script>
 
 
-  <style>
-    .card {
-      width: 280px;
-      height: 280px;
-      background: #333333;
-      border-radius: 32px;
-      padding: 3px;
-      position: relative;
-      box-shadow: #604b4a30 0px 70px 30px -50px;
-      transition: all 0.5s ease-in-out;
-    }
-
-    .card .mail {
-      position: absolute;
-      right: 2rem;
-      top: 1.4rem;
-      background: transparent;
-      border: none;
-    }
-
-    .card .mail svg {
-      stroke: #a8a8a8;
-      stroke-width: 2.5px;
-    }
-
-    .card .mail svg:hover {
-      stroke: #242424;
-    }
-
-    .card .profile-pic {
-      position: absolute;
-      width: calc(100% - 6px);
-      height: calc(100% - 6px);
-      top: 3px;
-      left: 3px;
-      border-radius: 29px;
-      z-index: 1;
-      border: 0px solid #505050;
-      overflow: hidden;
-      transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
-    }
-
-    .card .profile-pic img {
-      -o-object-fit: cover;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      -o-object-position: 0px 0px;
-      object-position: 0px 0px;
-      transition: all 0.5s ease-in-out 0s;
-    }
-
-    .card .profile-pic svg {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-      object-fit: cover;
-      -o-object-position: 0px 0px;
-      object-position: 0px 0px;
-      transform-origin: 45% 20%;
-      transition: all 0.5s ease-in-out 0s;
-    }
-
-    .card .bottom {
-      position: absolute;
-      bottom: 3px;
-      left: 3px;
-      right: 3px;
-      background: #505050;
-      top: 80%;
-      border-radius: 29px;
-      z-index: 2;
-      box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-    }
-
-    .card .bottom .content {
-      position: absolute;
-      bottom: 0;
-      left: 1.5rem;
-      right: 1.5rem;
-      height: 160px;
-    }
-
-    .card .bottom .content .name {
-      display: block;
-      font-size: 1.2rem;
-      color: rgb(255, 255, 255);
-      font-weight: bold;
-    }
-
-    .card .bottom .content .about-me {
-      display: block;
-      font-size: 0.9rem;
-      color: rgb(222, 222, 222);
-      margin-top: 1rem;
-    }
-
-    .card .bottom .bottom-bottom {
-      position: absolute;
-      bottom: 1rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card .bottom .bottom-bottom .social-links-container {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .card .bottom .bottom-bottom .social-links-container svg {
-      height: 20px;
-      fill: white;
-      filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
-    }
-
-    .card .bottom .bottom-bottom .social-links-container svg:hover {
-      fill: #bababa;
-      transform: scale(1.2);
-    }
-
-    .card .bottom .bottom-bottom .button {
-      background: white;
-      color: #212121;
-      border: none;
-      border-radius: 20px;
-      font-size: 0.6rem;
-      padding: 0.4rem 0.6rem;
-      box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
-    }
-
-    .card .bottom .bottom-bottom .button:hover {
-      background: #333235;
-      color: white;
-    }
-
-    .card:hover {
-      border-top-left-radius: 55px;
-    }
-
-    .card:hover .bottom {
-      top: 20%;
-      border-radius: 80px 29px 29px 29px;
-      transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
-    }
-
-    .card:hover .profile-pic {
-      width: 100px;
-      height: 100px;
-      aspect-ratio: 1;
-      top: 10px;
-      left: 10px;
-      border-radius: 50%;
-      z-index: 3;
-      border: 7px solid #474747;
-      box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
-      transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
-    }
-
-    .card:hover .profile-pic img {
-      transform: scale(1.4);
-      transition: all 0.5s ease-in-out 0.5s;
-    }
-
-    .card:hover .profile-pic svg {
-      transform: scale(2.5);
-      transition: all 0.5s ease-in-out 0.5s;
-    }
-
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      padding: 90px;
-      background-color: rgb(0, 0, 0);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 40px;
-      z-index: 1000;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      z-index: 999;
-    }
-
-    .button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-    }
-
-    .close-btn {
-      display: block;
-      position: absolute;
-      padding-right: 5px;
-      padding-left: 5px;
-      top: 15px;
-      right: 25px;
-      background-color: red;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #ffffff;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+    <style>
+      .card {
+        width: 280px;
+        height: 280px;
+        background: #333333;
+        border-radius: 32px;
+        padding: 3px;
+        position: relative;
+        box-shadow: #604b4a30 0px 70px 30px -50px;
+        transition: all 0.5s ease-in-out;
       }
-    }
-
-    body {
-      padding-top: 3rem;
-      background-image: url('./static/Background.svg');
-      padding-bottom: 3rem;
-      color: #5a5a5a;
-      background-color: rgb(50, 50, 50);
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-
-    .carousel {
-      margin-bottom: 8rem;
-    }
-
-    .carousel-caption {
-      bottom: 16rem;
-      z-index: 10;
-    }
-
-    .carousel-item {
-      height: 50rem;
-      margin-top: auto;
-    }
-
-    .carousel-item>img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 32rem;
-    }
-
-    .marketing .col-lg-4 {
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .marketing h2 {
-      font-weight: 400;
-    }
-
-    .marketing .col-lg-4 p {
-      margin-right: 50%;
-      margin-left: 50%;
-    }
-
-    .featurette-divider {
-      margin: 5rem 0;
-    }
-
-    .featurette-heading {
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -.05rem;
-    }
-
-    @media (min-width: 40em) {
-
-      .carousel-caption p {
-        margin-bottom: 1.25rem;
-        font-size: 1.25rem;
-        line-height: 1.4;
+  
+      .card .mail {
+        position: absolute;
+        right: 2rem;
+        top: 1.4rem;
+        background: transparent;
+        border: none;
       }
-
+  
+      .card .mail svg {
+        stroke: #a8a8a8;
+        stroke-width: 2.5px;
+      }
+  
+      .card .mail svg:hover {
+        stroke: #242424;
+      }
+  
+      .card .profile-pic {
+        position: absolute;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        top: 3px;
+        left: 3px;
+        border-radius: 29px;
+        z-index: 1;
+        border: 0px solid #505050;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+      }
+  
+      .card .profile-pic img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        -o-object-position: 0px 0px;
+        object-position: 0px 0px;
+        transition: all 0.5s ease-in-out 0s;
+      }
+  
+      .card .profile-pic svg {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: 0px 0px;
+        object-position: 0px 0px;
+        transform-origin: 45% 20%;
+        transition: all 0.5s ease-in-out 0s;
+      }
+  
+      .card .bottom {
+        position: absolute;
+        bottom: 3px;
+        left: 3px;
+        right: 3px;
+        background: #505050;
+        top: 80%;
+        border-radius: 29px;
+        z-index: 2;
+        box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+      }
+  
+      .card .bottom .content {
+        position: absolute;
+        bottom: 0;
+        left: 1.5rem;
+        right: 1.5rem;
+        height: 160px;
+      }
+  
+      .card .bottom .content .name {
+        display: block;
+        font-size: 1.2rem;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+      }
+  
+      .card .bottom .content .about-me {
+        display: block;
+        font-size: 0.9rem;
+        color: rgb(222, 222, 222);
+        margin-top: 1rem;
+      }
+  
+      .card .bottom .bottom-bottom {
+        position: absolute;
+        bottom: 1rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+  
+      .card .bottom .bottom-bottom .social-links-container {
+        display: flex;
+        gap: 1rem;
+      }
+  
+      .card .bottom .bottom-bottom .social-links-container svg {
+        height: 20px;
+        fill: white;
+        filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
+      }
+  
+      .card .bottom .bottom-bottom .social-links-container svg:hover {
+        fill: #bababa;
+        transform: scale(1.2);
+      }
+  
+      .card .bottom .bottom-bottom .button {
+        background: white;
+        color: #212121;
+        border: none;
+        border-radius: 20px;
+        font-size: 0.6rem;
+        padding: 0.4rem 0.6rem;
+        box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
+      }
+  
+      .card .bottom .bottom-bottom .button:hover {
+        background: #333235;
+        color: white;
+      }
+  
+      .card:hover {
+        border-top-left-radius: 55px;
+      }
+  
+      .card:hover .bottom {
+        top: 20%;
+        border-radius: 80px 29px 29px 29px;
+        transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+      }
+  
+      .card:hover .profile-pic {
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1;
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+        z-index: 3;
+        border: 7px solid #474747;
+        box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
+        transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+      }
+  
+      .card:hover .profile-pic img {
+        transform: scale(1.4);
+        transition: all 0.5s ease-in-out 0.5s;
+      }
+  
+      .card:hover .profile-pic svg {
+        transform: scale(2.5);
+        transition: all 0.5s ease-in-out 0.5s;
+      }
+      .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 90px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 40px;
+    z-index: 1000;
+  }
+  
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 999;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .close-btn {
+    display: block;
+    position: absolute;
+    padding-right: 5px;
+    padding-left: 5px;
+    top: 15px;
+    right: 25px;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  
+  @keyframes popupSlideIn {
+    from {
+      opacity: 0.75;
+      transform: translate(-200%, -200%) scale(0.3);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  @keyframes popupSlideOut {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(150%, -40%) scale(0);
+    }
+  }
+  
+  .popup.open {
+    display: block;
+    animation: popupSlideIn 0.6s ease-out forwards;
+  }
+  
+  .popup.close {
+    animation: popupSlideOut 0.6s ease-out forwards;
+  }
+  
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+  
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+  
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+  
+      body {
+        padding-top: 3rem;
+        background-image: url('./static/Background.svg');
+        padding-bottom: 3rem;
+        color: #5a5a5a;
+        background-color: rgb(50, 50, 50);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+  
+      .carousel {
+        margin-bottom: 8rem;
+      }
+  
+      .carousel-caption {
+        bottom: 16rem;
+        z-index: 10;
+      }
+  
+      .carousel-item {
+        height: 50rem;
+        margin-top: auto;
+      }
+  
+      .carousel-item>img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: 32rem;
+      }
+  
+      .marketing .col-lg-4 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+  
+      .marketing h2 {
+        font-weight: 400;
+      }
+  
+      .marketing .col-lg-4 p {
+        margin-right: 50%;
+        margin-left: 50%;
+      }
+  
+      .featurette-divider {
+        margin: 5rem 0;
+      }
+  
       .featurette-heading {
-        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -.05rem;
       }
-    }
-
-    @media (min-width: 62em) {
-      .featurette-heading {
-        margin-top: 7rem;
+  
+      @media (min-width: 40em) {
+  
+        .carousel-caption p {
+          margin-bottom: 1.25rem;
+          font-size: 1.25rem;
+          line-height: 1.4;
+        }
+  
+        .featurette-heading {
+          font-size: 50px;
+        }
       }
-    }
-  </style>
+  
+      @media (min-width: 62em) {
+        .featurette-heading {
+          margin-top: 7rem;
+        }
+      }
+    </style>
   <link href="carousel.css" rel="stylesheet">
 </head>
 
@@ -587,14 +615,13 @@
             </div>
             <div class="bottom">
               <div class="content">
-                <span class="name">Jeswanth Dandamudi</span>
-                <span class="about-me">Web Developer</span>
-                <span class="about-me">Web Designer</span>
+                <span class="name">Chahel Paatur</span>
+                <span class="about-me">Backend Developer</span>
               </div>
               <div class="bottom-bottom">
                 <div class="social-links-container">
 
-                  <button onclick="window.location.href='https://www.instagram.com/freshwater456/'"
+                  <button onclick="window.location.href='https://www.instagram.com/chahel.237/'"
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
                       <path id="Subtraction_4" data-name="Subtraction 4"
@@ -603,7 +630,7 @@
                     </svg>
                   </button>
                   <!--fill in w ur linkednin-->
-                  <button onclick="window.location.href=''"
+                  <button onclick="window.location.href='https://www.linkedin.com/in/chahel-paatur-88a9b4229'"'
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" height="15.999px" width="16px"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -612,7 +639,7 @@
                     </svg>
                   </button>
 
-                  <button onclick="window.location.href='https://github.com/Freshwater854'"
+                  <button onclick="window.location.href='https:'//github.com/ChahelPaatur" 
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
                       <path
@@ -714,12 +741,12 @@
             </div>
             <div class="bottom">
               <div class="content">
-                <span class="name">Chahel Paatur</span>
-                <span class="about-me">Backend Developer</span>
+                <span class="name">Jaswanth Danamudi</span>
+                <span class="about-me">Web Developer</span>
               </div>
               <div class="bottom-bottom">
                 <div class="social-links-container">
-                  <button onclick="window.location.href='https://www.instagram.com/chahel.237/'"
+                  <button onclick="window.location.href='https://www.instagram.com/freshwater456/'"
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
                       <path id="Subtraction_4" data-name="Subtraction 4"
@@ -727,7 +754,7 @@
                         transform="translate(6 598)"></path>
                     </svg>
                   </button>
-                  <button onclick="window.location.href='https://www.linkedin.com/in/chahel-paatur-88a9b4229'"
+                  <button onclick="window.location.href=''
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" height="15.999px" width="16px"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -735,7 +762,7 @@
                       <path d="M9,25H4V10h5V25z M6.501,8C5.118,8,4,6.879,4,5.499S5.12,3,6.501,3C7.879,3,9,4.121,9,5.499C9,6.879,7.879,8,6.501,8z M27,25h-4.807v-7.3c0-1.741-0.033-3.98-2.499-3.98c-2.503,0-2.888,1.896-2.888,3.854V25H12V9.989h4.614v2.051h0.065 c0.642-1.18,2.211-2.424,4.551-2.424c4.87,0,5.77,3.109,5.77,7.151C27,16.767,27,25,27,25z"/>
                     </svg>
                   </button>
-                  <button onclick="window.location.href='https://github.com/ChahelPaatur'"
+                  <button onclick="window.location.href='https://github.com/Freshwater854'""
                     style="background: none; border: none; cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
                       <path
@@ -818,7 +845,7 @@
     </div>
     <footer class="container">
       <p class="float-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2024-2025 Hack Club &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      <p>&copy; 2024-2025 Hack Club &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>&middot; <a href="//github.com/Vkutti/projectFAT/tree/main">Github</a></p>
     </footer>
   </main>
   <script>
@@ -830,6 +857,31 @@
     function closePopup() {
       document.getElementById('popup').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
+    }
+    
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+  
+    function openPopup() {
+      popup.classList.remove("close"); // Remove any closing animations
+      overlay.classList.remove("close");
+      popup.classList.add("open"); // Add opening animations
+      overlay.classList.add("open");
+      popup.style.display = "block"; // Ensure it's visible
+      overlay.style.display = "block";
+    }
+  
+    function closePopup() {
+      popup.classList.remove("open"); // Remove opening animations
+      overlay.classList.remove("open");
+      popup.classList.add("close"); // Add closing animations
+      overlay.classList.add("close");
+  
+      // Wait for the animation to finish before hiding the elements
+      setTimeout(() => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      }, 400); // Match this to the animation duration (0.4s)
     }
   </script>
 </body>
