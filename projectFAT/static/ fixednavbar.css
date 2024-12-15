@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Increase the bottom padding when hovering over the navbar */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #111; /* Dark background */
+    width: 1000px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: height 0.3s ease; /* Smooth transition for height */
+    height: 60px; /* Initial height of navbar */
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Expanded Navbar Height on Hover */
+.navbar.hover-expand {
+    height: 260px; /* Increased height when hovering */
+}
+
+
+.logo {
+    height: 40px;
+    width: 40px;
+    background-image: url(./LOGOFAT.png);
+    background-size: 130%; /* Ensures the image scales to fit */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    border-radius: 50%; /* Keeps it circular */
+    position: absolute;
+    left: 20px; /* Adjust the position of the logo to the left */
+    top: 50%; /* Align the logo vertically to the center of the navbar */
+    top: 30px; /* Fix logo at the top */
+    transform: translateY(-50%); /* Correct for the 50% vertical offset */
+    z-index: 2; /* Ensure logo is always on top */
+}
+
+
+
+/* General Reset */
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    position: absolute;
+    top: 12px; /* Align links at the top of navbar */
+    left: 100px;
+    z-index: 1;
+}
+
+.nav-links li {
+    height: 20px;
+    width: 80px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect for tabs */
+.nav-links li:hover {
+    background-color: #444;
+}
+
+/* Info Section (Hidden by default) */
+.navbar-info {
+    display: none; /* Hidden initially */
+    position: absolute;
+    top: 100%; /* Below the navbar */
+    left: 100px;
+    width: 100%;
+    background-color: #222;
+    padding: 20px;
+    color: white;
+    border-radius: 0 0 50px 50px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 0; /* Hidden by default */
+    z-index: 2; /* Ensure it's above everything else */
+}
+
+/* Show the info section when navbar expands */
+.navbar.hover-expand .navbar-info {
+    display: block; /* Show the info section */
+    opacity: 1; /* Fade in the info section */
+}
+
+/* Basic info color styling to make sure text is visible */
+.navbar-info p {
+    font-size: 16px;
+}
