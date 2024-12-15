@@ -250,7 +250,7 @@
 
 @keyframes popupSlideIn {
   from {
-    opacity: 0.75;
+    opacity: 1;
     transform: translate(-200%, -200%) scale(0.3);
   }
   to {
@@ -373,6 +373,37 @@
         margin-top: 7rem;
       }
     }
+    .bubble-button {
+  display: inline-block;
+  padding: 3px 20px;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: Black;
+  border: 0px solid White;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.bubble-button:hover {
+  transform: scale(1.5);
+  background-color: black;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  display: inline-block;
+}
   </style>
   <link href="carousel.css" rel="stylesheet">
 </head>
@@ -385,12 +416,11 @@
       </a>
 
       <ul class="nav-links">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <a class="bubble-button">Home</a>
+        <a class="bubble-button">About Us</a>
+        <a class="bubble-button">Communities</a>
+        <a class="bubble-button">Request A Business</a>
+        <a class="bubble-button">Contact</a>
       </ul>
       <form class="d-flex" action="/enterinfo">
         <div class="search-header">
@@ -456,7 +486,7 @@
             <div class="carousel-caption text-right">
               <h1><b>Have A Community Business?</b></h1>
               <p>Join us and watch your recognition grow</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign Up Today</a></p>
+              <p><a class="btn btn-lg btn-primary" href="/businessForm" role="button">Sign Up Today</a></p>
             </div>
           </div>
         </div>
@@ -793,7 +823,7 @@
         </h2>
         <p class="lead" style="color: white">We are dedicated to help smaller businesses within our Tracy
           communities gain more recognition. We bring this service completely free for both
-          the users and businesses.
+          the users and businesses. If you want to sign up your business, fill out the application and you're all set!
         </p>
       </div>
       <div class="col-md-5">
@@ -808,8 +838,7 @@
     <hr class="featurette-divider">
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading" style="color: white">I'm just too good at this <span style="color: #797979;">See for
-            yourself.</span></h2>
+        <h2 class="featurette-heading" style="color: white">f<span style="color: #797979;">f</span></h2>
         <p class="lead" style="color: white">Random words 8</p>
       </div>
       <div class="col-md-5 order-md-1">
@@ -865,25 +894,24 @@
     const overlay = document.getElementById("overlay");
   
     function openPopup() {
-      popup.classList.remove("close"); // Remove any closing animations
+      popup.classList.remove("close");
       overlay.classList.remove("close");
-      popup.classList.add("open"); // Add opening animations
+      popup.classList.add("open");
       overlay.classList.add("open");
-      popup.style.display = "block"; // Ensure it's visible
+      popup.style.display = "block";
       overlay.style.display = "block";
     }
   
     function closePopup() {
-      popup.classList.remove("open"); // Remove opening animations
+      popup.classList.remove("open");
       overlay.classList.remove("open");
-      popup.classList.add("close"); // Add closing animations
+      popup.classList.add("close");
       overlay.classList.add("close");
   
-      // Wait for the animation to finish before hiding the elements
       setTimeout(() => {
         popup.style.display = "none";
         overlay.style.display = "none";
-      }, 400); // Match this to the animation duration (0.4s)
+      }, 400);
     }
   </script>
 </body>
