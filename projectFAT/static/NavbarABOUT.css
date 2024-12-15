@@ -44,7 +44,7 @@
 .nav-links li {
     height: 10px;
     width: 80px; /* Placeholder size for nav items */
-    background-color: #333; /* Darker placeholder for nav text */
+    background-color: #444444; /* Darker placeholder for nav text */
     border-radius: 5px;
 
     position: relative; /* Needed for bubble positioning */
@@ -60,7 +60,7 @@
     transform: translateX(-50%) scaleY(0); /* Start invisible */
     width: 140%; /* Larger width for the bubble */
     height: 50px; /* Increased height for a bigger bubble */
-    background-color: #2b2b2b; /* Slightly lighter gray bubble */
+    background-color: #444444; /* Slightly lighter gray bubble */
     border-radius: 25px; /* Rounded corners for the bubble */
     opacity: 0.8;
     transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
