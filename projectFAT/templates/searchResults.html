@@ -26,6 +26,7 @@
             <div class="logo"></div>
           </a>
           
+           <!-- 
           <ul class="nav-links">
               <li></li>
               <li></li>
@@ -34,6 +35,10 @@
               <li></li>
               <li></li>
           </ul>
+        -->        
+          <h2 id="search-title" class="" style="font-size:x-large; font-family: sans-serif; color: white; font-weight: bold;margin-top: 10px;">Search Results For: {{ category }}</h2>
+
+
           <form class="d-flex" action="/enterinfo" >
             <div class="search-header">
               <input placeholder="Search" name= "enter" class="search-header__input" type="text" />
@@ -55,9 +60,11 @@
           </form>
         </div>
     </div>
-    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn" >Back</a>
+
+    <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">Back</a>
+    
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
-        <h2 id="search-title" class="mb-4" style="font-size:x-large; font-family: sans-serif; color: white; font-weight: bold;">Search Results For: {{ category }}</h2>
+        <h2 id="search-title" class="mb-4" style="font-size:x-large; font-family: sans-serif; color: transparent; font-weight: bold; padding-top: 32px;">Search Results For: {{ category }}</h2>
         <div id="cards-container" class="glass-box" style="height: 45rem; overflow-y: scroll;">
             <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem;" id="search-results-container">
                 {% for business in businesses %}

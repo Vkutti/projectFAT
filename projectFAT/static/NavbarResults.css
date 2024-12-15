@@ -11,17 +11,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #111; /* Darker background for navbar */
+    background-color: #242424; /* Darker background for navbar */
     padding: 12px 20px;
     border-radius: 60px; /* Rounded edges */
     /* Navbar width */
-    width: 80%;
+    width: 60%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     
     position: absolute;
     top: 7px; /* Slightly down from the top */
     left: 50%; /* Move to the center horizontally */
     transform: translateX(-50%); /* Center it perfectly */
+    backdrop-filter: blur(20px); /* Adjust blur intensity */
+
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
+
+
+    
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    overflow: hidden;
+
 }
 
 .logo {
