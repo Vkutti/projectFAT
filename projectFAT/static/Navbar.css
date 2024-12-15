@@ -77,7 +77,7 @@
 
 /* Info Section (Hidden by default) */
 .navbar-info {
-    display: none;
+    display: none; /* Hidden initially */
     position: absolute;
     top: 100%; /* Below the navbar */
     left: 100px;
@@ -88,21 +88,17 @@
     border-radius: 0 0 50px 50px;
     text-align: center;
     transition: opacity 0.3s ease;
+    opacity: 0; /* Hidden by default */
+    z-index: 2; /* Ensure it's above everything else */
 }
 
 /* Show the info section when navbar expands */
 .navbar.hover-expand .navbar-info {
-    display: block;
-    opacity: 1;
+    display: block; /* Show the info section */
+    opacity: 1; /* Fade in the info section */
 }
 
-/* Specific info for each tab */
-.nav-links li[data-info="Information about Tab 1"]:hover ~ .navbar-info {
-    content: "Information about Tab 1";
-}
-.nav-links li[data-info="Information about Tab 2"]:hover ~ .navbar-info {
-    content: "Information about Tab 2";
-}
-.nav-links li[data-info="Information about Tab 3"]:hover ~ .navbar-info {
-    content: "Information about Tab 3";
+/* Basic info color styling to make sure text is visible */
+.navbar-info p {
+    font-size: 16px;
 }
