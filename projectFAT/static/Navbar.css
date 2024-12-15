@@ -1,3 +1,4 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -5,8 +6,7 @@
     font-family: sans-serif;
 }
 
-
-
+/* Navbar Styles */
 .navbar {
     display: flex;
     align-items: center;
@@ -21,8 +21,12 @@
     top: 30px; /* Slightly down from the top */
     left: 50%; /* Move to the center horizontally */
     transform: translateX(-50%); /* Center it perfectly */
+
+    height: 80px; /* Initial height of the navbar */
+    transition: height 0.3s ease; /* Smooth transition for height change */
 }
 
+/* Logo Styles */
 .logo {
     height: 40px;
     width: 40px;
@@ -33,6 +37,7 @@
     border-radius: 50%; /* Keeps it circular */
 }
 
+/* Navigation Links */
 .nav-links {
     display: flex;
     list-style: none;
@@ -44,8 +49,28 @@
     width: 80px; /* Placeholder size for nav items */
     background-color: #333; /* Darker placeholder for nav text */
     border-radius: 5px;
+
+    position: relative; /* For positioning the bubble (if necessary) */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
 }
 
+/* Expand Navbar on Tab Hover */
+.nav-links li:hover {
+    cursor: pointer;
+}
+
+/* Expanding the Navbar */
+.nav-links li:hover {
+    /* Change the navbar height when hovering over any nav link */
+    z-index: 1; /* Ensures the hovered tab stays on top */
+}
+
+/* Hover effect on navbar items */
+.nav-links li:hover ~ .navbar {
+    height: 120px; /* Increase navbar height when hovering over any tab */
+}
+
+/* Buttons */
 .buttons {
     display: flex;
     gap: 10px;
