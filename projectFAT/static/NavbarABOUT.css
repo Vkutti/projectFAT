@@ -11,10 +11,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #111; /* Darker background for navbar */
+    background-color: #181717; /* Darker background for navbar */
     padding: 12px 20px;
     border-radius: 60px; /* Rounded edges */
-    width: 1500px; /* Navbar width */
+    width: 80%; /* Navbar width */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     
     position: absolute;
