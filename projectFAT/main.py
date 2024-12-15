@@ -115,8 +115,8 @@ def run_additional_code_yes():
         print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing by the way")
         db.execute(
                 """
-                INSERT INTO fat (businessName, ownername, businessType, businessHours, businessLocation, Email, PhoneNumber, Community)
-                VALUES (:businessName, :ownername, :businessType, :businessHours, :businessLocation,:Email ,:PhoneNumber, :Community)
+                INSERT INTO fat (businessName, ownername, businessType, businessHours, Email, PhoneNumber, Community)
+                VALUES (:businessName, :ownername, :businessType, :businessHours,:Email ,:PhoneNumber, :Community)
                 """,
                 businessName = glblBusinessName,
                 ownername= glblOwnername,
@@ -125,7 +125,6 @@ def run_additional_code_yes():
                 businessLocation= glblBusinessLocation,
                 Email = glblEmail, 
                 PhoneNumber = glblPhoneNumber, 
-                Community = glblCommunity
                 )
         print("adding to the Log Database")
         db.execute(
@@ -202,7 +201,6 @@ def form():
         glblOwnername = request.form.get("ownername")
         glblEmail = request.form.get("email")
         glblPhoneNumber = request.form.get("phoneNumber")
-        glblCommunity = request.form.get("community")
         uploaded_file = request.files.get('business_license')
         print(glblBusinessHours)
         print(glblCommunity)
@@ -222,7 +220,6 @@ def form():
                  Owner/business email: {glblEmail}
                  Business type: {glblBusinessType}
                  Phone Number: {glblPhoneNumber}
-                 Community: {glblCommunity}
                          """
 
         # Set up the MIME
@@ -304,7 +301,7 @@ def business1():
     keywords = data.split()
 
     query = """
-        SELECT businessName, ownername, businessLocation, businessHours, Email, PhoneNumber, Community
+        SELECT businessName, ownername, businessHours, Email, PhoneNumber
         FROM fat
         WHERE 1=1
     """

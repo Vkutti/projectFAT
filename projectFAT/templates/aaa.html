@@ -1,149 +1,470 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Popup Box</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.72.0">
+  <title>About Us</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/carousel/">
+  <link rel="stylesheet" type="text/css" href="../static/custom.css">
+  <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
+  <link rel="stylesheet" type="text/css" href="../static/SearchBarOnNav.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    
+
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            padding: 60px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .close-btn {
+            display:block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+      body {
+    font-family: 'Montserrat', sans-serif;
+    }
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
     }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      padding-top: 3rem;
+      background-image: url('./static/Background.svg'); 
+      padding-bottom: 3rem;
+      color: #5a5a5a;
+      background-color: rgb(50, 50, 50);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
     }
 
-    /* Button to open popup */
-    #openPopup {
-      padding: 12px 25px;
-      font-size: 16px;
-      color: #fff;
-      background-color: #007BFF;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+    .carousel {
+      margin-bottom: 8rem;
     }
 
-    #openPopup:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
+    .carousel-caption {
+      bottom: 16rem;
+      z-index: 10;
     }
 
-    /* Popup background */
-    .popup {
-      display: none;
-      position: fixed;
+    .carousel-item {
+      height: 50rem;
+      margin-top: auto;
+    }
+
+    .carousel-item>img {
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-      z-index: 1000;
+      min-width: 100%;
+      height: 32rem;
     }
 
-    /* Popup content box */
-    .popup-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
+    .marketing .col-lg-4 {
+      margin-bottom: 1.5rem;
       text-align: center;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-      animation: fadeIn 0.3s ease-out;
     }
 
-    /* Popup animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -55%);
+    .marketing h2 {
+      font-weight: 400;
+    }
+
+    .marketing .col-lg-4 p {
+      margin-right: .75rem;
+      margin-left: .75rem;
+    }
+
+    .featurette-divider {
+      margin: 5rem 0;
+    }
+
+    .featurette-heading {
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.05rem;
+    }
+
+    @media (min-width: 40em) {
+
+      .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
       }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+
+      .featurette-heading {
+        font-size: 50px;
       }
     }
 
-    /* Close button */
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #666;
-      cursor: pointer;
-      transition: color 0.2s ease;
+    @media (min-width: 62em) {
+      .featurette-heading {
+        margin-top: 7rem;
+      }
     }
-
-    .close:hover {
-      color: #000;
-    }
-
-    /* Popup text */
-    p {
-      font-size: 18px;
-      color: #333;
-      line-height: 1.6;
-    }
+    
   </style>
+  <link href="carousel.css" rel="stylesheet">
 </head>
+
 <body>
-  <!-- Popup box -->
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close">&times;</span>
-      <p>Welcome to your modern popup box!</p>
-      <button id="closePopup" style="padding: 10px 20px; border: none; background-color: #007BFF; color: #fff; border-radius: 5px; cursor: pointer;">Close</button>
+
+  <div class="nav-barslide">
+    <div class="navbar">
+      <a href="/" class="logo-link">
+        <div class="logo"></div>
+      </a>
+      
+      <ul class="nav-links">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+      </ul>
+      <form class="d-flex" action="/enterinfo" >
+        <div class="search-header">
+          <input placeholder="Search" name= "enter" class="search-header__input" type="text" />
+          <button class="search-header__button" onclick="enterpromt()">
+            <svg
+              fill="none"
+              viewBox="0 0 18 18"
+              height="18"
+              width="18"
+              class="search-header__icon"
+            >
+              <path
+                fill="#3A3A3A"
+                d="M7.132 0C3.197 0 0 3.124 0 6.97c0 3.844 3.197 6.969 7.132 6.969 1.557 0 2.995-.49 4.169-1.32L16.82 18 18 16.847l-5.454-5.342a6.846 6.846 0 0 0 1.718-4.536C14.264 3.124 11.067 0 7.132 0zm0 .82c3.48 0 6.293 2.748 6.293 6.15 0 3.4-2.813 6.149-6.293 6.149S.839 10.37.839 6.969C.839 3.568 3.651.82 7.132.82z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <!-- Button to open popup -->
-  <button id="openPopup">Open Popup</button>
 
+<!-- <div class="container">
+  <input type="text" name="text" class="input" required="" placeholder="Type to search...">
+  <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+          <title>Search</title>
+          <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+      </svg>
+  </div>
+</div> -->
+  <main>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <rect width="100%" height="100%" fill="#777" /></svg>
+
+          <div class="container">
+            <div class="carousel-caption text-left">
+              <h1><b>What is For All Of Tracy?</b></h1>
+              <p>Non-profit that aids small community businesses</p>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <rect width="100%" height="100%" fill="#777" /></svg>
+
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><b>Who Started For All Of Tracy?</b></h1>
+              <p>Students in the Hack Club at John C. Kimball highschool</p>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <rect width="100%" height="100%" fill="#777" /></svg>
+
+          <div class="container">
+            <div class="carousel-caption text-right">
+              <h1><b>Have A Community Business?</b></h1>
+              <p>Join us and watch your recognition grow</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign Up Today</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#777" />
+          </svg>
+
+          <h2 style="color: #ffffff;" >Venkat Kutti</h2>
+          <p style="color: #ffffff;">Project Lead</p>
+          <p style="color: #ffffff;">Fullstack Developer</p>
+          <p><a class="btn btn-secondary" role="button" onclick="openPopup()"style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#777" />
+          </svg>
+
+          <h2 style="color: #ffffff;">Harshith Chemudugunta</h2>
+          <p style="color: #ffffff;">Project Lead</p>
+          <p style="color: #ffffff;">Fullstack Developer</p>
+          <p><a class="btn btn-secondary" role="button" onclick="openPopup()"style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#777" />
+          </svg>
+
+          <h2 style="color: #ffffff;">Garvin Yu</h2>
+          <p style="color: #ffffff;">Web Developer</p>
+          <p><a class="btn btn-secondary" role="button" onclick="openPopup()"style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+        </div>
+      </div>
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#777" />
+            </svg>
+  
+            <h2 style="color: #ffffff;">Jeswanth Dandamudi</h2>
+            <p style="color: #ffffff;">Web Designer</p>
+            <p><a class="btn btn-secondary" role="button" onclick="openPopup()"style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+          </div>
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#777" />
+            </svg>
+  
+
+            <h2 style="color: #ffffff;">Chahel Paatur</h2>
+            <p style="color: #ffffff;">Backend Developer</p>
+            <p><a class="btn btn-secondary" role="button" onclick="openPopup()" style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+
+          </div>
+          <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#777" />
+            </svg>
+  
+            <h2 style="color: #ffffff;">Mr. Gonzalez</h2>
+            <p style="color: #ffffff;">Supervisor</p>
+            <p><a class="btn btn-secondary" role="button" onclick="openPopup()" style="background-color: #333333; border-color: black;">View details &raquo;</a></p>
+          <div class="overlay" id="overlay" onclick="closePopup()"></div>
+          <div class="popup" id="popup">
+            <p>description</p>
+            <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+          </div>
+          </div>
+        </div>
+      <hr class="featurette-divider" style="color: black;">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">How much? <span style="color: #ffffff;">IT'S FREE!</span>
+          </h2>
+          <p class="lead">We are dedicated to help smaller businesses within our Tracy
+            communities gain more recognition. We bring this service completely free for both
+            the users and businesses.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+            height="500" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 500x500"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">Ohio Sigma</text>
+          </svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider" style="color: black;">
+
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">I'm just too good at this <span style="color: #ffffff;">See for yourself.</span></h2>
+          <p class="lead">Random words 8</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+            height="500" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 500x500"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">Rizzler</text>
+          </svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider" style="color: black;">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">I'm still awesome <span  style="color: #ffffff;">Skibidi</span></h2>
+          <p class="lead">Random words 9</p>
+        </div>
+        <div class="col-md-5">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+            height="500" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 500x500"
+            preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em" style="color: black;">Fanum Tax</text>
+          </svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider" style="color: black;">
+
+    </div>
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2024-2025 Hack Club &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </main>
   <script>
-    // Get elements
-    const popup = document.getElementById("popup");
-    const openButton = document.getElementById("openPopup");
-    const closeButton = document.querySelector(".close");
-    const closePopupButton = document.getElementById("closePopup");
+      function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
 
-    // Open popup
-    openButton.addEventListener("click", () => {
-      popup.style.display = "block";
-    });
-
-    // Close popup
-    closeButton.addEventListener("click", () => {
-      popup.style.display = "none";
-    });
-
-    // Close popup using the Close button inside the content
-    closePopupButton.addEventListener("click", () => {
-      popup.style.display = "none";
-    });
-
-    // Close popup when clicking outside the content
-    window.addEventListener("click", (event) => {
-      if (event.target === popup) {
-        popup.style.display = "none";
-      }
-    });
-  </script>
-</body>
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+    </script>
+  </body>
 </html>
