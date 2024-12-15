@@ -38,9 +38,13 @@
 .logo {
     height: 40px;
     width: 40px;
-    background-color: #fff; /* Placeholder for logo */
-    border-radius: 50%;
+    background-image: url(./LOGOFAT.png);
+    background-size: 130%; /* Ensures the image scales to fit */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    border-radius: 50%; /* Keeps it circular */
 }
+
 
 .nav-links {
     display: flex;
