@@ -94,8 +94,14 @@ category-btn {
 }
 
 /* Prevent scrolling when modal is open */
-.modal-open {
-    overflow: hidden;
+.modal-backdrop {
+    z-index: 1040; /* Standard Bootstrap z-index */
+}
+.modal {
+    z-index: 1050; /* Ensure modal stays above the backdrop */
+}
+body.modal-open {
+    overflow: hidden; /* Prevent scrolling when modal is open */
 }
 
 .return-btn {
