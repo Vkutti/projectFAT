@@ -15,6 +15,7 @@
         background-attachment: fixed;
         background-size: cover;
     }
+
     .glass-box21 {
 
         background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
@@ -47,18 +48,18 @@
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4" style="color: white; padding-top: 20px;">Request a Business Form</h2>
-        <div class="glass-box21" style="height: 54rem">
+        <div class="glass-box21 scroll-1" style="height: 54rem">
             <div class="card-body d-flex flex-column" style="width: 49rem;" id="search-results-container">
             
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
-                    <h4 style="color: white">Business Information</h4>
+                    <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
                     <div class="form-floating mb-3">
-                        <input id="businessName" type="text" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;" placeholder="Business Name"  name="businessName" required>
-                        <label for="businessName" style="color: white;">Business Name <span class="required-field"></span></label>
+                        <input id="businessName" type="text" class="form-control" style="background-color: #51515b; color: #e3e3e3; border-color:black;" placeholder="Business Name"  name="businessName" required>
+                        <label for="businessName" style="color: rgb(178, 178, 178);">Business Name <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input id="businessType" type="text" style="background-color: #686875 ;color: #686875; border-color:black;" class="form-control"  placeholder="Business Type" name="businessType" required>
-                        <label for="businessLocation" style="color: white;">Business Type <span class="required-field"></span></label>
+                        <input id="businessType" type="text" style="background-color: #51515b ;color: #686875; border-color:black;" class="form-control"  placeholder="Business Type" name="businessType" required>
+                        <label for="businessLocation" style="color: rgb(178, 178, 178);">Business Type <span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <!-- Single Editable Field for Hours and Days -->
@@ -78,7 +79,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <span class="px-2" style="color: white">:</span>
+                            <span class="px-2" style="color: rgb(178, 178, 178)">:</span>
                             <!-- Opening Minute -->
                             <select id="openingMinute" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Minute">
                                 <option value="00">00</option>
@@ -92,7 +93,7 @@
                                 <option value="am" selected>am</option>
                                 <option value="pm">pm</option>
                             </select>
-                            <span class="px-2"style="color: white" > - </span>
+                            <span class="px-2" style="color: rgb(178, 178, 178)" > - </span>
                             <!-- Closing Hour -->
                             <select id="closingHour" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Hour">
                                 <option value="01">01</option>
@@ -108,7 +109,7 @@
                                 <option value="11">11</option>
                                 <option value="12" selected>12</option>
                             </select>
-                            <span class="px-2"style="color: white" >:</span>
+                            <span class="px-2" style="color: rgb(178, 178, 178)" >:</span>
                             <!-- Closing Minute -->
                             <select id="closingMinute" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Minute">
                                 <option value="00">00</option>
@@ -116,13 +117,13 @@
                                 <option value="30">30</option>
                                 <option value="45">45</option>
                             </select>
-                            <span class="px-2"> </span>
+                            <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Closing AM/PM -->
                             <select id="closingAMPM" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
                                 <option value="pm" selected>am</option>
                                 <option value="am">pm</option>
                             </select>
-                            <span class="px-2"> </span>
+                            <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Days -->
                             <select id="days" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;" aria-label="Days of Operation">
                                 <option value="Mon-Fri" selected>Mon-Fri</option>
@@ -135,14 +136,14 @@
 
                     <div class="form-floating mb-3">
                         <input id="businessHours" type="text" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
-                        <label for="businessHours" style="color: white;">Business Hours <span class="required-field"></span></label>
+                        <label for="businessHours" style="color: rgb(178, 178, 178)" >Business Hours <span class="required-field"></span></label>
                     </div>
 
                     
         
                     <div class="form-floating mb-3">
                         <input id="businessLocation" type="text" class="form-control" style="background-color: #686875; color: #686875; border-color:black;" placeholder="Business Location" name="businessLocation" required>
-                        <label for="businessLocation" style="color: white;">Business Location <span class="required-field"></span></label>
+                        <label for="businessLocation" style="color: rgb(178, 178, 178)" >Business Location <span class="required-field"></span></label>
                     </div>
             
                     <div class="input-group mb-3">
@@ -175,15 +176,15 @@
                     <h4 style="color: white">Contact Information</h4>
                     <div class="form-floating mb-3">
                         <input id="ownerName" type="text" class="form-control " placeholder="Owner Name" style="background-color: #686875; color: #ffffff; border-color:black;" name="ownername" required> 
-                        <label for="ownerName" style="color: white;">Owner Name<span class="required-field"></span></label>
+                        <label for="ownerName" style="color: rgb(178, 178, 178)" >Owner Name<span class="required-field"></span></label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="email" type="email" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;"  placeholder="Email" name="email" required>
-                        <label for="email" style="color: white;">Email</label>
+                        <label for="email" style="color: rgb(178, 178, 178)" >Email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" style="background-color: #686875; color: #ffffff; border-color:black;"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
-                        <label for="phoneNumber" style="color: white;">Phone Number <span class="required-field"></span></label>
+                        <label for="phoneNumber" style="color: rgb(178, 178, 178)" >Phone Number <span class="required-field"></span></label>
                     </div> <!-- Close the div properly here -->
                     <button class="btn btn-primary" type="submit" style="color: white;">Submit</button>
             </form>
