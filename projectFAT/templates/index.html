@@ -72,22 +72,27 @@
 <body>
     <div class="nav-barslide">
         <div class="navbar">
-            
             <a href="/" class="logo-link">
                 <div class="logo"></div>
             </a>
             <ul class="nav-links">
-                <li class="nav-tab" data-tab="Tab 1"></li>
-                <li class="nav-tab" data-tab="Tab 2"></li>
-                <li class="nav-tab" data-tab="Tab 3"></li>
-                <li class="nav-tab"></li>
-                <li class="nav-tab"></li>
-                <li class="nav-tab"></li>
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Home</button> 
+                     <div id="info-content" class="navText"> </div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 2">
+                    <div id="info-content" class="navText"></div>
+                </li>
+
+                <li class="nav-tab" data-tab="Tab 3">
+                    <div id="info-content" class="navText"></div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center; width: 100px;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;"></button> 
+                    <div id="info-content" class="navText"> </div>
+               </li>
+               <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Contact</button> 
+                <div id="info-content" class="navText"> </div>
+           </li>
             </ul>
-            <div class="buttons">
-                <button class="login"></button>
-                <button class="signup"></button>
-            </div>
         </div>
     </div>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
@@ -115,36 +120,37 @@
     </div>
     <!-- <script src="../static/index.js" type="text/javascript"></script> -->
     <script>
-        // Add event listeners to each tab
-        const tabs = document.querySelectorAll('.nav-tab');
-        const navbar = document.querySelector('.navbar');
-        const navbarInfo = document.querySelector('.navbar-info');
-        const infoContent = document.getElementById('info-content');
+    // Add event listeners to each tab
+    const tabs = document.querySelectorAll('.nav-tab');
+    const navbar = document.querySelector('.navbar');
+    const navbarInfo = document.querySelector('.navbar-info');
+    const infoContent = document.getElementById('info-content');
 
-        // Info content for each tab
-        const tabInfo = {
-            "Tab 1": "This is information about Tab 1.",
-            "Tab 2": "Here is some details about Tab 2.",
-            "Tab 3": "Tab 3 contains more information."
-        };
+    // Info content for each tab
+    const tabInfo = {
+        'Tab 1': 'This is information about Tab 1.',
+        "Tab 2": "Here is some details about Tab 2.",
+        "Tab 3": "Tab 3 contains more information."
+    };
 
-        // Event listener for each tab hover
-        tabs.forEach(tab => {
-            tab.addEventListener('mouseenter', function() {
-                navbar.classList.add('hover-expand'); // Expand the navbar
-                navbarInfo.style.display = 'block'; // Show the info section
-                navbarInfo.style.opacity = 1; // Fade it in
-                const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
-                infoContent.innerText = tabInfo[tabName]; // Show corresponding info
-            });
-
-            tab.addEventListener('mouseleave', function() {
-                navbar.classList.remove('hover-expand'); // Revert navbar height
-                navbarInfo.style.display = 'none'; // Hide the info section
-                navbarInfo.style.opacity = 0; // Fade it out
-            });
+    // Event listener for each tab hover
+    tabs.forEach(tab => {
+        tab.addEventListener('mouseenter', function() {
+            navbar.classList.add('hover-expand'); // Expand the navbar
+            console.log('Hello Chahel2= '+navbarInfo);
+           // navbarInfo.style.display = 'block'; // Show the info section
+           // navbarInfo.style.opacity = 1; // Fade it in
+            const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
+            infoContent.innerText = tabInfo[tabName] || "No information available."; // Show corresponding info
         });
-    </script>
+
+        tab.addEventListener('mouseleave', function() {
+            navbar.classList.remove('hover-expand'); // Revert navbar height
+            navbarInfo.style.display = 'none'; // Hide the info section
+            navbarInfo.style.opacity = 0; // Fade it out
+        });
+    });
+</script>
 </body>
 </html>
 
