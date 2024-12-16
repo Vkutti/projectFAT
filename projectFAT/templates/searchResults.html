@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
-    <link rel="stylesheet" type="text/css" href="../static/NavbarABOUT.css">
+    <link rel="stylesheet" type="text/css" href="../static/NavbarResults.css">
     <link rel="stylesheet" type="text/css" href="../static/SearchBarOnNav.css">
 </head>
 <style>
@@ -22,37 +22,47 @@
     
 </style>
 <body>
-    <div class="nav-barslide">
+    <div class="nav-fadein">
         <div class="navbar">
-          <a href="/" class="logo-link">
-            <div class="logo"></div>
-          </a>
-    
-          <ul class="nav-links">
-            <a class="bubble-button">Home</a>
-            <a class="bubble-button">About Us</a>
-            <a class="bubble-button">Communities</a>
-            <a class="bubble-button">Request A Business</a>
-            <a class="bubble-button">Contact</a>
-          </ul>
-          <form class="d-flex" action="/enterinfo">
-            <div class="search-header">
-              <input placeholder="Search" name="enter" class="search-header-input" type="text" />
-              <button class="search-header__button" onclick="enterprompt()">
-                <svg fill="none" viewBox="0 0 18 18" height="18" width="18" class="search-header__icon">
-                  <path fill="#3A3A3A"
-                    d="M7.132 0C3.197 0 0 3.124 0 6.97c0 3.844 3.197 6.969 7.132 6.969 1.557 0 2.995-.49 4.169-1.32L16.82 18 18 16.847l-5.454-5.342a6.846 6.846 0 0 0 1.718-4.536C14.264 3.124 11.067 0 7.132 0zm0 .82c3.48 0 6.293 2.748 6.293 6.15 0 3.4-2.813 6.149-6.293 6.149S.839 10.37.839 6.969C.839 3.568 3.651.82 7.132.82z">
-                  </path>
-                </svg>
-              </button>
-            </div>
-          </form>
+            <a href="/" class="logo-link">
+                <div class="logo"></div>
+            </a>
+            <ul class="nav-links">
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Home</button> 
+                     <div id="info-content" class="navText"> </div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 2" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">About Us</button> 
+                    <div id="info-content" class="navText"></div>
+                </li>
+
+                <li class="nav-tab" data-tab="Tab 3" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Communities</button> 
+                    <div id="info-content" class="navText"></div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center; width: 100px;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Business RQ</button> 
+                    <div id="info-content" class="navText"> </div>
+               </li>
+               <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Contact</button> 
+                    <div id="info-content" class="navText"> </div>
+                </li>
+                <form class="d-flex" action="/enterinfo">
+                    <div class="search-header">
+                    <input placeholder="Search" name="enter" class="search-header-input" type="text" />
+                    <button class="search-header__button" onclick="enterprompt()">
+                        <svg fill="none" viewBox="0 0 18 18" height="18" width="18" class="search-header__icon">
+                        <path fill="#3A3A3A"
+                            d="M7.132 0C3.197 0 0 3.124 0 6.97c0 3.844 3.197 6.969 7.132 6.969 1.557 0 2.995-.49 4.169-1.32L16.82 18 18 16.847l-5.454-5.342a6.846 6.846 0 0 0 1.718-4.536C14.264 3.124 11.067 0 7.132 0zm0 .82c3.48 0 6.293 2.748 6.293 6.15 0 3.4-2.813 6.149-6.293 6.149S.839 10.37.839 6.969C.839 3.568 3.651.82 7.132.82z">
+                        </path>
+                        </svg>
+                    </button>
+                    </div>
+                </form>
+            </ul>
         </div>
-      </div>
-    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin-top: 100px; margin-bottom: -120px;"> Search Results For: {{category}}</h2>
+    </div>
+    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin-top: 150px; margin-bottom: -90px;"> Search Results For: {{category}}</h2>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="search-title" class="mb-4" style="font-size:x-large; font-family: sans-serif; color: transparent; font-weight: bold; padding-top: 12px;">Search Results For: {{ category }}</h2>
-        <div id="cards-container" class="glass-box scroll-1" style="height: 45rem; overflow-y: scroll;">
+        <div id="cards-container" class="glass-box scroll-1" style="height: 45rem; overflow-y: scroll;margin-top: 10px;">
             <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem;" id="search-results-container">
                 {% for business in businesses %}
                     <div class="glass-box my-2">
@@ -133,6 +143,38 @@
                 createBusinessCard(business);
             });
         };
+    </script>
+    <script>
+        // Add event listeners to each tab
+        const tabs = document.querySelectorAll('.nav-tab');
+        const navbar = document.querySelector('.navbar');
+        const navbarInfo = document.querySelector('.navbar-info');
+        const infoContent = document.getElementById('info-content');
+    
+        // Info content for each tab
+        const tabInfo = {
+            'Tab 1': 'This is information about Tab 1.',
+            "Tab 2": "Here is some details about Tab 2.",
+            "Tab 3": "Tab 3 contains more information."
+        };
+    
+        // Event listener for each tab hover
+        tabs.forEach(tab => {
+            tab.addEventListener('mouseenter', function() {
+                navbar.classList.add('hover-expand'); // Expand the navbar
+                console.log('Hello Chahel2= '+navbarInfo);
+               // navbarInfo.style.display = 'block'; // Show the info section
+               // navbarInfo.style.opacity = 1; // Fade it in
+                const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
+                infoContent.innerText = tabInfo[tabName] || "No information available."; // Show corresponding info
+            });
+    
+            tab.addEventListener('mouseleave', function() {
+                navbar.classList.remove('hover-expand'); // Revert navbar height
+                navbarInfo.style.display = 'none'; // Hide the info section
+                navbarInfo.style.opacity = 0; // Fade it out
+            });
+        });
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

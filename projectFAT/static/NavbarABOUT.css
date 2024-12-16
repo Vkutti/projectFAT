@@ -1,147 +1,144 @@
-/* General Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-/* Navbar Styles */
+/* Increase the bottom padding when hovering over the navbar */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #181717; /* Darker background for navbar */
-    padding: 12px 20px;
-    border-radius: 60px; /* Rounded edges */
-    width: 80%; /* Navbar width */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    margin-top: 30px;
-
-    position: absolute;
-    top: -20px; /* Slightly down from the top */
-    left: 50%; /* Move to the center horizontally */
-    transform: translateX(-50%); /* Center it perfectly */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #111; /* Dark background */
+  width: 1000px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 50px;
+  transition: height 0.3s ease; /* Smooth transition for height */
+  height: 60px; /* Initial height of navbar */
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Logo */
+/* Expanded Navbar Height on Hover */
+.navbar.hover-expand {
+  height: 230px; /* Increased height when hovering */
+}
+
+
 .logo {
-    height: 40px;
-    width: 40px;
-    background-image: url(./LOGOFAT.png);
-    background-size: 130%; /* Ensures the image scales to fit */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
-    border-radius: 50%; /* Keeps it circular */
+  height: 40px;
+  width: 40px;
+  background-image: url(./LOGOFAT.png);
+  background-size: 130%; /* Ensures the image scales to fit */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+  border-radius: 50%; /* Keeps it circular */
+  position: absolute;
+  left: 20px; /* Adjust the position of the logo to the left */
+  top: 50%; /* Align the logo vertically to the center of the navbar */
+  top: 30px; /* Fix logo at the top */
+  transform: translateY(-50%); /* Correct for the 50% vertical offset */
+  z-index: 2; /* Ensure logo is always on top */
+  transition: all 0.3s ease;
+
 }
 
-/* Navigation Links */
+
+
+/* General Reset */
+
 .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 40px; /* Space between links */
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  position: absolute;
+  top: 12px; /* Align links at the top of navbar */
+  left: 100px;
+  z-index: 1;
 }
 
 .nav-links li {
-    height: 10px;
-    width: 80px; /* Placeholder size for nav items */
-    background-color: #444444; /* Darker placeholder for nav text */
-    border-radius: 5px;
-
-    position: relative; /* Needed for bubble positioning */
-    transition: transform 0.3s ease; /* Smooth effect on hover */
+  height: 30px;
+  width: 97px;
+  background-color: #333;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
-/* Rectangular Bubble Effect */
-.nav-links li::after {
-    content: "";
-    position: absolute;
-    bottom: -20px; /* Drops the bubble further down */
-    left: 50%; /* Align horizontally to the center */
-    transform: translateX(-50%) scaleY(0); /* Start invisible */
-    width: 140%; /* Larger width for the bubble */
-    height: 50px; /* Increased height for a bigger bubble */
-    background-color: #444444; /* Slightly lighter gray bubble */
-    border-radius: 25px; /* Rounded corners for the bubble */
-    opacity: 0.8;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
-    z-index: -1; /* Behind the text */
-}
-
-/* Hover State */
-.nav-links li:hover::after {
-    transform: translateX(-50%) scaleY(1); /* Makes the bubble appear */
-}
-
+/* Hover effect for tabs */
 .nav-links li:hover {
-    transform: translateY(5px); /* Slight downward movement */
-    cursor: pointer;
+  background-color: #444;
 }
 
-/* Buttons */
-.buttons {
-    display: flex;
-    gap: 10px;
+/* Info Section (Hidden by default) */
+.navbar-info {
+  display: none; /* Hidden initially */
+  position: absolute;
+  top: 100%; /* Positioned below the navbar */
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  padding: 20px;
+  color: white;
+  border-radius: 0 0 50px 50px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.bubble-button {
-    display: inline-block;
-    padding: 3px 20px;
-    font-size: 12px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: Black;
-    border: 0px solid White;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-  }
-  
-  .bubble-button:hover {
-    transform: scale(1.5);
-    background-color: black;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 50px;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-links li {
-    display: inline-block;
-  }
-  .search-header__button:hover {
-    transform: scale(1.5);
-    transition: all 0.3s ease;
-  }
-  .search-header__button{
+/* Show info section when navbar expands */
+.navbar.hover-expand .navbar-info {
+  display: block;
+  opacity: 1;
+}
+.navText{
+  margin-top: 50px;
+  text-align: left;
+  color: white;
+  padding: auto;
+  width:500px;
+  font-size: large;
+}
+
+.logo:hover {
+  transform: scale(1.3) translateY(-41.67%);
+}
+
+.logo {
   transition: all 0.3s ease;
-  }
-  .search-header-input {
-    display: inline-block;
-    padding: 3px 10px;
-    margin-right: 30px;
-    font-size: 12px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: Black;
-    border: 0px solid White;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-  }
-  .search-header-input:hover {
-    transform: scale(1.3);
-    transition: all 0.3s ease;
-  }
-  .logo:hover {
-    transform: scale(1.3);
-  }
-  .logo {
-    transition: all 0.3s ease;
-  }
+
+}
+
+
+.search-header__button:hover {
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+.search-header__button{
+transition: all 0.3s ease;
+}
+.search-header-input {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-right: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: Black;
+  border: 0px solid White;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.search-header-input:hover {
+  transform: scale(1.3);
+  transition: all 0.3s ease;
+}

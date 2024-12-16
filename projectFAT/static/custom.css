@@ -159,6 +159,10 @@ body.modal-open {
     animation: slideIn 1.5s ease;
     transition: all 0.3s ease;
 }
+.nav-fadein {
+    animation: fadeIn 2s ease;
+    transition: all 0.3s ease;
+}
 .text-slide {
     animation: slideIn 2s ease;
     transition: all 0.3s ease;
