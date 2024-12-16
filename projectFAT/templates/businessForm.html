@@ -15,14 +15,39 @@
         background-attachment: fixed;
         background-size: cover;
     }
+    .glass-box21 {
+
+        background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+
+
+        backdrop-filter: blur(20px); /* Adjust blur intensity */
+
+        border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
+
+        border-radius: 12px; /* Rounded corners for a softer look */
+
+        padding: 20px;
+        margin-bottom: 20px;
+
+
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        overflow-y: scroll;
+
+        overflow-x: hidden;
+
+        transition: transform 0.2s, box-shadow 0.2s;
+
+
+        }
         
     
 </style>
 <body>
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
-        <h2 id="form-title" class="mb-4" style="color: white">Request a Business Form</h2>
-        <div class="glass-box" style="height: 54rem">
+        <h2 id="form-title" class="mb-4" style="color: white; padding-top: 20px;">Request a Business Form</h2>
+        <div class="glass-box21" style="height: 54rem">
             <div class="card-body d-flex flex-column" style="width: 49rem;" id="search-results-container">
             
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">

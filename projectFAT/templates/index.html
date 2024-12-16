@@ -34,9 +34,9 @@
                 <div class="logo"></div>
             </a>
             <ul class="nav-links">
-                <li  class="nav-tab" ></li>
-                <li class="nav-tab"></li>
-                <li class="nav-tab"></li>
+                <li class="nav-tab" data-tab="Tab 1"></li>
+                <li class="nav-tab" data-tab="Tab 2"></li>
+                <li class="nav-tab" data-tab="Tab 3"></li>
                 <li class="nav-tab"></li>
                 <li class="nav-tab"></li>
                 <li class="nav-tab"></li>
@@ -78,17 +78,27 @@
         const navbarInfo = document.querySelector('.navbar-info');
         const infoContent = document.getElementById('info-content');
 
+        // Info content for each tab
+        const tabInfo = {
+            "Tab 1": "This is information about Tab 1.",
+            "Tab 2": "Here is some details about Tab 2.",
+            "Tab 3": "Tab 3 contains more information."
+        };
+
+        // Event listener for each tab hover
         tabs.forEach(tab => {
             tab.addEventListener('mouseenter', function() {
                 navbar.classList.add('hover-expand'); // Expand the navbar
-                navbarInfo.classList.add('show'); // Show the info section
-                const info = tab.getAttribute('data-info'); // Get the info for the hovered tab
-                infoContent.innerText = info; // Update the info content
+                navbarInfo.style.display = 'block'; // Show the info section
+                navbarInfo.style.opacity = 1; // Fade it in
+                const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
+                infoContent.innerText = tabInfo[tabName]; // Show corresponding info
             });
 
             tab.addEventListener('mouseleave', function() {
                 navbar.classList.remove('hover-expand'); // Revert navbar height
-                navbarInfo.classList.remove('show'); // Hide the info section
+                navbarInfo.style.display = 'none'; // Hide the info section
+                navbarInfo.style.opacity = 0; // Fade it out
             });
         });
     </script>
