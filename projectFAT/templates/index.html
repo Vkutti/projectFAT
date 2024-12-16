@@ -25,6 +25,49 @@
     .hover-text:hover {
       transform: scale(1.2); /* Increase size by 20% */
     }
+
+    .glowbutton2 {
+    cursor: pointer;
+    position: relative;
+    padding: 10px 24px;
+    font-size: 18px;
+    color: rgb(193, 163, 98);
+    border: 2px solid rgb(193, 163, 98);
+    border-radius: 34px;
+    background-color: transparent;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
+  }
+  
+  .glowbutton2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
+    scale: 0;
+    z-index: -1;
+    background-color: rgb(193, 163, 98);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .glowbutton2:hover::before {
+    scale: 12;
+  }
+  
+  .glowbutton2:hover {
+    color: #212121;
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+  }
+  
+  .glowbutton2:active {
+    scale: 1;
+  }
+
 </style>
 <body>
     <div class="nav-barslide">
@@ -53,7 +96,7 @@
             <form action="/enterinfo">
                 <div class="search-bar">
                 <div class="input-group mt-2 input-group-md d-flex">
-                    <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input">
+                    <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input" autocomplete="off">
                     <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0" id="enter-btn" onclick="enterPrompt()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
@@ -64,11 +107,11 @@
             <div class="mt-3 d-flex justify-content-center" id="category-btns">
             </div>
         </div>
-            <a type="button" class="btn btn-default text-slide" href="/businessForm" style="color: white">Request a Business</a>
+            <a type="button" class="btn btn-default text-slide glowbutton2" href="/businessForm" style="color: white">Request a Business</a>
         </div>
     </div>
     <div class="position-absolute bottom-0 vw-100 d-flex justify-content-center mb-3">
-        <a type="button" class="btn btn-default text-slide" href="/aboutus"style="color: white" >About Us</a>
+        <a type="button" class="btn btn-default text-slide glowbutton" href="/aboutus"style="color: white" >About Us</a>
     </div>
     <!-- <script src="../static/index.js" type="text/javascript"></script> -->
     <script>
