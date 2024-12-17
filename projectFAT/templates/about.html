@@ -390,6 +390,124 @@
         margin-top: 7rem;
       }
     }
+    :root {
+    --default-padding: 10px;
+  }
+
+  /* Button to trigger the modal */
+  #openModalButton {
+    padding: 10px 20px;
+    background-color: #212121;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  /* Overlay styling */
+  .overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(56, 56, 56, 0.368);
+    backdrop-filter: blur(10px);
+    z-index: 99;
+  }
+
+  /* Modal window styling */
+  .window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #000000;
+    box-shadow: 15px 15px 0 #2e2e2e;
+    width: 600px;
+    height: 500px;
+    background-color: #2D2B2A;
+    border-radius: 5px;
+  }
+
+  .window__title-bar {
+    background-color: #212121;
+    color: white;
+    padding: 13px var(--default-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-color: #000000;
+    border-radius: 2px;
+  }
+
+  .window__body {
+    flex-grow: 1;
+    background-color: #2D2B2A;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .window__status-bar {
+    padding: 3px var(--default-padding);
+    font-size: 0.75rem;
+    color: #ffffff;
+    background-color: rgb(27, 27, 27);
+  }
+
+  .window__btn {
+    cursor: pointer;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Profile picture styling */
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #7289da;
+    margin: 20px auto;
+  }
+
+  .profile-picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  pre {
+    font-family: monospace;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+    white-space: pre;
+    word-wrap: break-word;
+    overflow: auto;
+  }
+
+  ::-moz-selection {
+    color: white;
+    background: rgb(47, 47, 47);
+  }
+
+  ::selection {
+    color: white;
+    background: rgb(47, 47, 47);
+  }
 
 
   </style>
@@ -565,16 +683,49 @@
                     </button>
 
                   </div>
-                  <button class="button" onclick="openPopup()">More</button>
+                  <button class="open-modal button" data-modal-id="modalWindow1" data-overlay-id="modalOverlay1">
+                    More
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="overlay" id="overlay" onclick="closePopup()"></div>
-            <div class="popup" id="popup">
-              <p style="color: white;">Description</p>
-              <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+            <div class="overlay" id="modalOverlay1"></div>
+            <div class="window" id="modalWindow1">
+              <div class="window__title-bar">
+                <div class="window__title" style="color: white;">Venkat Kutti</div>
+                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+              </div>
+              <div class="window__body">
+                <h1 style="text-align:center;color: white;">Venkat Kutti</h1>
+                <div class="profile-picture">
+                  <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
+                </div>
+                <h2 style="text-align:center;">About Me</h2>
+                <pre><code>.window__body {
+              flex-grow: 1;
+              background-color: white;
+              padding: var(--default-padding);
+            }</code></pre>
+              </div>
+              <div class="window__status-bar">www → CSS → Experiments</div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
             <div class="card">
@@ -627,17 +778,35 @@
                     </button>
 
                   </div>
-                  <button class="button" onclick="openPopup()">More</button>
-
+                  <button class="open-modal button" data-modal-id="modalWindow2" data-overlay-id="modalOverlay2">
+                    More
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="overlay" id="overlay" onclick="closePopup()"></div>
-            <div class="popup" id="popup">
-              <p style="color: white;">Description</p>
-              <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+            <div class="overlay" id="modalOverlay2"></div>
+            <div class="window" id="modalWindow2">
+              <div class="window__title-bar">
+                <div class="window__title" style="color: white;">Harshith</div>
+                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+              </div>
+              <div class="window__body">
+                <h1 style="text-align:center;color: white;">Harshith</h1>
+                <div class="profile-picture">
+                  <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
+                </div>
+                <h2 style="text-align:center;">About Me</h2>
+                <pre><code>.window__body {
+              flex-grow: 1;
+              background-color: white;
+              padding: var(--default-padding);
+            }</code></pre>
+              </div>
+              <div class="window__status-bar">www → CSS → Experiments</div>
             </div>
           </div>
+
+
           <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
             <div class="card">
               <a href="mailto:venkat.k.kutti@gmail.com">
@@ -689,17 +858,37 @@
                     </button>
 
                   </div>
-                  <button class="button" onclick="openPopup()">More</button>
-
+                  <button class="open-modal button" data-modal-id="modalWindow3" data-overlay-id="modalOverlay3">
+                    More
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="overlay" id="overlay" onclick="closePopup()"></div>
-            <div class="popup" id="popup">
-              <p style="color: white;">Description</p>
-              <button class="close-btn" onclick="closePopup()"><b>X</b></button>
+            <div class="overlay" id="modalOverlay3"></div>
+            <div class="window" id="modalWindow3">
+              <div class="window__title-bar">
+                <div class="window__title" style="color: white;">Chahel Paatur</div>
+                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+              </div>
+              <div class="window__body">
+                <h1 style="text-align:center;color: white;">Chahel Paatur</h1>
+                <div class="profile-picture">
+                  <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
+                </div>
+                <h2 style="text-align:center;">About Me</h2>
+                <pre><code>.window__body {
+              flex-grow: 1;
+              background-color: white;
+              padding: var(--default-padding);
+            }</code></pre>
+              </div>
+              <div class="window__status-bar">www → CSS → Experiments</div>
             </div>
           </div>
+
+
+
+
 
           <div class="row justify-content-center g-4 scroll-1">
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
@@ -751,17 +940,34 @@
                       </button>
 
                     </div>
-                    <button class="button" onclick="openPopup()">More</button>
-
-                  </div>
+                    <button class="open-modal button" data-modal-id="modalWindow4" data-overlay-id="modalOverlay4">
+                      More
+                    </button>
                 </div>
               </div>
-              <div class="overlay" id="overlay" onclick="closePopup()"></div>
-              <div class="popup" id="popup">
-                <p style="color: white;">Description</p>
-                <button class="close-btn" onclick="closePopup()"><b>X</b></button>
-              </div>
             </div>
+            <div class="overlay" id="modalOverlay4"></div>
+            <div class="window" id="modalWindow4">
+              <div class="window__title-bar">
+                <div class="window__title" style="color: white;">Jeswanth Dandamudi</div>
+                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+              </div>
+              <div class="window__body">
+                <h1 style="text-align:center;color: white;">Jeswanth Dandamudi</h1>
+                <div class="profile-picture">
+                  <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
+                </div>
+                <h2 style="text-align:center;">About Me</h2>
+                <pre><code>.window__body {
+              flex-grow: 1;
+              background-color: white;
+              padding: var(--default-padding);
+            }</code></pre>
+              </div>
+              <div class="window__status-bar">www → CSS → Experiments</div>
+            </div>
+          </div>
+
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
               <div class="card">
                 <a href="mailto:venkat.k.kutti@gmail.com">
@@ -807,17 +1013,34 @@
                         </svg>
                       </button>
                     </div>
-                    <button class="button" onclick="openPopup()">More</button>
-
-                  </div>
+                    <button class="open-modal button" data-modal-id="modalWindow5" data-overlay-id="modalOverlay5">
+                      More
+                    </button>
                 </div>
               </div>
-              <div class="overlay" id="overlay" onclick="closePopup()"></div>
-              <div class="popup" id="popup">
-                <p style="color: white;">Description</p>
-                <button class="close-btn" onclick="closePopup()"><b>X</b></button>
-              </div>
             </div>
+            <div class="overlay" id="modalOverlay5"></div>
+            <div class="window" id="modalWindow5">
+              <div class="window__title-bar">
+                <div class="window__title" style="color: white;">Garvin Yu</div>
+                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+              </div>
+              <div class="window__body">
+                <h1 style="text-align:center;color: white;">Garvin Yu</h1>
+                <div class="profile-picture">
+                  <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
+                </div>
+                <h2 style="text-align:center;">About Me</h2>
+                <pre><code>.window__body {
+              flex-grow: 1;
+              background-color: white;
+              padding: var(--default-padding);
+            }</code></pre>
+              </div>
+              <div class="window__status-bar">www → CSS → Experiments</div>
+            </div>
+          </div>
+      </div>
 
             <hr class="featurette-divider">
 
@@ -935,29 +1158,100 @@
       // Info content for each tab
       const tabInfo = {
           'Tab 1': 'This is information about Tab 1.',
-          "Tab 2": "Here is some details about Tab 2.",
-          "Tab 3": "Tab 3 contains more information."
+          'Tab 2': 'Here is some details about Tab 2.',
+          'Tab 3': 'Tab 3 contains more information.'
       };
+  
+      let isMouseOverNavbar = false; // Flag to track if mouse is over navbar
   
       // Event listener for each tab hover
       tabs.forEach(tab => {
-          tab.addEventListener('mouseenter', function() {
-              navbar.classList.add('hover-expand'); // Expand the navbar
-              console.log('Hello Chahel2= '+navbarInfo);
-             // navbarInfo.style.display = 'block'; // Show the info section
-             // navbarInfo.style.opacity = 1; // Fade it in
-              const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
-              infoContent.innerText = tabInfo[tabName] || "No information available."; // Show corresponding info
-          });
-  
-          tab.addEventListener('mouseleave', function() {
-              navbar.classList.remove('hover-expand'); // Revert navbar height
-              navbarInfo.style.display = 'none'; // Hide the info section
-              navbarInfo.style.opacity = 0; // Fade it out
+          tab.addEventListener('mouseenter', function () {
+              // Expand the navbar and update info content
+              navbar.classList.add('hover-expand');
+              const tabName = tab.getAttribute('data-tab');
+              infoContent.innerText = tabInfo[tabName] || "No information available.";
+              navbarInfo.style.display = 'block'; // Show the info section
+              navbarInfo.style.opacity = 1; // Fade it in
           });
       });
-    </script>
+  
+      // Event listeners to detect mouse leaving the navbar
+      navbar.addEventListener('mouseenter', function () {
+          isMouseOverNavbar = true;
+      });
+  
+      navbar.addEventListener('mouseleave', function () {
+          isMouseOverNavbar = false;
+          // Collapse the navbar only when mouse leaves completely
+          navbar.classList.remove('hover-expand');
+          navbarInfo.style.display = 'none';
+          navbarInfo.style.opacity = 0;
+      });
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+  // Hide all modals and overlays on page load
+      const modals = document.querySelectorAll(".window");
+      const overlays = document.querySelectorAll(".overlay");
+
+      modals.forEach((modal) => {
+        modal.style.display = "none"; // Hide all modals
+      });
+
+      overlays.forEach((overlay) => {
+        overlay.style.display = "none"; // Hide all overlays
+      });
+
+      // Handle opening modals
+      const openButtons = document.querySelectorAll(".open-modal");
+      openButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const modalId = button.getAttribute("data-modal-id");
+          const overlayId = button.getAttribute("data-overlay-id");
+
+          const modal = document.getElementById(modalId);
+          const overlay = document.getElementById(overlayId);
+
+          if (modal && overlay) {
+            modal.style.display = "flex"; // Show modal
+            overlay.style.display = "block"; // Show overlay
+          }
+        });
+      });
+
+      // Handle closing modals
+      const closeButtons = document.getElementById(".close-modal");
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          console.log("x was pressed")
+          const modal = button.closest(".window");
+          const overlayId = modal.previousElementSibling.id;
+          const overlay = document.getElementById(overlayId);
+
+          if (modal && overlay) {
+            modal.style.display = "none"; // Hide modal
+            overlay.style.display = "none"; // Hide overlay
+          }
+        });
+      });
+
+      // Handle closing modals by clicking on overlay
+      overlays.forEach((overlay) => {
+        overlay.addEventListener("click", () => {
+          const modalId = overlay.nextElementSibling.id;
+          const modal = document.getElementById(modalId);
+
+          if (modal && overlay) {
+            modal.style.display = "none"; // Hide modal
+            overlay.style.display = "none"; // Hide overlay
+          }
+        });
+      });
+    });
+
+    </script>
 
 </body>
 

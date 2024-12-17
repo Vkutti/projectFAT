@@ -154,26 +154,35 @@
         // Info content for each tab
         const tabInfo = {
             'Tab 1': 'This is information about Tab 1.',
-            "Tab 2": "Here is some details about Tab 2.",
-            "Tab 3": "Tab 3 contains more information."
+            'Tab 2': 'Here is some details about Tab 2.',
+            'Tab 3': 'Tab 3 contains more information.'
         };
+    
+        let isMouseOverNavbar = false; // Flag to track if mouse is over navbar
     
         // Event listener for each tab hover
         tabs.forEach(tab => {
-            tab.addEventListener('mouseenter', function() {
-                navbar.classList.add('hover-expand'); // Expand the navbar
-                console.log('Hello Chahel2= '+navbarInfo);
-               // navbarInfo.style.display = 'block'; // Show the info section
-               // navbarInfo.style.opacity = 1; // Fade it in
-                const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
-                infoContent.innerText = tabInfo[tabName] || "No information available."; // Show corresponding info
+            tab.addEventListener('mouseenter', function () {
+                // Expand the navbar and update info content
+                navbar.classList.add('hover-expand');
+                const tabName = tab.getAttribute('data-tab');
+                infoContent.innerText = tabInfo[tabName] || "No information available.";
+                navbarInfo.style.display = 'block'; // Show the info section
+                navbarInfo.style.opacity = 1; // Fade it in
             });
+        });
     
-            tab.addEventListener('mouseleave', function() {
-                navbar.classList.remove('hover-expand'); // Revert navbar height
-                navbarInfo.style.display = 'none'; // Hide the info section
-                navbarInfo.style.opacity = 0; // Fade it out
-            });
+        // Event listeners to detect mouse leaving the navbar
+        navbar.addEventListener('mouseenter', function () {
+            isMouseOverNavbar = true;
+        });
+    
+        navbar.addEventListener('mouseleave', function () {
+            isMouseOverNavbar = false;
+            // Collapse the navbar only when mouse leaves completely
+            navbar.classList.remove('hover-expand');
+            navbarInfo.style.display = 'none';
+            navbarInfo.style.opacity = 0;
         });
     </script>
     
