@@ -198,6 +198,7 @@ def form():
         glblBusinessLocation = request.form.get("businessLocation")
         glblBusinessType = request.form.get("businessType")
         glblBusinessHours = request.form.get("businessHours")
+        glblCommunity= request.form.get("community")
         glblOwnername = request.form.get("ownername")
         glblEmail = request.form.get("email")
         glblPhoneNumber = request.form.get("phoneNumber")

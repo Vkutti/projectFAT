@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <style>
     body {
@@ -41,7 +43,55 @@
 
 
         }
-        
+        .modal-content {
+            background-color: #333333; /* Dark background */
+            color: white; /* White text color */
+            border: 2px solid #44475a; /* Border color (you can adjust this if needed) */
+        }
+
+        /* Modal Header Customization */
+        .modal-header {
+            background-color: #44475a; /* Dark header background */
+            color: white; /* White text color */
+            border-bottom: 1px solid #44475a;
+        }
+
+        /* Close Button Style */
+        .btn-close {
+            filter: invert(1); /* Makes close button white */
+        }
+
+        /* Modal Footer Customization */
+        .modal-footer {
+            background-color: #44475a; /* Dark footer background */
+            border-top: 1px solid #44475a;
+        }
+
+        /* Customize the Cancel Button */
+        .modal-footer .btn-secondary {
+            background-color: #ff5555; /* Red Cancel button */
+            border: none;
+            color: white;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #ff6e6e; /* Hover effect */
+        }
+
+        /* Confirm Button */
+        .custom-input:focus {
+            background-color: #2D2B2A !important; /* Keeps the input field's background dark */
+            box-shadow: none; /* Removes any default focus shadow */
+            border-color: black; /* Maintains border color on focus */
+        }
+
+        .form-floating label {
+            background-color: transparent !important; /* Makes the floating label background transparent */
+        }
+        input::placeholder, 
+        textarea::placeholder {
+            color: white !important; /* Makes all placeholder text white */
+        }
     
 </style>
 <body>
@@ -53,19 +103,17 @@
             
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
-                    <div class="form-floating mb-3">
-                        <input id="businessName" type="text" class="form-control" style="background-color: #51515b; color: #e3e3e3; border-color:black;" placeholder="Business Name"  name="businessName" required>
-                        <label for="businessName" style="color: rgb(178, 178, 178);">Business Name <span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="businessName" type="text" class="form-control" style="background-color: #2D2B2A; color: white; border-color:black;" placeholder="Business Name"  name="businessName" required>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input id="businessType" type="text" style="background-color: #51515b ;color: #686875; border-color:black;" class="form-control"  placeholder="Business Type" name="businessType" required>
-                        <label for="businessLocation" style="color: rgb(178, 178, 178);">Business Type <span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="businessType" type="text" style="background-color: #2D2B2A ;color: white; border-color:black;" class="form-control"  placeholder="Business Type" name="businessType" required>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="input-group input-group-lg mb-3">
                         <!-- Single Editable Field for Hours and Days -->
                         <div id="businessHoursEditable" class="d-flex">
                             <!-- Opening Hour -->
-                            <select id="openingHour" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Hour">
+                            <select id="openingHour" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Hour">
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -81,7 +129,7 @@
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)">:</span>
                             <!-- Opening Minute -->
-                            <select id="openingMinute" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Minute">
+                            <select id="openingMinute" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Minute">
                                 <option value="00">00</option>
                                 <option value="15">15</option>
                                 <option value="30">30</option>
@@ -89,13 +137,13 @@
                             </select>
                             <span class="px-2"> </span>
                             <!-- Opening AM/PM -->
-                            <select id="openingAMPM" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
+                            <select id="openingAMPM" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
                                 <option value="am" selected>am</option>
                                 <option value="pm">pm</option>
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" > - </span>
                             <!-- Closing Hour -->
-                            <select id="closingHour" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Hour">
+                            <select id="closingHour" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Hour">
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -111,7 +159,7 @@
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" >:</span>
                             <!-- Closing Minute -->
-                            <select id="closingMinute" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Minute">
+                            <select id="closingMinute" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Minute">
                                 <option value="00">00</option>
                                 <option value="15">15</option>
                                 <option value="30">30</option>
@@ -119,13 +167,13 @@
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Closing AM/PM -->
-                            <select id="closingAMPM" style="background-color: #686875; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
+                            <select id="closingAMPM" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
                                 <option value="pm" selected>am</option>
                                 <option value="am">pm</option>
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Days -->
-                            <select id="days" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;" aria-label="Days of Operation">
+                            <select id="days" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" aria-label="Days of Operation">
                                 <option value="Mon-Fri" selected>Mon-Fri</option>
                                 <option value="Mon-Sun">Mon-Sun</option>
                                 <option value="Mon-Wed">Mon-Wed</option>
@@ -134,16 +182,14 @@
                         </div>
                     </div>
 
-                    <div class="form-floating mb-3">
-                        <input id="businessHours" type="text" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
-                        <label for="businessHours" style="color: rgb(178, 178, 178)" >Business Hours <span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="businessHours" type="text" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
                     </div>
 
                     
         
-                    <div class="form-floating mb-3">
-                        <input id="businessLocation" type="text" class="form-control" style="background-color: #686875; color: #686875; border-color:black;" placeholder="Business Location" name="businessLocation" required>
-                        <label for="businessLocation" style="color: rgb(178, 178, 178)" >Business Location <span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="businessLocation" type="text" class="form-control custom-input" style="background-color: #2D2B2A; color: white; border-color:black;" placeholder="Business Location" name="businessLocation" required>
                     </div>
             
                     <div class="input-group mb-3">
@@ -155,76 +201,85 @@
                         >
                             Pick A Community
                         </button>
-                        <ul class="dropdown-menu" style="background-color: #686875; color: #ffffff; border-color:black;">
+                        <ul class="dropdown-menu" style="background-color: #2D2B2A; color: #ffffff; border-color:black;">
                             <li><a class="dropdown-item" href="#" data-value="Tracy Hills" style="color: white;">Tracy Hills</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Ellis" style="color: white;">Ellis</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Edgewood" style="color: white;">Edgewood</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Redbridge" style="color: white;">Redbridge</a></li>
                         </ul>
                         <!-- Hidden Input for Community -->
-                        <input  id="community" style="background-color: #686875; color: #ffffff; border-color:black;" type="text" class="form-control" name="community"  placeholder="Selected Community " readonly>
+                        <input  id="community" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" type="text" class="form-control" name="community"  placeholder="Selected Community " readonly>
                     </div>
                 
                     <!-- Business Location Input -->
             
                     <h4 style="color: white" >Business License</h4>
                     <div class="input-group mb-3" >
-                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license" style="background-color: #686875; color: #333333; border-color:black;" required>
-                        <label class="input-group-text" style="background-color: #686875; color: #333333; border-color:black;" for="inputGroupFile02">Upload </label>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license" style="background-color: #2D2B2A; color: white; border-color:black;" required>
                     </div>
                       
                     <h4 style="color: white">Contact Information</h4>
-                    <div class="form-floating mb-3">
-                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name" style="background-color: #686875; color: #ffffff; border-color:black;" name="ownername" required> 
-                        <label for="ownerName" style="color: rgb(178, 178, 178)" >Owner Name<span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" name="ownername" required> 
                     </div>
-                    <div class="form-floating mb-3">
-                        <input id="email" type="email" class="form-control" style="background-color: #686875; color: #ffffff; border-color:black;"  placeholder="Email" name="email" required>
-                        <label for="email" style="color: rgb(178, 178, 178)" >Email</label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="email" type="email" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;"  placeholder="Email" name="email" required>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" style="background-color: #686875; color: #ffffff; border-color:black;"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
-                        <label for="phoneNumber" style="color: rgb(178, 178, 178)" >Phone Number <span class="required-field"></span></label>
+                    <div class="input-group input-group-lg mb-3">
+                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" style="background-color: #2D2B2A; color: #ffffff; border-color:black;"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
                     </div> <!-- Close the div properly here -->
-                    <button class="btn btn-primary" type="submit" style="color: white;">Submit</button>
-            </form>
-            <div id="modalOverlay"></div>
-            <div id="successModal">
-                <p style="color: white;">Form submission completed successfully!</p>
-                <button onclick="closeModal()">OK</button>
-            </div>
+                    <button type="button" id="submitBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm-submit">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </form>
 
-            <script>
-                const form = document.getElementById("BusinessF");
-                const modal = document.getElementById("successModal");
-                const overlay = document.getElementById("modalOverlay");
-                const body = document.body;
 
-                form.addEventListener("submit", function (event) {
-                    // Prevent default form submission
-                    event.preventDefault();
+                <div class="modal fade" id="confirm-submit" data-bs-backdrop="false" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Submission</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Please confirm the following details:</p>
+                                <ul>
+                                    <li><strong>Business Name:</strong> <span id="confirm-businessName"></span></li>
+                                    <li><strong>Business Type:</strong> <span id="confirm-businessType"></span></li>
+                                    <li><strong>Business Location:</strong> <span id="confirm-businessLocation"></span></li>
+                                    <li><strong>Business Hours:</strong> <span id="confirm-businessHours"></span></li>
+                                    <li><strong>Owner Name:</strong> <span id="confirm-ownerName"></span></li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-warning" form="BusinessF">Confirm & Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    // Show the modal and overlay
-                    modal.style.display = "block";
-                    overlay.style.display = "block";
-
-                    // Add class to prevent page scrolling
-                    body.classList.add("modal-open");
-                });
-
-                function closeModal() {
-                    // Hide the modal and overlay
-                    modal.style.display = "none";
-                    overlay.style.display = "none";
-
-                    // Remove class to re-enable page scrolling
-                    body.classList.remove("modal-open");
-
-                    // Optionally submit the form after closing the modal
-                    form.submit();
-                }
-            </script>
             
+                <!-- Custom Script -->
+            <script>
+                // Update community input field when dropdown item is clicked
+                document.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const selectedValue = this.getAttribute('data-value');
+                        document.getElementById('community').value = selectedValue;
+                    });
+                });
+            
+                // Populate modal with form values
+                document.getElementById('submitBtn').addEventListener('click', function () {
+                    document.getElementById('confirm-businessName').innerText = document.getElementById('businessName').value;
+                    document.getElementById('confirm-businessType').innerText = document.getElementById('businessType').value;
+                    document.getElementById('confirm-businessLocation').innerText = document.getElementById('businessLocation').value;
+                    document.getElementById('confirm-ownerName').innerText = document.getElementById('ownerName').value;
+                });
+            </script>
+    
              <script>
                 const phoneInput = document.getElementById('phoneNumber');
             
@@ -253,6 +308,15 @@
                 // Handle autofill or paste events
                 phoneInput.addEventListener('blur', () => {
                   phoneInput.value = formatPhoneNumber(phoneInput.value);
+                });
+              </script>
+              <script>
+                document.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const selectedValue = this.getAttribute('data-value'); // Get value
+                        document.getElementById('community').value = selectedValue; // Set input value
+                    });
                 });
               </script>
              <script>

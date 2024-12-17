@@ -38,6 +38,10 @@
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
     overflow: hidden;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    
   }
   
   .glowbutton2::before {
@@ -72,22 +76,27 @@
 <body>
     <div class="nav-barslide">
         <div class="navbar">
-            
             <a href="/" class="logo-link">
                 <div class="logo"></div>
             </a>
             <ul class="nav-links">
-                <li class="nav-tab" data-tab="Tab 1"></li>
-                <li class="nav-tab" data-tab="Tab 2"></li>
-                <li class="nav-tab" data-tab="Tab 3"></li>
-                <li class="nav-tab"></li>
-                <li class="nav-tab"></li>
-                <li class="nav-tab"></li>
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Home</button> 
+                     <div id="info-content" class="navText"> </div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 2" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">About Us</button> 
+                    <div id="info-content" class="navText"></div>
+                </li>
+
+                <li class="nav-tab" data-tab="Tab 3" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Communities</button> 
+                    <div id="info-content" class="navText"></div>
+                </li>
+                <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center; width: 100px;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Business RQ</button> 
+                    <div id="info-content" class="navText"> </div>
+               </li>
+               <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Contact</button> 
+                    <div id="info-content" class="navText"> </div>
+                </li>
             </ul>
-            <div class="buttons">
-                <button class="login"></button>
-                <button class="signup"></button>
-            </div>
         </div>
     </div>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
@@ -120,29 +129,39 @@
         const navbar = document.querySelector('.navbar');
         const navbarInfo = document.querySelector('.navbar-info');
         const infoContent = document.getElementById('info-content');
-
+    
         // Info content for each tab
         const tabInfo = {
-            "Tab 1": "This is information about Tab 1.",
-            "Tab 2": "Here is some details about Tab 2.",
-            "Tab 3": "Tab 3 contains more information."
+            'Tab 1': 'This is information about Tab 1.',
+            'Tab 2': 'Here is some details about Tab 2.',
+            'Tab 3': 'Tab 3 contains more information.'
         };
-
+    
+        let isMouseOverNavbar = false; // Flag to track if mouse is over navbar
+    
         // Event listener for each tab hover
         tabs.forEach(tab => {
-            tab.addEventListener('mouseenter', function() {
-                navbar.classList.add('hover-expand'); // Expand the navbar
+            tab.addEventListener('mouseenter', function () {
+                // Expand the navbar and update info content
+                navbar.classList.add('hover-expand');
+                const tabName = tab.getAttribute('data-tab');
+                infoContent.innerText = tabInfo[tabName] || "No information available.";
                 navbarInfo.style.display = 'block'; // Show the info section
                 navbarInfo.style.opacity = 1; // Fade it in
-                const tabName = tab.getAttribute('data-tab'); // Get the name of the tab
-                infoContent.innerText = tabInfo[tabName]; // Show corresponding info
             });
-
-            tab.addEventListener('mouseleave', function() {
-                navbar.classList.remove('hover-expand'); // Revert navbar height
-                navbarInfo.style.display = 'none'; // Hide the info section
-                navbarInfo.style.opacity = 0; // Fade it out
-            });
+        });
+    
+        // Event listeners to detect mouse leaving the navbar
+        navbar.addEventListener('mouseenter', function () {
+            isMouseOverNavbar = true;
+        });
+    
+        navbar.addEventListener('mouseleave', function () {
+            isMouseOverNavbar = false;
+            // Collapse the navbar only when mouse leaves completely
+            navbar.classList.remove('hover-expand');
+            navbarInfo.style.display = 'none';
+            navbarInfo.style.opacity = 0;
         });
     </script>
 </body>
