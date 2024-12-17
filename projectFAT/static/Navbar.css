@@ -71,11 +71,13 @@
     transition: background-color 0.3s ease;
     cursor: pointer;
     border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 /* Hover effect for tabs */
 .nav-links li:hover {
     background-color: #444;
+    transform: scale(1.15);
 }
 
 /* Info Section (Hidden by default) */
@@ -114,7 +116,6 @@
 
 .logo {
     transition: all 0.3s ease;
-
 }
 
 
