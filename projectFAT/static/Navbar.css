@@ -94,12 +94,14 @@
     text-align: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    transform: none; 
 }
 
 /* Show info section when navbar expands */
 .navbar.hover-expand .navbar-info {
     display: block;
     opacity: 1;
+    transform: none; 
 }
 .navText{
     margin-top: 50px;
@@ -107,7 +109,9 @@
     color: white;
     padding: auto;
     width:500px;
-    font-size: large;
+    font-size: medium;
+    transform: none !important;
+
 }
 
 .logo:hover {
