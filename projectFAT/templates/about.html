@@ -693,14 +693,14 @@
             <div class="window" id="modalWindow1">
               <div class="window__title-bar">
                 <div class="window__title" style="color: white;">Venkat Kutti</div>
-                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+                <button class="window__btn close-modal" id="closeModalButton" style="color: #FFC007;">&times;</button>
               </div>
               <div class="window__body">
                 <h1 style="text-align:center;color: white;">Venkat Kutti</h1>
                 <div class="profile-picture">
                   <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
                 </div>
-                <h2 style="text-align:center;">About Me</h2>
+                <h2 style="text-align:center;color:white;">About Me</h2>
                 <pre><code>.window__body {
               flex-grow: 1;
               background-color: white;
@@ -788,14 +788,14 @@
             <div class="window" id="modalWindow2">
               <div class="window__title-bar">
                 <div class="window__title" style="color: white;">Harshith</div>
-                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+                <button class="window__btn close-modal" id="closeModalButton" style="color: #FFC007;">&times;</button>
               </div>
               <div class="window__body">
                 <h1 style="text-align:center;color: white;">Harshith</h1>
                 <div class="profile-picture">
                   <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
                 </div>
-                <h2 style="text-align:center;">About Me</h2>
+                <h2 style="text-align:center;color:white;">About Me</h2>
                 <pre><code>.window__body {
               flex-grow: 1;
               background-color: white;
@@ -868,14 +868,14 @@
             <div class="window" id="modalWindow3">
               <div class="window__title-bar">
                 <div class="window__title" style="color: white;">Chahel Paatur</div>
-                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+                <button class="window__btn close-modal" id="closeModalButton" style="color: #FFC007;">&times;</button>
               </div>
               <div class="window__body">
                 <h1 style="text-align:center;color: white;">Chahel Paatur</h1>
                 <div class="profile-picture">
                   <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
                 </div>
-                <h2 style="text-align:center;">About Me</h2>
+                <h2 style="text-align:center;color:white;">About Me</h2>
                 <pre><code>.window__body {
               flex-grow: 1;
               background-color: white;
@@ -950,14 +950,14 @@
             <div class="window" id="modalWindow4">
               <div class="window__title-bar">
                 <div class="window__title" style="color: white;">Jeswanth Dandamudi</div>
-                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+                <button class="window__btn close-modal" id="closeModalButton" style="color: #FFC007;">&times;</button>
               </div>
               <div class="window__body">
                 <h1 style="text-align:center;color: white;">Jeswanth Dandamudi</h1>
                 <div class="profile-picture">
                   <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
                 </div>
-                <h2 style="text-align:center;">About Me</h2>
+                <h2 style="text-align:center;color:white;">About Me</h2>
                 <pre><code>.window__body {
               flex-grow: 1;
               background-color: white;
@@ -1023,14 +1023,14 @@
             <div class="window" id="modalWindow5">
               <div class="window__title-bar">
                 <div class="window__title" style="color: white;">Garvin Yu</div>
-                <button class="window__btn" id="closeModalButton" style="color: #FFC007;">&times;</button>
+                <button class="window__btn close-modal" id="closeModalButton" style="color: #FFC007;">&times;</button>
               </div>
               <div class="window__body">
                 <h1 style="text-align:center;color: white;">Garvin Yu</h1>
                 <div class="profile-picture">
                   <img src="https://miro.medium.com/v2/resize:fit:1000/1*kybxJ9baHi9ixEMqLmiJiw.jpeg" alt="Profile">
                 </div>
-                <h2 style="text-align:center;">About Me</h2>
+                <h2 style="text-align:center; color:white;">About Me</h2>
                 <pre><code>.window__body {
               flex-grow: 1;
               background-color: white;
@@ -1222,13 +1222,15 @@
       });
 
       // Handle closing modals
-      const closeButtons = document.getElementById(".close-modal");
+      const closeButtons = document.querySelectorAll(".window__btn"); // Correct selector for the close button
+      console.log("x was reached");
+
       closeButtons.forEach((button) => {
+        console.log("Close button found");
         button.addEventListener("click", () => {
-          console.log("x was pressed")
+          console.log("Close button clicked");
           const modal = button.closest(".window");
-          const overlayId = modal.previousElementSibling.id;
-          const overlay = document.getElementById(overlayId);
+          const overlay = modal.previousElementSibling; // Get the overlay directly
 
           if (modal && overlay) {
             modal.style.display = "none"; // Hide modal
