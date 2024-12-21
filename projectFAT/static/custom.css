@@ -225,4 +225,8 @@ category-btn {
   /* Profile Header */
   
   
-  
+  .carousel-item-1 {
+    background-image: url('./CarIMG.png');
+    background-size: cover;
+    background-position: center;
+  }

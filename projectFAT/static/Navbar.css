@@ -23,6 +23,7 @@
     height: 60px; /* Initial height of navbar */
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 /* Expanded Navbar Height on Hover */
@@ -102,6 +103,9 @@
     display: block;
     opacity: 1;
     transform: none; 
+    pointer-events: auto; /* Enable mouse interaction */
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slide to its intended position */
 }
 .navText{
     margin-top: 50px;
@@ -111,6 +115,14 @@
     width:500px;
     font-size: medium;
     transform: none !important;
+    pointer-events: none; /* Prevent interaction before it appears */
+    opacity: 0; /* Start invisible */
+    position: absolute; /* Absolute positioning to stay fixed relative to parent */
+    left: 0; /* Always aligned to the left */
+    top: 50px; /* Positioned below the tab */
+    transform: translateX(0) translateY(20px); /* Start slightly below */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and slide */
+    white-space: nowrap; /* Prevent text wrapping */
 
 }
 
