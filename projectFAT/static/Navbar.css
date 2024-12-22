@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #111; /* Dark background */
+    background-color: #171615; /* Dark background */
     width: 1000px;
     position: absolute;
     top: 30px;
@@ -22,8 +22,11 @@
     transition: height 0.3s ease; /* Smooth transition for height */
     height: 60px; /* Initial height of navbar */
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    position: relative;
+    box-shadow: 0 2px 8px rgba(87, 87, 87, 0.5);
+   
+}
+.navbar {
+    position: relative; /* Make sure the navbar is the reference point for absolute positioning */
 }
 
 /* Expanded Navbar Height on Hover */
@@ -101,30 +104,36 @@
 /* Show info section when navbar expands */
 .navbar.hover-expand .navbar-info {
     display: block;
-    opacity: 1;
-    transform: none; 
     pointer-events: auto; /* Enable mouse interaction */
     opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Slide to its intended position */
 }
-.navText{
+
+/* Nav Text Styling */
+.navText {
     margin-top: 50px;
     text-align: left;
     color: white;
-    padding: auto;
-    width:500px;
+    padding: 0px; /* Remove extra padding */
+    width: 500px;
     font-size: medium;
-    transform: none !important;
+    display: block;
     pointer-events: none; /* Prevent interaction before it appears */
     opacity: 0; /* Start invisible */
-    position: absolute; /* Absolute positioning to stay fixed relative to parent */
-    left: 0; /* Always aligned to the left */
-    top: 50px; /* Positioned below the tab */
-    transform: translateX(0) translateY(20px); /* Start slightly below */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and slide */
-    white-space: nowrap; /* Prevent text wrapping */
-
+    position: relative; /* Absolute positioning within the navbar */
+    left: 0; /* Align with the left side of the navbar */
+    top: 60px; /* Positioned below the navbar */
+    transform: translateY(20px);  /*Start slightly below */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    white-space: nowrap; /* Prevent text from wrapping */
 }
+
+/* Hover effect for nav text */
+.navbar:hover .navText,
+.nav-links li:hover .navText {
+    opacity: 1; /* Show when hovered */
+    transform: translateY(0); /* Slide into position */
+}
+
 
 .logo:hover {
     transform: scale(1.3) translateY(-41.67%);

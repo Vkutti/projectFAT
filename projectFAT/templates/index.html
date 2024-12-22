@@ -75,26 +75,26 @@
 </style>
 <body>
     <div class="nav-barslide">
-        <div class="navbar">
+        <div class="navbar ">
             <a href="/" class="logo-link">
                 <div class="logo"></div>
             </a>
             <ul class="nav-links">
                 <li class="nav-tab" data-tab="Tab 1" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Home</button> 
-                     <div class=" info-content navText"> </div>
+                     <div id="info-content" class="navText"> </div>
                 </li>
                 <li class="nav-tab" data-tab="Tab 2" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">About Us</button> 
-                    <div class=" info-content navText" ></div>
+                    <div id="info-content" class="navText" ></div>
                 </li>
 
                 <li class="nav-tab" data-tab="Tab 3" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Communities</button> 
-                    <div class=" info-content navText"></div>
+                    <div id="info-content" class="navText"></div>
                 </li>
                 <li class="nav-tab" data-tab="Tab 4" style="color: white; font-size: small; text-align: center; width: 100px;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Business RQ</button> 
-                    <div class=" info-content navText" > </div>
+                    <div id="info-content" class="navText" > </div>
                </li>
                <li class="nav-tab" data-tab="Tab 5" style="color: white; font-size: small; text-align: center;"> <button style="background:transparent; border: none; color: white; margin-top:5px; font-weight: bold;">Contact</button> 
-                    <div class=" info-content navText" > </div>
+                    <div id="info-content" class="navText" > </div>
                 </li>
             </ul>
         </div>
@@ -144,32 +144,43 @@
         // Add event listeners to each tab
         tabs.forEach(tab => {
             tab.addEventListener('mouseenter', function () {
+                console.log('mouse enter 1');
                 isMouseOverTab = true;
 
                 // Expand the navbar
                 navbar.classList.add('hover-expand');
-
+            
                 // Clear all previously displayed info content
-                const allInfoContent = document.querySelectorAll('.info-content');
-                allInfoContent.forEach(content => {
+              const allInfoContent = document.getElementsByClassName('.navText');
+                console.log("I am here= "+allInfoContent);
+                for (let element of allInfoContent){
+                    element.style.display = 'none';
+                    element.innerHTML = '';
+                }
+                /**allInfoContent.forEach(content => {
                     content.style.display = 'none';
                     content.innerText = '';
-                });
+                });**/
 
                 // Get the current tab's data and display it
                 const tabName = tab.getAttribute('data-tab');
                 const infoText = tabInfo[tabName] || "No information available.";
-                const infoDiv = tab.querySelector('.info-content');
+                const infoDiv = document.getElementById('info-content');
+                if(infoDiv){
+                    infoDiv.innerHTML = infoText;
+                    infoDiv.style.display = 'inline';
+                    infoDiv.style.opacity = '1';
+                }
+               /** const infoDiv = tab.querySelector('.info-content');
                 if (infoDiv) {
                     infoDiv.innerText = infoText;
                     infoDiv.style.display = 'block';
                     infoDiv.style.opacity = '1';
-                }
+                }**/
             });
 
             tab.addEventListener('mouseleave', function () {
                 isMouseOverTab = false;
-
                 setTimeout(() => {
                     if (!isMouseOverNavbar && !isMouseOverTab) {
                         collapseNavbar();
@@ -180,13 +191,14 @@
 
         // Add event listeners to the navbar itself
         navbar.addEventListener('mouseenter', function () {
+            console.log('mouse enter 2');
             isMouseOverNavbar = true;
             navbar.classList.add('hover-expand');
         });
 
         navbar.addEventListener('mouseleave', function () {
             isMouseOverNavbar = false;
-
+            console.log('CC2');
             setTimeout(() => {
                 if (!isMouseOverNavbar && !isMouseOverTab) {
                     collapseNavbar();
@@ -200,6 +212,7 @@
 
             // Clear all info content when collapsing the navbar
             const allInfoContent = document.querySelectorAll('.info-content');
+            console.log('HELLO 2== '+allInfoContent);
             allInfoContent.forEach(content => {
                 content.style.display = 'none';
                 content.innerText = '';
