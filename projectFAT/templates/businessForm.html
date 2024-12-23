@@ -40,21 +40,11 @@
         overflow-x: hidden;
 
         transition: transform 0.2s, box-shadow 0.2s;
-
-
-
+    
         }
-        .body-blur {
-            filter: blur(5px);
-        }
+
 
         /* Content that remains clear */
-        .content {
-            position: relative;
-            z-index: 10; /* Higher than the blurred background */
-            padding: 20px;
-            color: white;
-        }
 
         .modal-content {
             background-color: #161616; /* Dark background */
@@ -253,7 +243,7 @@
                 
 
 
-                <div class="modal fade" id="confirm-submit" data-bs-backdrop="false" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" style= "z-index: 100000000;"id="confirm-submit" data-bs-backdrop="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -387,22 +377,6 @@
                 const selectedValue = item.getAttribute('data-value'); // Get the value from the dropdown
                 communityInput.value = selectedValue; // Update the input field
             });
-        });
-    </script>
-    <script>
-        const modal = document.getElementById('confirm-submit');
-        const body = document.body;
-    
-        // When the modal is shown, add the blur class to the body
-        modal.addEventListener('show.bs.modal', () => {
-            console.log("modal did show")
-            body.classList.add('body-blur');
-        });
-    
-        // When the modal is hidden, remove the blur class
-        modal.addEventListener('hidden.bs.modal', () => {
-            console.log("modal is nit show")
-            body.classList.remove('body-blur');
         });
     </script>
     
