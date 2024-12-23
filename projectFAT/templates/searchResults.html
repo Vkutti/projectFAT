@@ -150,42 +150,97 @@
         // Add event listeners to each tab
         const tabs = document.querySelectorAll('.nav-tab');
         const navbar = document.querySelector('.navbar');
-        const navbarInfo = document.querySelector('.navbar-info');
-        const infoContent = document.getElementById('info-content');
-    
+
         // Info content for each tab
         const tabInfo = {
             'Tab 1': 'This is information about Tab 1.',
             'Tab 2': 'Here is some details about Tab 2.',
-            'Tab 3': 'Tab 3 contains more information.'
+            'Tab 3': 'Tab 3 contains more information.',
+            'Tab 4': ' 4 IS BEST.',
+            'Tab 5': 'Tab 5 contains INFO ON UR MOM.'
         };
-    
-        let isMouseOverNavbar = false; // Flag to track if mouse is over navbar
-    
-        // Event listener for each tab hover
+
+        // Flags to track mouse hover states
+        let isMouseOverNavbar = false;
+        let isMouseOverTab = false;
+
+        // Add event listeners to each tab
         tabs.forEach(tab => {
             tab.addEventListener('mouseenter', function () {
-                // Expand the navbar and update info content
+                console.log('mouse enter 1');
+                isMouseOverTab = true;
+
+                // Expand the navbar
                 navbar.classList.add('hover-expand');
+            
+                // Clear all previously displayed info content
+              const allInfoContent = document.getElementsByClassName('.navText');
+                console.log("I am here= "+allInfoContent);
+                for (let element of allInfoContent){
+                    element.style.display = 'none';
+                    element.innerHTML = '';
+                }
+                /**allInfoContent.forEach(content => {
+                    content.style.display = 'none';
+                    content.innerText = '';
+                });**/
+
+                // Get the current tab's data and display it
                 const tabName = tab.getAttribute('data-tab');
-                infoContent.innerText = tabInfo[tabName] || "No information available.";
-                navbarInfo.style.display = 'block'; // Show the info section
-                navbarInfo.style.opacity = 1; // Fade it in
+                const infoText = tabInfo[tabName] || "No information available.";
+                const infoDiv = document.getElementById('info-content');
+                if(infoDiv){
+                    infoDiv.innerHTML = infoText;
+                    infoDiv.style.display = 'inline';
+                    infoDiv.style.opacity = '1';
+                }
+               /** const infoDiv = tab.querySelector('.info-content');
+                if (infoDiv) {
+                    infoDiv.innerText = infoText;
+                    infoDiv.style.display = 'block';
+                    infoDiv.style.opacity = '1';
+                }**/
+            });
+
+            tab.addEventListener('mouseleave', function () {
+                isMouseOverTab = false;
+                setTimeout(() => {
+                    if (!isMouseOverNavbar && !isMouseOverTab) {
+                        collapseNavbar();
+                    }
+                }, 100); // Short delay to allow for smooth transitions
             });
         });
-    
-        // Event listeners to detect mouse leaving the navbar
+
+        // Add event listeners to the navbar itself
         navbar.addEventListener('mouseenter', function () {
+            console.log('mouse enter 2');
             isMouseOverNavbar = true;
+            navbar.classList.add('hover-expand');
         });
-    
+
         navbar.addEventListener('mouseleave', function () {
             isMouseOverNavbar = false;
-            // Collapse the navbar only when mouse leaves completely
-            navbar.classList.remove('hover-expand');
-            navbarInfo.style.display = 'none';
-            navbarInfo.style.opacity = 0;
+            console.log('CC2');
+            setTimeout(() => {
+                if (!isMouseOverNavbar && !isMouseOverTab) {
+                    collapseNavbar();
+                }
+            }, 100); // Short delay to ensure smooth behavior
         });
+
+        // Function to collapse the navbar and clear content
+        function collapseNavbar() {
+            navbar.classList.remove('hover-expand');
+
+            // Clear all info content when collapsing the navbar
+            const allInfoContent = document.querySelectorAll('.info-content');
+            console.log('HELLO 2== '+allInfoContent);
+            allInfoContent.forEach(content => {
+                content.style.display = 'none';
+                content.innerText = '';
+            });
+        }
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -42,29 +42,44 @@
         transition: transform 0.2s, box-shadow 0.2s;
 
 
+
         }
+        .body-blur {
+            filter: blur(5px);
+        }
+
+        /* Content that remains clear */
+        .content {
+            position: relative;
+            z-index: 10; /* Higher than the blurred background */
+            padding: 20px;
+            color: white;
+        }
+
         .modal-content {
-            background-color: #333333; /* Dark background */
+            background-color: #161616; /* Dark background */
             color: white; /* White text color */
-            border: 2px solid #44475a; /* Border color (you can adjust this if needed) */
+            border: 4px dashed #ffffff; /* Border color (you can adjust this if needed) */
         }
 
         /* Modal Header Customization */
         .modal-header {
-            background-color: #44475a; /* Dark header background */
+            background-color: #161616; /* Dark header background */
             color: white; /* White text color */
-            border-bottom: 1px solid #44475a;
+            border-bottom: 1px solid #161616;
         }
 
         /* Close Button Style */
         .btn-close {
             filter: invert(1); /* Makes close button white */
+            
         }
 
         /* Modal Footer Customization */
         .modal-footer {
-            background-color: #44475a; /* Dark footer background */
-            border-top: 1px solid #44475a;
+            background-color: #161616; /* Dark footer background */
+            border-top: 1px solid #161616;
+            z-index: 10;
         }
 
         /* Customize the Cancel Button */
@@ -98,9 +113,8 @@
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4" style="color: white; padding-top: 20px;">Request a Business Form</h2>
-        <div class="glass-box21 scroll-1" style="height: 54rem">
-            <div class="card-body d-flex flex-column" style="width: 49rem;" id="search-results-container">
-            
+        <div class="glass-box21 scroll-1" style="height: 50rem">
+            <div class="card-body d-flex flex-column " style="width: 49rem;" id="search-results-container">
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
                     <div class="input-group input-group-lg mb-3">
@@ -178,6 +192,8 @@
                                 <option value="Mon-Sun">Mon-Sun</option>
                                 <option value="Mon-Wed">Mon-Wed</option>
                                 <option value="Tue-Sun">Tue-Sun</option>
+                                <option value="Sun-Thu">Sun-Thu</option>
+                                <option value="Sat-Sun">Sat-Sun</option>
                             </select>
                         </div>
                     </div>
@@ -234,9 +250,10 @@
                     </button>
                     <button type="reset" class="btn btn-secondary">Reset</button>
                 </form>
+                
 
 
-                <div class="modal fade" id="confirm-submit" data-bs-backdrop="false" tabindex="-1">
+                <div class="modal fade" id="confirm-submit" data-bs-backdrop="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -254,7 +271,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-warning" form="BusinessF">Confirm & Submit</button>
+                                <button type="submit" class="btn btn-primary" form="BusinessF">Confirm & Submit</button>
                             </div>
                         </div>
                     </div>
@@ -370,6 +387,22 @@
                 const selectedValue = item.getAttribute('data-value'); // Get the value from the dropdown
                 communityInput.value = selectedValue; // Update the input field
             });
+        });
+    </script>
+    <script>
+        const modal = document.getElementById('confirm-submit');
+        const body = document.body;
+    
+        // When the modal is shown, add the blur class to the body
+        modal.addEventListener('show.bs.modal', () => {
+            console.log("modal did show")
+            body.classList.add('body-blur');
+        });
+    
+        // When the modal is hidden, remove the blur class
+        modal.addEventListener('hidden.bs.modal', () => {
+            console.log("modal is nit show")
+            body.classList.remove('body-blur');
         });
     </script>
     
