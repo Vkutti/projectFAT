@@ -4,7 +4,6 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
 /* Increase the bottom padding when hovering over the navbar */
 .navbar {
     display: flex;
