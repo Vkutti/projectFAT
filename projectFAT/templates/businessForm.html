@@ -49,7 +49,7 @@
         .modal-content {
             background-color: #161616; /* Dark background */
             color: white; /* White text color */
-            border: 4px dashed #ffffff; /* Border color (you can adjust this if needed) */
+            border: 4px solid #ffffff; /* Border color (you can adjust this if needed) */
         }
 
         /* Modal Header Customization */
@@ -97,7 +97,115 @@
         textarea::placeholder {
             color: white !important; /* Makes all placeholder text white */
         }
-    
+
+
+
+
+        .input-group .form-control {
+            border: 2px solid #4c4b4b !important; /* Ensure custom styles override Bootstrap defaults */
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #212121;
+            font-size: small;
+            font-weight: bold;
+            text-align: left;
+            color: #ffffff; /* Set default text color */
+        }
+
+        .input-group .form-control:focus {
+            outline: none; /* Remove default focus outline */
+            background-color: #212121; /* Match focus background color */
+            color: #fffefe; /* Adjust text color on focus */
+            box-shadow: 5px 5px #888888; /* Add custom shadow effect */
+            border-color: white; /* Change border color on focus */
+        }
+        .btn.dropdown-toggle {
+            border: 2px solid #4c4b4b !important; /* Match the input border style */
+            padding: 15px 20px; /* Add padding similar to the input */
+            border-radius: 10px; /* Match input's border radius */
+            background-color: #212121 !important; /* Match the input's background color */
+            font-size: small; /* Same font size as the input */
+            font-weight: bold; /* Match the bold font weight */
+            text-align: center; /* Ensure centered text */
+            color: #969696 !important; /* Light text color for better contrast */
+            box-shadow: none; /* Remove default shadow */
+        }
+
+        .btn.dropdown-toggle:focus, 
+        .btn.dropdown-toggle:hover {
+            outline: none; /* Remove default focus outline */
+            background-color: #212121 !important; /* Keep background consistent */
+            color: #ffffff !important; /* Optional: Slightly lighter text on hover */
+            box-shadow: 1.1px 5px #888888; /* Add shadow for a hover/focus effect */
+            border-color: white; /* Change border color on hover/focus */
+        }
+        .input-group .form-control[type="file"] {
+            border: 2px solid #4c4b4b !important; /* Match input border */
+            padding: 15px; /* Add padding to match other elements */
+            border-radius: 10px; /* Rounded corners for consistency */
+            background-color: #212121 !important; /* Dark background */
+            font-size: small; /* Consistent font size */
+            font-weight: bold; /* Bold text */
+            text-align: center; /* Center text */
+            color: #ffffff !important; /* Light text color for better contrast */
+            box-shadow: none; /* Remove default shadow */
+        }
+
+        .input-group .form-control[type="file"]:focus {
+            outline: none; /* Remove default focus outline */
+            background-color: #212121 !important; /* Maintain background color */
+            color: #ffffff !important; /* Keep text color consistent */
+            box-shadow: 5px 5px #888888; /* Add subtle shadow for focus effect */
+            border-color: white; /* Highlight border on focus */
+        }
+
+        .input-group .form-control[type="file"]::file-selector-button {
+            border: 2px solid #4c4b4b; /* Match the input border */
+            padding: 10px 15px; /* Add padding for a better button look */
+            border-radius: 5px; /* Slightly smaller radius for the button */
+            background-color: #2D2B2A; /* Match background color */
+            font-size: small; /* Consistent font size */
+            font-weight: bold; /* Bold text */
+            color: #969696; /* Light text color */
+            cursor: pointer; /* Indicate interactivity */
+        }
+
+        .input-group .form-control[type="file"]::file-selector-button:hover {
+            background-color: #1a1919; /* Darker background on hover */
+            color: #424242; /* Lighter text on hover */
+            border-color: white; /* Highlight border on hover */
+            box-shadow: 5px 5px #000000; /* Add shadow for hover effect */
+        }
+        .dropdown-menu {
+            background-color: #212121 !important; /* Match the input box background */
+            border: 2px solid #e8e8e8; /* Optional: Add a border for consistency */
+            border-radius: 10px; /* Match the input box border radius */
+            color: #e8e8e8; /* White text color */
+        }
+
+        .dropdown-menu .dropdown-item {
+            background-color: #212121 !important; /* Dark background for dropdown items */
+            color: #e8e8e8 !important; /* White text for dropdown items */
+            font-size: small; /* Match input font size */
+            font-weight: bold; /* Bold text */
+            padding: 10px 15px; /* Add padding for better readability */
+            border-radius: 5px; /* Slightly rounded corners for each item */
+            transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effect */
+        }
+
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus {
+            background-color: #2D2B2A !important; /* Slightly lighter background on hover */
+            color: #ffffff !important; /* Bright white text on hover */
+            box-shadow: 2px 2px 5px #888888; /* Optional: Add a hover shadow effect */
+        }
+
+        /* Custom backdrop, applied dynamically */
+
+
+</style>
+
+            
 </style>
 <body>
     <a href="/" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </a>
@@ -108,16 +216,16 @@
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessName" type="text" class="form-control " style="background-color: #2D2B2A; color: white; border-color:black;" placeholder="Business Name"  name="businessName" required>
+                        <input id="businessName" type="text" class="form-control" placeholder="Business Name*"  name="businessName" required>
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessType" type="text" style="background-color: #2D2B2A ;color: white; border-color:black;" class="form-control"  placeholder="Business Type" name="businessType" required>
+                        <input id="businessType" type="text" class="form-control"  placeholder="Business Type*" name="businessType" required>
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <!-- Single Editable Field for Hours and Days -->
                         <div id="businessHoursEditable" class="d-flex">
                             <!-- Opening Hour -->
-                            <select id="openingHour" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Hour">
+                            <select id="openingHour" class="form-control" aria-label="Opening Hour">
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -131,9 +239,9 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <span class="px-2" style="color: rgb(178, 178, 178)">:</span>
+                            <span class="px-2" style="color: rgb(255, 255, 255);transform: translateY(10px);font-weight: bolder;">:</span>
                             <!-- Opening Minute -->
-                            <select id="openingMinute" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Opening Minute">
+                            <select id="openingMinute"  class="form-control" aria-label="Opening Minute">
                                 <option value="00">00</option>
                                 <option value="15">15</option>
                                 <option value="30">30</option>
@@ -141,13 +249,13 @@
                             </select>
                             <span class="px-2"> </span>
                             <!-- Opening AM/PM -->
-                            <select id="openingAMPM" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
+                            <select id="openingAMPM"  class="form-control am-pm-dropdown" aria-label="Opening AM/PM">
                                 <option value="am" selected>am</option>
                                 <option value="pm">pm</option>
                             </select>
-                            <span class="px-2" style="color: rgb(178, 178, 178)" > - </span>
+                            <span class="px-2" style="color: rgb(255, 255, 255);transform: translateY(10px);font-weight: bolder;" > - </span>
                             <!-- Closing Hour -->
-                            <select id="closingHour" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Hour">
+                            <select id="closingHour" class="form-control" aria-label="Closing Hour">
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -161,9 +269,9 @@
                                 <option value="11">11</option>
                                 <option value="12" selected>12</option>
                             </select>
-                            <span class="px-2" style="color: rgb(178, 178, 178)" >:</span>
+                            <span class="px-2" style="color: rgb(255, 255, 255); transform: translateY(10px);font-weight: bolder;">:</span>
                             <!-- Closing Minute -->
-                            <select id="closingMinute" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control" aria-label="Closing Minute">
+                            <select id="closingMinute" class="form-control" aria-label="Closing Minute">
                                 <option value="00">00</option>
                                 <option value="15">15</option>
                                 <option value="30">30</option>
@@ -171,13 +279,13 @@
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Closing AM/PM -->
-                            <select id="closingAMPM" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
+                            <select id="closingAMPM" class="form-control am-pm-dropdown" aria-label="Closing AM/PM">
                                 <option value="pm" selected>am</option>
                                 <option value="am">pm</option>
                             </select>
                             <span class="px-2" style="color: rgb(178, 178, 178)" > </span>
                             <!-- Days -->
-                            <select id="days" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" aria-label="Days of Operation">
+                            <select id="days" class="form-control" aria-label="Days of Operation" style="width: auto;">
                                 <option value="Mon-Fri" selected>Mon-Fri</option>
                                 <option value="Mon-Sun">Mon-Sun</option>
                                 <option value="Mon-Wed">Mon-Wed</option>
@@ -189,13 +297,13 @@
                     </div>
 
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessHours" type="text" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" placeholder="e.g., 09:00-18:00 Mon-Fri" name="businessHours" required readonly>
+                        <input id="businessHours" type="text" class="form-control" placeholder="e.g., 09:00-18:00 Mon-Fri*" name="businessHours" required readonly>
                     </div>
 
                     
         
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessLocation" type="text" class="form-control custom-input" style="background-color: #2D2B2A; color: white; border-color:black;" placeholder="Business Location" name="businessLocation" required>
+                        <input id="businessLocation" type="text" class="form-control"  placeholder="Business Address*" name="businessLocation" required>
                     </div>
             
                     <div class="input-group mb-3">
@@ -207,33 +315,33 @@
                         >
                             Pick A Community
                         </button>
-                        <ul class="dropdown-menu" style="background-color: #2D2B2A; color: #ffffff; border-color:black;">
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#" data-value="Tracy Hills" style="color: white;">Tracy Hills</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Ellis" style="color: white;">Ellis</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Edgewood" style="color: white;">Edgewood</a></li>
                             <li><a class="dropdown-item" href="#" data-value="Redbridge" style="color: white;">Redbridge</a></li>
                         </ul>
                         <!-- Hidden Input for Community -->
-                        <input  id="community" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" type="text" class="form-control" name="community"  placeholder="Selected Community " readonly>
+                        <input  id="community"  type="text" class="form-control" name="community"  placeholder="Selected Community*" readonly>
                     </div>
                 
                     <!-- Business Location Input -->
             
                     <h4 style="color: white" >Business License</h4>
                     <div class="input-group mb-3" >
-                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license" style="background-color: #2D2B2A; color: white; border-color:black;" required>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="business_license"  required>
                     </div>
                       
                     <h4 style="color: white">Contact Information</h4>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name" style="background-color: #2D2B2A; color: #ffffff; border-color:black;" name="ownername" required> 
+                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name*"  name="ownername" required> 
                 
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="email" type="email" class="form-control" style="background-color: #2D2B2A; color: #ffffff; border-color:black;"  placeholder="Email" name="email" required>
+                        <input id="email" type="email" class="form-control"  placeholder="Email" name="email" required>
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number" name="phoneNumber" style="background-color: #2D2B2A; color: #ffffff; border-color:black;"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
+                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number*" name="phoneNumber"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
                     </div> <!-- Close the div properly here -->
                     <button type="button" id="submitBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm-submit">
                         Submit
@@ -255,7 +363,6 @@
                                     <li><strong>Business Name:</strong> <span id="confirm-businessName"></span></li>
                                     <li><strong>Business Type:</strong> <span id="confirm-businessType"></span></li>
                                     <li><strong>Business Location:</strong> <span id="confirm-businessLocation"></span></li>
-                                    <li><strong>Business Hours:</strong> <span id="confirm-businessHours"></span></li>
                                     <li><strong>Owner Name:</strong> <span id="confirm-ownerName"></span></li>
                                 </ul>
                             </div>
@@ -379,6 +486,8 @@
             });
         });
     </script>
+
+
     
 </body>
 </html>
