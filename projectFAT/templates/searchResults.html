@@ -19,6 +19,94 @@
         font-family: "Montserrat", sans-serif;
         
     } 
+    .brutalist-card {
+            width: 900px;
+            transform:translateX(-215px);
+            border: 4px solid #000000;
+            background-color: #1c1c1c;
+            padding: 1.5rem;
+            box-shadow: 10px 10px 0 #101010;
+            font-family: "Arial", sans-serif;
+        }
+
+        .brutalist-card__header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 1rem;
+        }
+
+
+        .brutalist-card__alert {
+            font-weight: 900;
+            color: #fff;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .brutalist-card__message {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.4;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .brutalist-card__actions {
+            margin-top: 1rem;
+        }
+
+        .brutalist-card__button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid #fff;
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 5px 5px 0 #fff;
+            overflow: hidden;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .brutalist-card__button--read {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .brutalist-card__button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #fff;
+        }
+
+        .brutalist-card__button--mark:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+            color: #000;
+            box-shadow: 7px 7px 0 #800000;
+        }
+
+        .brutalist-card__button--read:hover {
+            background-color: #296fbb;
+            border-color: #296fbb;
+            color: #000;
+            box-shadow: 7px 7px 0 #004280;
+        }
+
+        .brutalist-card__button:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
         
     
 </style>
@@ -60,9 +148,8 @@
             </ul>
         </div>
     </div>
-    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin-top: 150px; margin-bottom: -90px;"> Search Results For: {{category}}</h2>
+    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin-top: 100px; margin-bottom: -90px;"> Search Results For: {{category}}</h2>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
-        <h2 id="search-title" class="mb-4" style="font-size:x-large; font-family: sans-serif; color: transparent; font-weight: bold; padding-top: 12px;">Search Results For: {{ category }}</h2>
         <div id="cards-container" class="glass-box scroll-1" style="height: 45rem; overflow-y: scroll;margin-top: 10px;">
             <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem;" id="search-results-container">
                 {% for business in businesses %}
@@ -78,23 +165,30 @@
 
     <!-- Modal for displaying business details -->
     <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" class="modal-dialog modal-dialog-centered">
-        <div class="modal-dialog modal-dialog-centered"></div>
-            <div class="modal-content">
-            
-                <div class="modal-header" style="background-color: #333333;">
-                    <h5 class="modal-title" id="detailsModalLabel" style="color: white;">Business Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
-                </div>
-                <div class="modal-body" style="background-color: #333333;">
-                    <h5 id="modal-business-name"></h5>
-                    <div id="modal-business-info"></div>
-                </div>
-                <div class="modal-footer" style="background-color: #333333;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color: white;">Close</button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: none; border: none;">
+                <div class="brutalist-card">
+                    <div class="brutalist-card__header">
+                        <div class="brutalist-card__icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
+                        </div>
+                        <div class="brutalist-card__alert" id="modal-business-name">Business Name :{{ business}}</div>
+                    </div>
+                    <div class="brutalist-card__message" id="modal-business-info">
+                        <p><strong>Owner Name:</strong> N/A</p>
+                        <p><strong>Hours:</strong> N/A</p>
+                        <p><strong>Location:</strong> N/A</p>
+                        <p><strong>Contact Phone:</strong> N/A</p>
+                        <p><strong>Contact Email:</strong> N/A</p>
+                    </div>
+                    <div class="brutalist-card__actions">
+                        <a class="brutalist-card__button brutalist-card__button--mark" href="#" data-bs-dismiss="modal">Close</a>
+                        <!-- <a class="brutalist-card__button brutalist-card__button--read" href="#">Contact Business</a> -->
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 

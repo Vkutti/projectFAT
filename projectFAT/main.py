@@ -302,7 +302,7 @@ def business1():
     keywords = data.split()
 
     query = """
-        SELECT businessName, ownername, businessHours, Email, PhoneNumber
+        SELECT businessName, ownername, businessHours, Email, PhoneNumber, businessLocation
         FROM fat
         WHERE 1=1
     """
@@ -329,6 +329,7 @@ def business1():
         query += " AND (" + " OR ".join(keyword_conditions) + ")"
 
     results = db.execute(query, **parameters)
+    Location= db.execute("SELECT businessLocation FROM fat")
 
     if not results:
         results = [{"businessName": "No businesses were found"}]
@@ -338,7 +339,7 @@ def business1():
             for row in results
         ]
 
-    return render_template("searchResults.html", businesses=results, category=data.lower())
+    return render_template("searchResults.html", businesses=results, category=data.lower() ,businessLocation=Location)
 
 
 @app.route("/aboutus")
