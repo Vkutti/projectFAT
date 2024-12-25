@@ -230,3 +230,8 @@ category-btn {
     background-size: cover;
     background-position: center;
   }
+  .carousel-item-2 {
+    background-image: url('./CarIMG2.png');
+    background-size: cover;
+    background-position: center;
+  }
