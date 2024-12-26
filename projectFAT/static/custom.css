@@ -143,30 +143,7 @@ category-btn {
     }
 }
 
-.glass-box {
 
-    background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
-
-
-    backdrop-filter: blur(20px); /* Adjust blur intensity */
-
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
-
-    border-radius: 12px; /* Rounded corners for a softer look */
-
-    padding: 20px;
-    
-
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    overflow-y: scroll;
-
-    overflow-x: hidden;
-
-    transition: transform 0.2s, box-shadow 0.2s;
-
-
-}
 
 .scroll-1::-webkit-scrollbar {
     width: 8px;

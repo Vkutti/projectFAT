@@ -29,10 +29,11 @@
     position: relative; /* Make sure the navbar is the reference point for absolute positioning */
 }
 
-/* Expanded Navbar Height on Hover */
+
 .navbar.hover-expand {
-    height: 260px; /* Increased height when hovering */
+    height: 320px; /* Increased height when hovered */
 }
+/* Expanded Navbar Height on Hover */
 
 
 .logo {
@@ -125,6 +126,21 @@
     transform: translateY(20px);  /*Start slightly below */
     transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
     white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.glass-box {
+    background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+    backdrop-filter: blur(20px); /* Adjust blur intensity */
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width:max-content;  /* Fixed width */
+    height: 250px; /* Fixed height */
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    margin-top: auto;
+    margin-bottom: 20px;
 }
 
 /* Hover effect for nav text */
