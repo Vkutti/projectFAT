@@ -200,7 +200,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            color:#fff;
+            color:black;
             text-align: center;
             
 
@@ -232,7 +232,8 @@
         }
 
         .contact-box {
-            background-color: rgba(32, 32, 32, 0.95);
+            background-color: rgb(26, 26, 26);
+            border-color: black;
             border-radius: 12px;
             padding: 24px;
             width: 600px; /* Increased width */
@@ -247,6 +248,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.2s ease;
             cursor: pointer;
+            font-weight: bolder; 
+            font-size: larger;
         }
 
         .contact-box:hover {
@@ -276,23 +279,34 @@
                     <div class="dropdown-content communities-content">
                         <div class="communities-menu">
                             <div class="main-items">
-                                <div class="community-item">
-                                    <div class="community-title" style="margin-top: auto;margin-bottom: auto;font-weight: bolder; font-size: larger;" >Ellis</div>
+                                <div class="community-item" style=" background-image: url('./static/ellis.png'); background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.5s ease-in-out;opacity: 1;" 
+                                onmouseover="this.style.filter='grayscale(0%)'" 
+                                onmouseout="this.style.filter='grayscale(100%)'">
+                                    <div class="community-title" 
+                                    style="margin-top: auto; margin-bottom: auto; font-weight: bolder; font-size: larger; ">Ellis</div>
                                 </div>
-                                <div class="community-item">
+                                <div class="community-item" style=" background-image: url('./static/TracyHills.jpeg'); background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.5s ease-in-out;opacity: 1;" 
+                                onmouseover="this.style.filter='grayscale(0%)'" 
+                                onmouseout="this.style.filter='grayscale(100%)'">
                                     <div class="community-title" style="margin-top: auto;margin-bottom: auto;font-weight: bolder; font-size: larger;"  >Tracy Hills</div>
                     
                                 </div>
                             </div>
                             <div class="side-items">
-                                <div class="community-item">
+                                <div class="community-item" style=" background-color: white; background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.5s ease-in-out;opacity: 1;" 
+                                onmouseover="this.style.filter='grayscale(0%)'" 
+                                onmouseout="this.style.filter='grayscale(100%)'">
                                     <div class="community-title" style="margin-top: -5px;font-weight: 550; font-size: small-regular;" >RedBridge</div>
                                 </div>
-                                <div class="community-item">
+                                <div class="community-item" style="  background-color: white ; background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.5s ease-in-out;opacity: 1;" 
+                                onmouseover="this.style.filter='grayscale(0%)'" 
+                                onmouseout="this.style.filter='grayscale(100%)'">
                                     <div class="community-title" style="margin-top: -5px;font-weight: 550; font-size: small-regular;" >Edgewood</div>
                                     
                                 </div>
-                                <div class="community-item">
+                                <div class="community-item" style="  background-color: white ; background-size: cover; background-position: center; filter: grayscale(100%); transition: filter 0.5s ease-in-out;opacity: 1;" 
+                                onmouseover="this.style.filter='grayscale(0%)'" 
+                                onmouseout="this.style.filter='grayscale(100%)'">
                                     <div class="community-title" style="margin-top: -5px;font-weight:550; font-size: small-regular;" >Sungold</div>
                                     
                                 </div>
@@ -313,8 +327,8 @@
                     <button>Contact</button>
                     <div class="dropdown-content contact-content">
                         <div class="contact-container">
-                            <div class="contact-box">Phone Number</div>
-                            <div class="contact-box">Email</div>
+                            <div class="contact-box" style="background-image:  linear-gradient(#3e3e3e 0.7000000000000001px, transparent 0.7000000000000001px), linear-gradient(to right, #3e3e3e 0.7000000000000001px, #0f0f0f 0.7000000000000001px); background-size: 14px 14px;">Phone Number</div>
+                            <div class="contact-box" style="opacity: 1; background-image: radial-gradient( ellipse farthest-corner at 7px 7px , #3e3e3e, #3e3e3e 50%, #0f0f0f 50%); background-size: 7px 7px;">Email</div>
                         </div>
                     </div>
                 </li>
