@@ -128,20 +128,6 @@
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
-.glass-box {
-    background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
-    backdrop-filter: blur(20px); /* Adjust blur intensity */
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
-    border-radius: 12px; /* Rounded corners */
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width:max-content;  /* Fixed width */
-    height: 250px; /* Fixed height */
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: block;
-    margin-top: auto;
-    margin-bottom: 20px;
-}
 
 /* Hover effect for nav text */
 .navbar:hover .navText,
