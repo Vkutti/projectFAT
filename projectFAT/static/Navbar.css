@@ -23,6 +23,7 @@
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(87, 87, 87, 0.5);
     margin-bottom: -90px;
+    transition:all 0.6 ease;
    
 }
 .navbar {
@@ -80,10 +81,9 @@
 }
 
 /* Hover effect for tabs */
-.nav-links li:hover {
-    background-color: #444;
-    transform: scale(1.15);
-}
+.nav-links li:hover{
+    background-color: #232222;
+  }
 
 /* Info Section (Hidden by default) */
 .navbar-info {

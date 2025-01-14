@@ -110,55 +110,59 @@ def check_for_reply(email_user, email_password):
 # Additional code to run when 'yes' is detected in the email reply
 def run_additional_code_yes():
     print("\nRunning additional code as the user replied 'yes'.")
-    Time= parsedate_to_datetime(email_date_yes)
+    Time = parsedate_to_datetime(email_date_yes)
     try:
-        print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, "this is printing by the way")
+        print(glblBusinessName, glblOwnername, glblBusinessType, glblBusinessHours, glblBusinessLocation, glblPhoneNumber, glblEmail, "this is printing by the way")
+        
+        # First database insertion
         db.execute(
-                """
-                INSERT INTO fat (businessName, ownername, businessType, businessHours, Email, PhoneNumber, Community)
-                VALUES (:businessName, :ownername, :businessType, :businessHours,:Email ,:PhoneNumber, :Community)
-                """,
-                businessName = glblBusinessName,
-                ownername= glblOwnername,
-                businessType= glblBusinessType,
-                businessHours=glblBusinessHours,
-                businessLocation= glblBusinessLocation,
-                Email = glblEmail, 
-                PhoneNumber = glblPhoneNumber, 
-                )
-        print("adding to the Log Database")
+            """
+            INSERT INTO fat (businessName, ownername, businessType, businessHours, Email, PhoneNumber, businessLocation)
+            VALUES (:businessName, :ownername, :businessType, :businessHours, :Email, :PhoneNumber, :businessLocation)
+            """,
+            businessName=glblBusinessName,
+            ownername=glblOwnername,
+            businessType=glblBusinessType,
+            businessHours=glblBusinessHours,
+            Email=glblEmail,
+            PhoneNumber=glblPhoneNumber,
+            businessLocation=glblBusinessLocation
+        )
+        print("Adding to the Log Database")
+        
+        # Second database insertion
         db.execute(
-                """
-                INSERT INTO BusinessRequestLogs (businessName, Status, Time)
-                VALUES (:businessName, :Status, :Time)
-                """,
-                businessName = glblBusinessName,
-                Status= "Yes",
-                Time= Time,
+            """
+            INSERT INTO BusinessRequestLogs (businessName, Status, Time)
+            VALUES (:businessName, :Status, :Time)
+            """,
+            businessName=glblBusinessName,
+            Status="Yes",
+            Time=Time
+        )
+        print("Added to db")
+        
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")  # This will show you the actual error
 
-                )
-        print("added to db")
-        
-        
-    except:
-        ("shit didnt work")
 def run_additional_code_no():
     print("\nRunning additional code as the user replied 'no'.")
-    Time= parsedate_to_datetime(email_date_no)
+    Time = parsedate_to_datetime(email_date_no)
     try:
-        print( "Adding to the Log Database")
-
+        print("Adding to the Log Database")
         db.execute(
-                """
-                INSERT INTO BusinessRequestLogs (businessName, Status, Time)
-                VALUES (:businessName, :Status, :Time)
-                """,
-                businessName = glblBusinessName,
-                Status= "NO",
-                Time= Time,
- 
-                )
-        print("added to db")
+            """
+            INSERT INTO BusinessRequestLogs (businessName, Status, Time)
+            VALUES (:businessName, :Status, :Time)
+            """,
+            businessName=glblBusinessName,
+            Status="NO",
+            Time=Time
+        )
+        print("Added to db")
+        
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
         
         
     except:
@@ -167,7 +171,7 @@ def run_additional_code_no():
 def start_email_checking_thread(email_user,email_password):
     while True:
         check_for_reply(email_user, email_password)
-        time.sleep(5)  # Wait for 30 seconds before checking again
+        time.sleep(2)  # Wait for 30 seconds before checking again
 
 @app.route("/")
 def main():
@@ -295,12 +299,15 @@ def business1():
     if not data:
         return render_template("searchResults.html", businesses=[], category="")
 
+    # Fetch business types for validation
     business_types_query = "SELECT DISTINCT businessType FROM fat"
     business_types_result = db.execute(business_types_query)
     business_types = [row["businessType"].upper() for row in business_types_result]
 
+    # Split input data into keywords
     keywords = data.split()
 
+    # Base query
     query = """
         SELECT businessName, ownername, businessHours, Email, PhoneNumber, businessLocation
         FROM fat
@@ -310,13 +317,13 @@ def business1():
     parameters = {}
     keyword_conditions = []
 
+    # Filter by business type
     if keywords[0].upper() in business_types:
-        # First keyword is a business type
         query += " AND businessType = :businessType"
         parameters["businessType"] = keywords[0].upper()
-        keywords = keywords[1:]  
+        keywords = keywords[1:]
 
-    # Add conditions for remaining keywords
+    # Add keyword conditions
     for i, keyword in enumerate(keywords):
         param_name = f"keyword{i}"
         keyword_conditions.append(
@@ -324,22 +331,25 @@ def business1():
         )
         parameters[param_name] = f"%{keyword}%"
 
-
     if keyword_conditions:
         query += " AND (" + " OR ".join(keyword_conditions) + ")"
 
     results = db.execute(query, **parameters)
-    Location= db.execute("SELECT businessLocation FROM fat")
 
+    # Fetch business locations
+    location_query = "SELECT businessLocation FROM fat"
+    locations = db.execute(location_query)
+
+    # Prepare data
     if not results:
         results = [{"businessName": "No businesses were found"}]
     else:
         results = [
-            {key: (value if value is not None else "") for key, value in row.items()}
+            {key: (value if value is not None else "N/A") for key, value in row.items()}
             for row in results
         ]
 
-    return render_template("searchResults.html", businesses=results, category=data.lower() ,businessLocation=Location)
+    return render_template("searchResults.html", businesses=results, category=data.lower(), businessLocation=locations)
 
 
 @app.route("/aboutus")

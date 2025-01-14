@@ -45,42 +45,100 @@
 
 
         /* Content that remains clear */
-
-        .modal-content {
-            background-color: #161616; /* Dark background */
-            color: white; /* White text color */
-            border: 4px solid #ffffff; /* Border color (you can adjust this if needed) */
+        .brutalist-card {
+            width: 900px;
+            transform:translateX(-215px);
+            border: 4px solid #000000;
+            background-color: #1c1c1c;
+            padding: 1.5rem;
+            box-shadow: 10px 10px 0 #101010;
+            font-family: "Arial", sans-serif;
+            border-radius: 15px;
         }
 
-        /* Modal Header Customization */
-        .modal-header {
-            background-color: #161616; /* Dark header background */
-            color: white; /* White text color */
-            border-bottom: 1px solid #161616;
+        .brutalist-card__header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 1rem;
         }
 
-        /* Close Button Style */
-        .btn-close {
-            filter: invert(1); /* Makes close button white */
-            
+
+        .brutalist-card__alert {
+            font-weight: 900;
+            color: #fff;
+            font-size: 1.5rem;
+            text-transform: uppercase;
         }
 
-        /* Modal Footer Customization */
-        .modal-footer {
-            background-color: #161616; /* Dark footer background */
-            border-top: 1px solid #161616;
-            z-index: 10;
+        .brutalist-card__message {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.4;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 1rem;
+            font-weight: 600;
         }
 
-        /* Customize the Cancel Button */
-        .modal-footer .btn-secondary {
-            background-color: #ff5555; /* Red Cancel button */
-            border: none;
-            color: white;
+        .brutalist-card__actions {
+            margin-top: 1rem;
         }
 
-        .modal-footer .btn-secondary:hover {
-            background-color: #ff6e6e; /* Hover effect */
+        .brutalist-card__button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid #fff;
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 5px 5px 0 #fff;
+            overflow: hidden;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            border-radius: 16px;
+        }
+
+        .brutalist-card__button--read {
+            background-color: #fff;
+            color: #000;
+            border-radius: 16px;
+        }
+
+        .brutalist-card__button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #fff;
+            border-radius: 16px;
+        }
+
+        .brutalist-card__button--mark:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+            color: #000;
+            box-shadow: 7px 7px 0 #800000;
+            border-radius: 16px;
+        }
+
+        .brutalist-card__button--read:hover {
+            background-color: #3cbb29;
+            border-color: #50bb29;
+            color: #000;
+            box-shadow: 7px 7px 0 #178000;
+            border-radius: 16px;
+        }
+
+        .brutalist-card__button:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+            border-radius: 16px;
         }
 
         /* Confirm Button */
@@ -208,15 +266,15 @@
             
 </style>
 <body>
-    <button onclick="history.back()" class="fs-4 ms-3 mt-2 position-fixed return-btn">  Back  </button>
+    <button onclick="history.back()" class="fs-4 ms-3 mt-2 position-fixed return-btn">Back</button>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4" style="color: white; padding-top: 20px;">Request a Business Form</h2>
-        <div class="glass-box21 scroll-1" style="height: 50rem">
-            <div class="card-body d-flex flex-column " style="width: 49rem;" id="search-results-container">
+        <div class="glass-box21 scroll-1" style="height: 50rem;">
+            <div class="card-body d-flex flex-column" style="width: 49rem;" id="search-results-container">
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessName" type="text" class="form-control" placeholder="Business Name*"  name="businessName" required>
+                        <input id="businessName" type="text" class="form-control" placeholder="Business Name*" name="businessName" required>
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <input id="businessType" type="text" class="form-control"  placeholder="Business Type*" name="businessType" required>
@@ -344,133 +402,137 @@
                     <div class="input-group input-group-lg mb-3">
                         <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number*" name="phoneNumber"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
                     </div> <!-- Close the div properly here -->
-                    <button type="button" id="submitBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm-submit">
+                    <button type="button" id="submitBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal">
                         Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">Reset</button>
                 </form>
                 
-
-
-                <div class="modal fade" style= "z-index: 100000000;"id="confirm-submit" data-bs-backdrop="false" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Confirm Submission</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Please confirm the following details:</p>
-                                <ul>
-                                    <li><strong>Business Name:</strong> <span id="confirm-businessName"></span></li>
-                                    <li><strong>Business Type:</strong> <span id="confirm-businessType"></span></li>
-                                    <li><strong>Business Location:</strong> <span id="confirm-businessLocation"></span></li>
-                                    <li><strong>Owner Name:</strong> <span id="confirm-ownerName"></span></li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary" form="BusinessF">Confirm & Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            
-                <!-- Custom Script -->
-            <script>
-                // Update community input field when dropdown item is clicked
-                document.querySelectorAll('.dropdown-item').forEach(item => {
-                    item.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const selectedValue = this.getAttribute('data-value');
-                        document.getElementById('community').value = selectedValue;
-                    });
-                });
-            
-                // Populate modal with form values
-                document.getElementById('submitBtn').addEventListener('click', function () {
-                    document.getElementById('confirm-businessName').innerText = document.getElementById('businessName').value;
-                    document.getElementById('confirm-businessType').innerText = document.getElementById('businessType').value;
-                    document.getElementById('confirm-businessLocation').innerText = document.getElementById('businessLocation').value;
-                    document.getElementById('confirm-ownerName').innerText = document.getElementById('ownerName').value;
-                });
-            </script>
-    
-             <script>
-                const phoneInput = document.getElementById('phoneNumber');
-            
-                function formatPhoneNumber(value) {
-                  // Remove all non-digit characters
-                  const numbers = value.replace(/\D/g, '');
-            
-                  // Format the phone number as (123) 456-789
-                  const match = numbers.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
-            
-                  if (match) {
-                    const part1 = match[1] ? `(${match[1]}` : '';
-                    const part2 = match[2] ? `) ${match[2]}` : '';
-                    const part3 = match[3] ? `-${match[3]}` : '';
-                    return `${part1}${part2}${part3}`;
-                  }
-            
-                  return value; // Return unformatted value if no match
-                }
-            
-                phoneInput.addEventListener('input', (event) => {
-                  const formatted = formatPhoneNumber(event.target.value);
-                  phoneInput.value = formatted;
-                });
-            
-                // Handle autofill or paste events
-                phoneInput.addEventListener('blur', () => {
-                  phoneInput.value = formatPhoneNumber(phoneInput.value);
-                });
-              </script>
-              <script>
-                document.querySelectorAll('.dropdown-item').forEach(item => {
-                    item.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const selectedValue = this.getAttribute('data-value'); // Get value
-                        document.getElementById('community').value = selectedValue; // Set input value
-                    });
-                });
-              </script>
-             <script>
-                const businessHoursInput = document.getElementById("businessHours");
-                const openingHour = document.getElementById("openingHour");
-                const openingMinute = document.getElementById("openingMinute");
-                const openingAMPM = document.getElementById("openingAMPM");
-                const closingHour = document.getElementById("closingHour");
-                const closingMinute = document.getElementById("closingMinute");
-                const closingAMPM = document.getElementById("closingAMPM");
-                const daysInput = document.getElementById("days");
-        
-                // Update the business hours field based on selections
-                function updateBusinessHours() {
-                    const openingTime = `${openingHour.value}:${openingMinute.value}${openingAMPM.value}`;
-                    const closingTime = `${closingHour.value}:${closingMinute.value}${closingAMPM.value}`;
-                    const days = daysInput.value;
-        
-                    const formattedHours = `${openingTime}-${closingTime} ${days}`;
-                    businessHoursInput.value = formattedHours;
-                }
-        
-                // Event listeners to update the business hours on selection change
-                openingHour.addEventListener("change", updateBusinessHours);
-                openingMinute.addEventListener("change", updateBusinessHours);
-                openingAMPM.addEventListener("change", updateBusinessHours);
-                closingHour.addEventListener("change", updateBusinessHours);
-                closingMinute.addEventListener("change", updateBusinessHours);
-                closingAMPM.addEventListener("change", updateBusinessHours);
-                daysInput.addEventListener("change", updateBusinessHours);
-        
-                // Initial call to set the value on load
-                updateBusinessHours();
-            </script>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background: none; border: none;">
+                    <div class="brutalist-card">
+                        <div class="brutalist-card__header">
+                            <div class="brutalist-card__icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                </svg>
+                            </div>
+                            <div class="brutalist-card__alert" id="modal-business-name">Confirm Business Details</div>
+                        </div>
+                        <div class="brutalist-card__message" id="modal-business-info">
+                            <p>Please confirm the following details:</p>
+                            <ul>
+                                <li><strong>Business Name:</strong> <span id="confirm-businessName"></span></li>
+                                <li><strong>Business Type:</strong> <span id="confirm-businessType"></span></li>
+                                <li><strong>Business Location:</strong> <span id="confirm-businessLocation"></span></li>
+                                <li><strong>Owner Name:</strong> <span id="confirm-ownerName"></span></li>
+                            </ul>
+                        </div>
+                        <div class="brutalist-card__actions">
+                            <a class="brutalist-card__button brutalist-card__button--mark" href="#" data-bs-dismiss="modal">Close</a>
+                            <button type="submit" class="brutalist-card__button brutalist-card__button--read"  form="BusinessF">Confirm & Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <script>
+        // Update community input field when dropdown item is clicked
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                const selectedValue = this.getAttribute('data-value');
+                document.getElementById('community').value = selectedValue;
+            });
+        });
+    
+        // Populate modal with form values
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            // new bootstrap.Modal(document.getElementById('detailsModal')).show();
+            document.getElementById('confirm-businessName').innerText = document.getElementById('businessName').value;
+            document.getElementById('confirm-businessType').innerText = document.getElementById('businessType').value;
+            document.getElementById('confirm-businessLocation').innerText = document.getElementById('businessLocation').value;
+            document.getElementById('confirm-ownerName').innerText = document.getElementById('ownerName').value;
+        });
+    </script>
+
+     <script>
+        const phoneInput = document.getElementById('phoneNumber');
+    
+        function formatPhoneNumber(value) {
+          // Remove all non-digit characters
+          const numbers = value.replace(/\D/g, '');
+    
+          // Format the phone number as (123) 456-789
+          const match = numbers.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+    
+          if (match) {
+            const part1 = match[1] ? `(${match[1]}` : '';
+            const part2 = match[2] ? `) ${match[2]}` : '';
+            const part3 = match[3] ? `-${match[3]}` : '';
+            return `${part1}${part2}${part3}`;
+          }
+    
+          return value; // Return unformatted value if no match
+        }
+    
+        phoneInput.addEventListener('input', (event) => {
+          const formatted = formatPhoneNumber(event.target.value);
+          phoneInput.value = formatted;
+        });
+    
+        // Handle autofill or paste events
+        phoneInput.addEventListener('blur', () => {
+          phoneInput.value = formatPhoneNumber(phoneInput.value);
+        });
+      </script>
+      <script>
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                const selectedValue = this.getAttribute('data-value'); // Get value
+                document.getElementById('community').value = selectedValue; // Set input value
+            });
+        });
+      </script>
+     <script>
+        const businessHoursInput = document.getElementById("businessHours");
+        const openingHour = document.getElementById("openingHour");
+        const openingMinute = document.getElementById("openingMinute");
+        const openingAMPM = document.getElementById("openingAMPM");
+        const closingHour = document.getElementById("closingHour");
+        const closingMinute = document.getElementById("closingMinute");
+        const closingAMPM = document.getElementById("closingAMPM");
+        const daysInput = document.getElementById("days");
+
+        // Update the business hours field based on selections
+        function updateBusinessHours() {
+            const openingTime = `${openingHour.value}:${openingMinute.value}${openingAMPM.value}`;
+            const closingTime = `${closingHour.value}:${closingMinute.value}${closingAMPM.value}`;
+            const days = daysInput.value;
+
+            const formattedHours = `${openingTime}-${closingTime} ${days}`;
+            businessHoursInput.value = formattedHours;
+        }
+
+        // Event listeners to update the business hours on selection change
+        openingHour.addEventListener("change", updateBusinessHours);
+        openingMinute.addEventListener("change", updateBusinessHours);
+        openingAMPM.addEventListener("change", updateBusinessHours);
+        closingHour.addEventListener("change", updateBusinessHours);
+        closingMinute.addEventListener("change", updateBusinessHours);
+        closingAMPM.addEventListener("change", updateBusinessHours);
+        daysInput.addEventListener("change", updateBusinessHours);
+
+        // Initial call to set the value on load
+        updateBusinessHours();
+    </script>
     <script src="../static/businessForm.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
