@@ -89,6 +89,10 @@
   .nav-links li:hover{
     background-color: #232222;
   }
+  .contact-box:hover {
+    background-color: rgba(45, 45, 45, 0.98);
+    transform: scale(1.15) translateY(-20px);
+}
   
   /* Dropdown content */
   .dropdown-content {

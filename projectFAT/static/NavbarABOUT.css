@@ -97,6 +97,10 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+.contact-box:hover {
+  background-color: rgba(45, 45, 45, 0.98);
+  transform: scale(1.15) translateY(-20px);
+}
 
 .nav-tab.active .dropdown-content {
   display: block;
