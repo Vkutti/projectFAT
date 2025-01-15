@@ -140,7 +140,7 @@ category-btn {
     transition: all 0.3s ease;
 }
 .nav-barslide {
-    animation: slideIn 1.5s ease;
+    animation: slideIn 1.9s ease;
     transition: all 0.3s ease;
 }
 .nav-fadein {
@@ -237,3 +237,9 @@ category-btn {
     background-size: cover;
     background-position: center;
   }
+  .carousel-item-3 {
+    background-image: url('./CarIMG3.png');
+    background-size: cover;
+    background-position: center;
+  }
+
