@@ -174,25 +174,66 @@
   }
   
   .contact-box {
-    background-color: rgb(26, 26, 26);
-    border-color: black;
-    border-radius: 12px;
-    padding: 24px;
-    width: 600px; /* Increased width */
-    height: 220px; /* Increased height */
-    transform: translateY(-30px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 18px; /* Slightly larger font */
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.2s ease;
-    cursor: pointer;
-    font-weight: bolder; 
-    font-size: larger;
-  }
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: .3s cubic-bezier(.6,.4,0,1),transform .15s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 600px;
+    height:220px;
+    transform: translateY(-30px);
+    border-radius: 13px;
+    }
+
+    .contact-box_body {
+    color: lightgray;
+    line-height: 1.5em;
+    font-size: 1em;
+    }
+
+    .contact-box > :not(span) {
+    transition: .3s cubic-bezier(.6,.4,0,1);
+    }
+
+    .contact-box > strong {
+    display: block;
+    font-size: 1.4rem;
+    letter-spacing: -.035em;
+    }
+
+    .contact-box span {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--hover-text);
+    border-radius: 5px;
+    font-weight: bold;
+    top: 100%;
+    transition: all .3s cubic-bezier(.6,.4,0,1);
+    }
+
+    .contact-box:hover span {
+    top: 0;
+    font-size: 1.2em;
+    }
+
+    .contact-box:hover {
+    transform: scale(1.15) translateY(-20px);
+    }
+
+    .contact-box:hover>div,.contact-box:hover>strong {
+    opacity: 0;
+    }
   
   .contact-box:hover {
     background-color: rgba(45, 45, 45, 0.98);
