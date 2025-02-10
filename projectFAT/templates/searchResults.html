@@ -114,14 +114,17 @@
             right: 15%;
             animation-delay: 0.3s;
         }
+
     body {
         background-image: url('./static/Background.svg'); 
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
         font-family: "Montserrat", sans-serif;
+        overflow-x: hidden;
         
     } 
+
     .brutalist-card {
             width: 900px;
             transform:translateX(-215px);
@@ -216,6 +219,49 @@
             transform: translate(5px, 5px);
             box-shadow: none;
             border-radius: 16px;
+        }
+
+                /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .brutalist-card {
+                width: 100%; /* Full width on mobile */
+                transform: translateX(0); /* Remove the X-axis translation */
+                padding: 1rem; /* Adjust padding */
+            }
+
+            .brutalist-card__header {
+                flex-direction: column; /* Stack the header items vertically on mobile */
+                align-items: flex-start; /* Align left */
+            }
+
+            .brutalist-card__alert {
+                font-size: 1.25rem; /* Smaller alert text for mobile */
+            }
+
+            .brutalist-card__message {
+                font-size: 0.875rem; /* Smaller message text for mobile */
+            }
+
+            .brutalist-card__button {
+                font-size: 0.9rem; /* Slightly smaller buttons on mobile */
+                padding: 0.65rem; /* Adjust padding for mobile */
+            }
+        }
+
+        /* Extra small screen adjustments (like phones in portrait mode) */
+        @media (max-width: 480px) {
+            .brutalist-card__alert {
+                font-size: 1rem; /* Further reduce alert text for very small screens */
+            }
+
+            .brutalist-card__message {
+                font-size: 0.75rem; /* Even smaller message text */
+            }
+
+            .brutalist-card__button {
+                font-size: 0.8rem; /* Even smaller buttons */
+                padding: 0.5rem; /* Adjust button padding */
+            }
         }
         
     
@@ -329,13 +375,16 @@
               </form>
             </ul>
         </div>
-    <!-- </div> -->
-    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin-top: 100px; margin-bottom: -90px;padding-top: 50px;"> Search Results For: {{category}}</h2>
+    
+
+    <h2 style="text-align: center; font-size: xx-large; font-weight: bold; color: white; margin: 20px 0; padding-top: 20px;">
+        Search Results For: {{category}}
+    </h2>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
-        <div id="cards-container" class="glass-box scroll-1" style="height: 45rem; overflow-y: scroll;margin-top: 10px;">
-            <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem;" id="search-results-container">
+        <div id="cards-container" class="glass-box21 scroll-1" style="height: 45rem; overflow-y: scroll;margin-top: 10px;">
+            <div class="card-body d-flex flex-column justify-content-center" style="width: 40rem; display: flex;" id="search-results-container">
                 {% for business in businesses %}
-                    <div class="glass-box my-2">
+                    <div class="glass-box21 my-2">
                         <div class="card-body" style="cursor: pointer;background-color: #333333;" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showBusinessDetails('{{ business['businessName'] }}', {{ business | tojson }});">
                             <h5 class="card-title">{{ business['businessName'] }}</h5>
                         </div>

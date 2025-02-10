@@ -20,29 +20,54 @@
     }
 
     .glass-box21 {
-
         background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+        backdrop-filter: blur(20px); /* Frosted glass effect */
+        border: 2px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+        border-radius: 12px; /* Rounded corners */
+        padding: 20px; /* Default padding */
+        margin-bottom: 20px; /* Default margin between elements */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+        max-width: 600px; /* Limit maximum width for better layout */
+        width: 90%; /* Flexible width */
+        overflow-y: scroll; /* Enable vertical scrolling if needed */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions for interactivity */
 
+    }
 
-        backdrop-filter: blur(20px); /* Adjust blur intensity */
+    /* Text content styling inside the glass box */
+    .glass-box21 p {
+        font-size: 16px; /* Default font size for readability */
+        color: rgba(255, 255, 255, 0.9); /* Light text color */
+    }
 
-        border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
-
-        border-radius: 12px; /* Rounded corners for a softer look */
-
-        padding: 20px;
-        margin-bottom: 20px;
-
-
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-        overflow-y: scroll;
-
-        overflow-x: hidden;
-
-        transition: transform 0.2s, box-shadow 0.2s;
-    
+    /* Responsive adjustments for tablets */
+    @media (max-width: 768px) {
+        .glass-box21 {
+            padding: 15px; /* Reduce padding */
+            margin-bottom: 15px; /* Smaller margin */
+            border-radius: 10px; /* Adjust corners for compact view */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            max-width: 100%; /* Use full width of the screen */
+            width: 100%;
+            overflow-y: auto; /* Ensure full screen width usage */
         }
+    }
+
+    /* Responsive adjustments for mobile phones */
+    @media (max-width: 480px) {
+        .glass-box21 {
+            padding: 10px; /* Further reduce padding for smaller screens */
+            margin-bottom: 10px; /* Minimal margin */
+            border-radius: 8px; /* Smaller rounded corners */
+            font-size: 14px; /* Adjust font size for readability */
+            overflow-y: auto; /* Avoid scrolling issues */
+        }
+        .glass-box21 p {
+            font-size: 14px; /* Smaller font size for compact screens */
+        }
+    }
+
 
 
         /* Content that remains clear */
@@ -210,6 +235,12 @@
             box-shadow: none; /* Remove default shadow */
         }
 
+        @media (max-width: 768px) { /* For screens smaller than 768px */
+            .input-group .form-control{
+                font-size: 1rem; /* Smaller font size on smaller screens */
+            }
+        }
+
         .input-group .form-control[type="file"]:focus {
             outline: none; /* Remove default focus outline */
             background-color: #212121 !important; /* Maintain background color */
@@ -280,15 +311,15 @@
     <button onclick="history.back()" class="fs-4 ms-3 mt-2 position-fixed return-btn">Back</button>
     <div class="vw-100 vh-100 d-flex justify-content-center align-items-center flex-column">
         <h2 id="form-title" class="mb-4" style="color: white; padding-top: 20px;">Request a Business Form</h2>
-        <div class="glass-box21 scroll-1" style="height: 50rem;">
+        <div class="glass-box21 scroll-1" style="height: 50rem; display: flex;">
             <div class="card-body d-flex flex-column" style="width: 49rem;" id="search-results-container">
                 <form id="BusinessF" action="/businessForm" enctype="multipart/form-data" method="POST">
                     <h4 style="color: rgb(255, 255, 255)">Business Information</h4>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessName" type="text" class="form-control" placeholder="Business Name*" name="businessName" required>
+                        <input id="businessName" type="text" class="form-control" placeholder="Business Name*" name="businessName" required autocomplete="off">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="businessType" type="text" class="form-control"  placeholder="Business Type*" name="businessType" required>
+                        <input id="businessType" type="text" class="form-control"  placeholder="Business Type*" name="businessType" required autocomplete="off">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <!-- Single Editable Field for Hours and Days -->
@@ -404,14 +435,14 @@
                       
                     <h4 style="color: white">Contact Information</h4>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name*"  name="ownername" required> 
+                        <input id="ownerName" type="text" class="form-control " placeholder="Owner Name*"  name="ownername" required autocomplete="off"> 
                 
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="email" type="email" class="form-control"  placeholder="Email" name="email" required>
+                        <input id="email" type="email" class="form-control"  placeholder="Email" name="email" required autocomplete="off">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number*" name="phoneNumber"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required>
+                        <input id="phoneNumber" type="tel"  class="form-control" placeholder="Phone Number*" name="phoneNumber"  required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" required autocomplete="off">
                     </div> <!-- Close the div properly here -->
                     <button type="button" id="submitBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal">
                         Submit
