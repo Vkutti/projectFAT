@@ -400,6 +400,188 @@
             .contact-box:hover>div,.contact-box:hover>strong {
             opacity: 0;
             }
+            .navbar .business-request {
+            display: none;
+        }
+
+        /* Hide the hamburger icon by default */
+        .navbar .hamburger {
+            display: none;
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            display: none;
+            visibility: hidden;
+        }
+
+        .bar {
+            display: none; /* Hidden by default */
+            position: relative;
+            cursor: pointer;
+            width: 30px;  /* Reduced from 50px */
+            height: 25px; /* Reduced from 40px */
+            margin-right: 0; /* Remove right margin to push it more to the right */
+        }
+
+        .bar span {
+            position: absolute;
+            width: 30px;  /* Reduced from 45px */
+            height: 3px;  /* Reduced from 7px */
+            background: #f1faee;
+            border-radius: 100px;
+            display: inline-block;
+            transition: 0.3s ease;
+            left: 0;
+        }
+
+        .bar span.top {
+            top: 0;
+        }
+
+        .bar span.middle {
+            top: 11px; /* Adjusted for new size */
+        }
+
+        .bar span.bottom {
+            bottom: 0;
+        }
+
+        input[type]:checked ~ span.top {
+            transform: rotate(45deg);
+            transform-origin: top left;
+            width: 32px; /* Adjusted from 48px */
+            left: 3px;
+        }
+
+        input[type]:checked ~ span.bottom {
+            transform: rotate(-45deg);
+            transform-origin: top left;
+            width: 32px; /* Adjusted from 48px */
+            bottom: -1px;
+            box-shadow: 0 0 10px #495057;
+        }
+
+        input[type]:checked ~ span.middle {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        /* Update media query for phone screens */
+        @media (max-width: 767.98px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: space-between;
+                padding: 8px 10px;
+                height: 50px;
+                width: 100%;
+            }
+
+            .logo {
+                position: static;
+                transform: none;
+                width: 30px;
+                height: 30px;
+                flex-shrink: 0;
+                margin-left: -44px;
+            }
+
+            .navbar .business-request {
+                display: block;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+                margin-right: 15px; /* Increased margin to separate from hamburger */
+                flex-shrink: 0;
+            }
+
+            /* Show the new hamburger menu on phones */
+            .bar {
+                display: block;
+                margin-right: -30px; /* Reduced right margin */
+            }
+
+            /* Updated phone-right container */
+            .phone-right {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+               
+            }
+
+            /* Remove the old hamburger icon */
+            .navbar .hamburger {
+                display: none;
+            }
+        }
+
+        /* Ensure the navbar is centered and responsive */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Add a container for the right-side elements */
+        .navbar .phone-right {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between business request and hamburger */
+        }
+
+
+        @media (min-width: 768px) and (max-width: 830px) {
+            .navbar {
+                width: 90%; /* Make navbar slightly smaller */
+            }
+
+            .nav-links {
+                gap: 40px; /* Reduce gap between nav items from 90px */
+                left: 80px; /* Adjust left position */
+            }
+
+            .nav-links li {
+                height: 28px; /* Slightly smaller height */
+                width: 89px; /* Slightly smaller width */
+            }
+
+            .nav-links li button {
+                font-size: 12px; /* Smaller font size */
+            }
+
+            /* Keep the dropdown content full width when expanded */
+            .dropdown-content {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 820px)and (max-width: 952px){
+            .nav-links {
+                gap: 65px; /* Reduce gap between nav items from 90px */
+                left: 80px; /* Adjust left position */
+            }
+
+            .nav-links li {
+                height: 30px; /* Slightly smaller height */
+                width: 93px; /* Slightly smaller width */
+            }
+
+            .nav-links li button {
+                font-size: 13px; /* Smaller font size */
+            }
+
+            /* Keep the dropdown content full width when expanded */
+            .dropdown-content {
+                width: 100%;
+            }
+        
+        }
+    
     </style>
 </head>
 <body>
@@ -500,6 +682,16 @@
                         </div>
                     </li>
                 </ul>
+                <div class="phone-right">
+                    <a type="button" class="btn btn-default text-slide business-request" href="/businessForm" style="color: white; font-weight: bolder;">Request A Business</a>
+                    <!-- Replace the old hamburger with the new one -->
+                    <label class="bar" for="check">
+                        <input type="checkbox" id="check">
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+                    </label>
+                </div>
             </div>
         </div>
         <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
