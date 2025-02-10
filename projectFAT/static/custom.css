@@ -52,32 +52,158 @@ category-btn {
 
     transition: transform 0.2s, box-shadow 0.2s;
 
+}
 
+.glass-box21 {
+  background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+  backdrop-filter: blur(20px); /* Frosted glass effect */
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Subtle border with lighter contrast for visibility */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px; /* Default padding */
+  margin-bottom: 20px; /* Default margin between elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  max-width: 600px; /* Limit maximum width for better layout */
+  width: 90%; /* Flexible width */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions for interactivity */
+  min-height: 200px; /* Ensure the box has enough height for content */
+  color: rgba(255, 255, 255, 0.9); /* Light text color for better visibility */
+  z-index: 10; /* Ensure the box is above other elements */
+  position: relative; /* Maintain stacking context */
+}
+
+/* Text styles inside the glass-box */
+.glass-box21 p {
+  font-size: 16px; /* Readable font size */
+  color: rgba(255, 255, 255, 0.9); /* Ensure text is visible */
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  .glass-box21 {
+      padding: 15px; /* Reduce padding */
+      margin-bottom: 15px; /* Smaller margin */
+      border-radius: 10px; /* Adjust corners for compact view */
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
+      max-width: 100%; /* Use full width of the screen */
+      width: 100%; /* Responsive width */
+      overflow-y: auto; /* Ensure full screen width usage */
+  }
+  .glass-box21 p {
+      font-size: 15px; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Responsive adjustments for mobile phones */
+@media (max-width: 480px) {
+  .glass-box21 {
+      padding: 10px; /* Further reduce padding for smaller screens */
+      margin-bottom: 10px; /* Minimal margin */
+      border-radius: 8px; /* Smaller rounded corners */
+      font-size: 14px; /* Adjust font size for readability */
+      overflow-y: auto; /* Avoid scrolling issues */
+  }
+  .glass-box21 p {
+      font-size: 14px; /* Adjust font size for smaller devices */
+  }
 }
 
 
+
+.card {
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent card background */
+  border-radius: 10px; /* Rounded corners for cards */
+  padding: 15px; /* Padding for cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+  margin: 10px 0; /* Spacing between cards */
+  width: 100%; /* Cards take full width */
+  max-width: 550px; /* Limit card width */
+  text-align: center; /* Center-align card content */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover transitions */
+  max-height: 4rem; /* Ensure a minimum height */
+  display: flex; /* Use Flexbox for easy alignment */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column; /* Stack children vertically */
+}
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px); /* Slight upward movement */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
 .card-content {
-    padding: 15px;
-    text-align: left;
+  padding: 15px;
+  text-align: left; /* Aligns content to the left for readability */
 }
 
 .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 0 10px;
-    color: #ffffff;
-    text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 10px;
+  color: #ffffff; /* White color for contrast */
+  text-align: center; /* Align title at the center */
 }
 
 .card-description {
-    font-size: 14px;
-    color: #ffffff;
-    margin: 0;
+  font-size: 14px;
+  color: #ffffff; /* Matches the title color */
+  margin: 0; /* No margin for compact layout */
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  .card {
+      padding: 10px; /* Adjust card padding */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    margin: 20px 0;
+  }
+  
+  .card-body {
+    width: 100% !important;
+    padding: 0.75rem;
+}
+
+#cards-container {
+    margin-top: 10px;
+}
+}
+
+/* Responsive adjustments for mobile phones */
+@media (max-width: 480px) {
+  .card {
+      padding: 8px; /* Further reduce padding for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+    padding: 0.75rem 0;
+    margin: 20px 0 !important;  /* Override any existing margins */
+    position: relative;         /* Ensure it stays in document flow */
+}
+
+.card-body {
+  width: 100% !important;
+  padding: 0.5rem;
+}
+
+#cards-container {
+  height: 35rem !important;
+  margin-top: 10px !important;
+}
+
+.glass-box21 .card-body {
+  padding: 0.75rem;
+}
+
+.card-title {
+  font-size: 0.9rem;
+}
 }
 
 

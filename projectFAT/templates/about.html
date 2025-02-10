@@ -144,7 +144,7 @@
             animation-delay: 0.3s;
         }
 
-    .card {
+    .carticard {
       width: 280px;
       height: 280px;
       background: #14110F;
@@ -155,7 +155,7 @@
       transition: all 0.5s ease-in-out;
     }
 
-    .card .mail {
+    .carticard .mail {
       position: absolute;
       right: 2rem;
       top: 1.4rem;
@@ -163,16 +163,16 @@
       border: none;
     }
 
-    .card .mail svg {
+    .carticard .mail svg {
       stroke: #a8a8a8;
       stroke-width: 2.5px;
     }
 
-    .card .mail svg:hover {
+    .carticard .mail svg:hover {
       stroke: #242424;
     }
 
-    .card .profile-pic {
+    .carticard .profile-pic {
       position: absolute;
       width: calc(100% - 6px);
       height: calc(100% - 6px);
@@ -185,7 +185,7 @@
       transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
     }
 
-    .card .profile-pic img {
+    .carticard .profile-pic img {
       -o-object-fit: cover;
       object-fit: cover;
       width: 100%;
@@ -195,7 +195,7 @@
       transition: all 0.5s ease-in-out 0s;
     }
 
-    .card .profile-pic svg {
+    .carticard .profile-pic svg {
       width: 100%;
       height: 100%;
       -o-object-fit: cover;
@@ -206,7 +206,7 @@
       transition: all 0.5s ease-in-out 0s;
     }
 
-    .card .bottom {
+    .carticard .bottom {
       position: absolute;
       bottom: 3px;
       left: 3px;
@@ -220,22 +220,27 @@
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
     }
 
-    .card .bottom .content {
-      position: absolute;
+    .carticard .bottom .content {
+      display: block;
+      position: relative;
       bottom: 0;
       left: 1.5rem;
       right: 1.5rem;
-      height: 160px;
+      width:100%;
+      overflow: hidden;
+      visibility: visible;
+      padding-top: 60px;
+      padding-bottom: 10px;
     }
 
-    .card .bottom .content .name {
+    .carticard .bottom .content .name {
       display: block;
       font-size: 1.2rem;
       color: rgb(255, 255, 255);
       font-weight: bold;
     }
 
-    .card .bottom .content .about-me {
+    .carticard .bottom .content .about-me {
       display: block;
       font-size: 0.9rem;
       color: rgb(222, 222, 222);
@@ -243,7 +248,7 @@
   
     }
 
-    .card .bottom .bottom-bottom {
+    .carticard .bottom .bottom-bottom {
       position: absolute;
       bottom: 1rem;
       left: 1.5rem;
@@ -253,23 +258,23 @@
       justify-content: space-between;
     }
 
-    .card .bottom .bottom-bottom .social-links-container {
+    .carticard .bottom .bottom-bottom .social-links-container {
       display: flex;
       gap: 1rem;
     }
 
-    .card .bottom .bottom-bottom .social-links-container svg {
+    .carticard .bottom .bottom-bottom .social-links-container svg {
       height: 20px;
       fill: white;
       filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
     }
 
-    .card .bottom .bottom-bottom .social-links-container svg:hover {
+    .carticard .bottom .bottom-bottom .social-links-container svg:hover {
       fill: #bababa;
       transform: scale(1.2);
     }
 
-    .card .bottom .bottom-bottom .button {
+    .carticard .bottom .bottom-bottom .button {
       background: white;
       color: #202020;
       border: none;
@@ -279,22 +284,22 @@
       box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
     }
 
-    .card .bottom .bottom-bottom .button:hover {
+    .carticard .bottom .bottom-bottom .button:hover {
       background: #14110F;
       color: white;
     }
 
-    .card:hover {
+    .carticard:hover {
       border-top-left-radius: 55px;
     }
 
-    .card:hover .bottom {
+    .carticard:hover .bottom {
       top: 20%;
       border-radius: 80px 29px 29px 29px;
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
     }
 
-    .card:hover .profile-pic {
+    .carticard:hover .profile-pic {
       width: 100px;
       height: 100px;
       aspect-ratio: 1;
@@ -307,12 +312,12 @@
       transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
     }
 
-    .card:hover .profile-pic img {
+    .carticard:hover .profile-pic img {
       transform: scale(1.4);
       transition: all 0.5s ease-in-out 0.5s;
     }
 
-    .card:hover .profile-pic svg {
+    .carticard:hover .profile-pic svg {
       transform: scale(2.5);
       transition: all 0.5s ease-in-out 0.5s;
     }
@@ -825,7 +830,7 @@
         <div class="row justify-content-center g-4">
           <!-- Card 1 -->
           <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-            <div class="card">
+            <div class="carticard">
               <a href="mailto:venkat.k.kutti@gmail.com">
                 <button class="mail">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -836,6 +841,7 @@
                   </svg>
                 </button>
               </a>
+
               <div class="profile-pic">
                 <img src="https://i.ibb.co/BG9L9cC/IMG-3523-1.png">
               </div>
@@ -921,7 +927,7 @@
 
 
           <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-            <div class="card">
+            <div class="carticard">
               <a href="mailto:venkat.k.kutti@gmail.com">
                 <button class="mail">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1003,7 +1009,7 @@
 
 
           <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-            <div class="card">
+            <div class="carticard">
               <a href="mailto:venkat.k.kutti@gmail.com">
                 <button class="mail">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1089,7 +1095,7 @@
 
           <div class="row justify-content-center g-4 scroll-1">
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-              <div class="card">
+              <div class="carticard">
                 <a href="mailto:venkat.k.kutti@gmail.com">
                   <button class="mail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1166,7 +1172,7 @@
           </div>
 
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-              <div class="card">
+              <div class="carticard">
                 <a href="mailto:venkat.k.kutti@gmail.com">
                   <button class="mail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
