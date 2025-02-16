@@ -597,6 +597,30 @@
             <div class="shadow"></div>
         </div>
     </div> -->
+
+    <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
+        <div style="width: 34rem" class="justify-content-center d-flex flex-column">
+            <h1 class="w-100 text-center fw-bold hover-text text-slide" style="color: white">For All of Tracy</h1>
+                <form action="/enterinfo">
+                    <div class="search-bar">
+                        <div class="input-group mt-2 input-group-md d-flex">
+                            <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input" autocomplete="off">
+                            <div>
+                                <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="height: 3.575rem; width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0; color: rgb(193, 163, 98)" id="enter-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+                                    </svg>
+                                </button>
+                            </div>   
+                            
+                        </div>
+                    </div>
+                </form>
+            <div class="mt-3 d-flex justify-content-center" id="category-btns"></div>
+            <a type="button" class="btn btn-default text-slide glowbutton2" href="/businessForm" style="color: white">Request A Business</a>
+        </div>
+    </div>
+
     <!-- <div class="content"> -->
         <div class="nav-barslide">
             <div class="navbar">
@@ -696,25 +720,9 @@
                 </div>
             </div>
         </div>
-        <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
-            <div style="width: 34rem" class="justify-content-center d-flex flex-column">
-                <h1 class="w-100 text-center fw-bold hover-text text-slide" style="color: white">For All of Tracy</h1>
-                <form action="/enterinfo">
-                    <div class="search-bar">
-                        <div class="input-group mt-2 input-group-md d-flex">
-                            <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input" autocomplete="off">
-                            <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0; color: rgb(193, 163, 98)" id="enter-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <div class="mt-3 d-flex justify-content-center" id="category-btns"></div>
-                <a type="button" class="btn btn-default text-slide glowbutton2" href="/businessForm" style="color: white">Request A Business</a>
-            </div>
-        </div>
+
+    
+        
     <!-- </div> -->
     <!-- <div class="position-absolute bottom-0 vw-100 d-flex justify-content-center mb-3">
         <a type="button" class="btn btn-default text-slide glowbutton" href="/aboutus" style="color: white">About Us</a>
