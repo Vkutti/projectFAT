@@ -9,66 +9,84 @@
     <link rel="stylesheet" type="text/css" href="../static/custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="../static/Loading.js"></script>
-
-</head>
-<style>
-    body {
-        background-image: url('./static/Background.svg'); 
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-
-    .glass-box21 {
-        background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
-        backdrop-filter: blur(20px); /* Frosted glass effect */
-        border: 2px solid rgba(0, 0, 0, 0.2); /* Subtle border */
-        border-radius: 12px; /* Rounded corners */
-        padding: 20px; /* Default padding */
-        margin-bottom: 20px; /* Default margin between elements */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-        max-width: 600px; /* Limit maximum width for better layout */
-        width: 90%; /* Flexible width */
-        overflow-y: scroll; /* Enable vertical scrolling if needed */
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions for interactivity */
-
-    }
-
-    /* Text content styling inside the glass box */
-    .glass-box21 p {
-        font-size: 16px; /* Default font size for readability */
-        color: rgba(255, 255, 255, 0.9); /* Light text color */
-    }
-
-    /* Responsive adjustments for tablets */
-    @media (max-width: 768px) {
-        .glass-box21 {
-            padding: 15px; /* Reduce padding */
-            margin-bottom: 15px; /* Smaller margin */
-            border-radius: 10px; /* Adjust corners for compact view */
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
-            max-width: 100%; /* Use full width of the screen */
-            width: 100%;
-            overflow-y: auto; /* Ensure full screen width usage */
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #e6e6e6;
+            --success-color: #34c759;
+            --error-color: #ff3b30;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-light: #f5f5f7;
+            --gray-medium: #86868b;
+            --gray-dark: #1d1d1f;
+            --transition-speed: 0.3s;
+            --border-radius: 8px;
         }
-    }
 
-    /* Responsive adjustments for mobile phones */
-    @media (max-width: 480px) {
-        .glass-box21 {
-            padding: 10px; /* Further reduce padding for smaller screens */
-            margin-bottom: 10px; /* Minimal margin */
-            border-radius: 8px; /* Smaller rounded corners */
-            font-size: 14px; /* Adjust font size for readability */
-            overflow-y: auto; /* Avoid scrolling issues */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: url('./static/Background.svg'); 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
+
+        .glass-box21 {
+            background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
+            backdrop-filter: blur(20px); /* Frosted glass effect */
+            border: 2px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+            border-radius: 12px; /* Rounded corners */
+            padding: 20px; /* Default padding */
+            margin-bottom: 20px; /* Default margin between elements */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+            max-width: 600px; /* Limit maximum width for better layout */
+            width: 90%; /* Flexible width */
+            overflow-y: scroll; /* Enable vertical scrolling if needed */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions for interactivity */
+        }
+
+        /* Text content styling inside the glass box */
         .glass-box21 p {
-            font-size: 14px; /* Smaller font size for compact screens */
+            font-size: 16px; /* Default font size for readability */
+            color: rgba(255, 255, 255, 0.9); /* Light text color */
         }
-    }
 
+        /* Responsive adjustments for tablets */
+        @media (max-width: 768px) {
+            .glass-box21 {
+                padding: 15px; /* Reduce padding */
+                margin-bottom: 15px; /* Smaller margin */
+                border-radius: 10px; /* Adjust corners for compact view */
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
+                max-width: 100%; /* Use full width of the screen */
+                width: 100%;
+                overflow-y: auto; /* Ensure full screen width usage */
+            }
+        }
 
+        /* Responsive adjustments for mobile phones */
+        @media (max-width: 480px) {
+            .glass-box21 {
+                padding: 10px; /* Further reduce padding for smaller screens */
+                margin-bottom: 10px; /* Minimal margin */
+                border-radius: 8px; /* Smaller rounded corners */
+                font-size: 14px; /* Adjust font size for readability */
+                overflow-y: auto; /* Avoid scrolling issues */
+            }
+            .glass-box21 p {
+                font-size: 14px; /* Smaller font size for compact screens */
+            }
+        }
 
         /* Content that remains clear */
         .brutalist-card {
@@ -90,7 +108,6 @@
             border-bottom: 2px solid #000000;
             padding-bottom: 1rem;
         }
-
 
         .brutalist-card__alert {
             font-weight: 900;
@@ -181,9 +198,6 @@
         textarea::placeholder {
             color: white !important; /* Makes all placeholder text white */
         }
-
-
-
 
         .input-group .form-control {
             border: 2px solid #4c4b4b !important; /* Ensure custom styles override Bootstrap defaults */
@@ -292,11 +306,116 @@
 
         /* Custom backdrop, applied dynamically */
 
-
-</style>
-
+        /* Email Popup Styles - Apple Inspired */
+        .email-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .email-popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .email-popup {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .email-popup-overlay.show .email-popup {
+            transform: scale(1);
+        }
+        
+        .email-popup-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: #0071e3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .email-popup-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        .email-popup h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .email-popup p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        
+        .email-popup-btn {
+            background-color: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .email-popup-btn:hover {
+            background-color: #0077ED;
+        }
+        
+        @media (max-width: 576px) {
+            .email-popup {
+                padding: 25px 20px;
+            }
             
-</style>
+            .email-popup h3 {
+                font-size: 20px;
+            }
+            
+            .email-popup p {
+                font-size: 14px;
+            }
+            
+            .email-popup-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
 <body>
     <div class="loading-screen" style="display: none;">
         <div class="wrapper">
@@ -592,7 +711,37 @@
         });
     </script>
 
+    <!-- Apple-inspired Email Popup -->
+    <div class="email-popup-overlay" id="emailPopup">
+        <div class="email-popup">
+            <div class="email-popup-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <h3>Form Submitted Successfully</h3>
+            <p>Thank you for your business submission. We've sent a confirmation email to your provided address. We'll review your submission and get back to you soon.</p>
+            <button class="email-popup-btn" id="closePopup">OK</button>
+        </div>
+    </div>
 
-    
+    <script>
+        // Form validation and submission
+        document.getElementById('BusinessF').addEventListener('submit', function(e) {
+            // Allow normal form submission for backend processing
+            
+            // Show popup after 1 second (simulating form processing)
+            setTimeout(function() {
+                document.getElementById('emailPopup').classList.add('show');
+            }, 1000);
+        });
+        
+        // Close popup when OK button is clicked
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('emailPopup').classList.remove('show');
+            // Optional: Redirect to home page after popup is closed
+            // window.location.href = '/';
+        });
+    </script>
 </body>
 </html>

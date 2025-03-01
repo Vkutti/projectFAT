@@ -1,3 +1,144 @@
+/* Responsive Design Improvements */
+/* Base styles */
+:root {
+  --primary-color: #0071e3;
+  --secondary-color: #333;
+  --background-color: #161616;
+  --text-color: rgba(255, 255, 255, 0.9);
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved card styles */
+.card {
+  background: #333333;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: transform var(--transition-speed), 
+              box-shadow var(--transition-speed);
+  border-color: #000000;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass container improvements */
+.glass-box {
+  background-color: rgba(255, 255, 255, 0.081);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* For Safari support */
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform var(--transition-speed), 
+              box-shadow var(--transition-speed);
+  max-width: 100%;
+}
+
+/* Enhanced responsive grid */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  padding: 0;
+  width: 100%;
+}
+
+/* Responsive breakpoints */
+/* Large desktop and up */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+  
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  
+  .glass-box {
+    padding: 1.25rem;
+  }
+}
+
+/* Mobile landscape */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    max-width: 540px;
+  }
+  
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  
+  .glass-box {
+    padding: 1rem;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 575px) {
+  .container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .glass-box {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
 
 category-btn {
     font-size: 3px !important;
@@ -28,30 +169,6 @@ category-btn {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
     border-radius: 50%; /* Keeps it circular */
-}
-
-.glass-box {
-
-    background-color: rgba(255, 255, 255, 0.081); /* Slightly transparent white */
-
-
-    backdrop-filter: blur(20px); /* Adjust blur intensity */
-
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Optional subtle border */
-
-    border-radius: 12px; /* Rounded corners for a softer look */
-
-    padding: 20px;
-    
-
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    overflow-y: scroll;
-
-    overflow-x: hidden;
-
-    transition: transform 0.2s, box-shadow 0.2s;
-
 }
 
 .glass-box21 {
@@ -108,8 +225,6 @@ category-btn {
       font-size: 14px; /* Adjust font size for smaller devices */
   }
 }
-
-
 
 .card {
   background: rgba(255, 255, 255, 0.1); /* Slightly transparent card background */
@@ -206,13 +321,9 @@ category-btn {
 }
 }
 
-
-
 /* Ensure modal content stretches */
 
-
 /* Modal styling */
-
 
 .return-btn {
     font-size: 1.2rem;
@@ -250,7 +361,6 @@ category-btn {
   .return-arrow:hover {
     color: rgb(107, 198, 255); /* Darken color on hover */
   }
-
 
   .required-field::after {
     content: "*";
@@ -293,8 +403,6 @@ category-btn {
         opacity: 1;
     }
 }
-
-
 
 .scroll-1::-webkit-scrollbar {
     width: 8px;
@@ -348,10 +456,7 @@ category-btn {
     scale: 1;
   }
   
-
-
   /* Profile Header */
-  
   
   .carousel-item-1 {
     background-image: url('./CarIMG.png');

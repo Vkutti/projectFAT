@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For All of Tracy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -13,103 +16,84 @@
         }
 
         .loading-screen {
+            display: flex;
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             background-color: #161616;
-            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 99999;
+            transition: opacity 0.5s ease-out;
         }
 
-        /* Loader Animation */
-        .wrapper {
-            width: 200px;
-            height: 60px;
+        /* Apple-inspired loader animation */
+        .spinner {
             position: relative;
-            z-index: 1;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 20px;
         }
 
-        .circle {
-            width: 20px;
-            height: 20px;
+        .spinner::before,
+        .spinner::after {
+            content: '';
             position: absolute;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background-color: #fff;
-            left: 15%;
-            transform-origin: 50%;
-            animation: circle7124 0.5s alternate infinite ease;
+            background: #fff;
+            opacity: 0.9;
+            top: 0;
+            left: 0;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        @keyframes circle7124 {
-            0% {
-                top: 60px;
-                height: 5px;
-                border-radius: 50px 50px 25px 25px;
-                transform: scaleX(1.7);
-            }
-            40% {
-                height: 20px;
-                border-radius: 50%;
-                transform: scaleX(1);
-            }
-            100% {
-                top: 0%;
-            }
+        .spinner::after {
+            animation-delay: -1s;
         }
 
-        .circle:nth-child(2) {
-            left: 45%;
-            animation-delay: 0.2s;
-        }
-
-        .circle:nth-child(3) {
-            left: auto;
-            right: 15%;
-            animation-delay: 0.3s;
-        }
-
-        .shadow {
-            width: 20px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.9);
-            position: absolute;
-            top: 62px;
-            transform-origin: 50%;
-            z-index: -1;
-            left: 15%;
-            filter: blur(1px);
-            animation: shadow046 0.5s alternate infinite ease;
-        }
-
-        @keyframes shadow046 {
-            0% {
-                transform: scaleX(1.5);
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
             }
-            40% {
-                transform: scaleX(1);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scaleX(0.2);
-                opacity: 0.4;
+            50% {
+                transform: scale(1);
+                opacity: 0;
             }
         }
 
-        .shadow:nth-child(4) {
-            left: 45%;
-            animation-delay: 0.2s;
+        .loading-text {
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
         }
 
-        .shadow:nth-child(5) {
-            left: auto;
-            right: 15%;
-            animation-delay: 0.3s;
+        /* Fade out animation */
+        .loaded .loading-screen {
+            opacity: 0;
+            visibility: hidden;
         }
+
+        /* Page transition effect */
+        .content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .loaded .content {
+            opacity: 1;
+            display: block;
+        }
+
         body {
             background-image: url('./static/Background.svg');
             background-repeat: no-repeat;
@@ -118,7 +102,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
         }
 
@@ -587,41 +571,36 @@
     </style>
 </head>
 <body>
-    <!-- <div class="loading-screen" style="display: flex;">
-        <div class="wrapper">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-        </div>
-    </div> -->
-
-    <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
-        <div style="width: 34rem" class="justify-content-center d-flex flex-column">
-            <h1 class="w-100 text-center fw-bold hover-text text-slide" style="color: white">For All of Tracy</h1>
-                <form action="/enterinfo">
-                    <div class="search-bar">
-                        <div class="input-group mt-2 input-group-md d-flex">
-                            <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input" autocomplete="off">
-                            <div>
-                                <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="height: 3.575rem; width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0; color: rgb(193, 163, 98)" id="enter-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
-                                    </svg>
-                                </button>
-                            </div>   
-                            
-                        </div>
-                    </div>
-                </form>
-            <div class="mt-3 d-flex justify-content-center" id="category-btns"></div>
-            <a type="button" class="btn btn-default text-slide glowbutton2" href="/businessForm" style="color: white">Request A Business</a>
-        </div>
+    <!-- Apple-inspired Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">For All of Tracy</div>
     </div>
 
-    <!-- <div class="content"> -->
+    <div class="content">
+        <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
+            <div style="width: 34rem" class="justify-content-center d-flex flex-column">
+                <h1 class="w-100 text-center fw-bold hover-text text-slide" style="color: white">For All of Tracy</h1>
+                    <form action="/enterinfo">
+                        <div class="search-bar">
+                            <div class="input-group mt-2 input-group-md d-flex">
+                                <input name="enter" class="w-auto form-control p-3 rounded-start-5" type="text" placeholder="Search for a business near you" id="prompt-input" autocomplete="off">
+                                <div>
+                                    <button class="input-group-text rounded-end-5 d-flex justify-content-center btn btn-warning" style="height: 3.575rem; width: 3.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0; color: rgb(193, 163, 98)" id="enter-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+                                        </svg>
+                                    </button>
+                                </div>   
+                                
+                            </div>
+                        </div>
+                    </form>
+                <div class="mt-3 d-flex justify-content-center" id="category-btns"></div>
+                <a type="button" class="btn btn-default text-slide glowbutton2" href="/businessForm" style="color: white">Request A Business</a>
+            </div>
+        </div>
+
         <div class="nav-barslide">
             <div class="navbar">
                 <a href="/" class="logo-link">
@@ -720,14 +699,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
-    
-        
-    <!-- </div> -->
-    <!-- <div class="position-absolute bottom-0 vw-100 d-flex justify-content-center mb-3">
-        <a type="button" class="btn btn-default text-slide glowbutton" href="/aboutus" style="color: white">About Us</a>
-    </div> -->
-    <script src="../static/Loading.js"></script>
+    <script src="./static/Loading.js"></script>
     <script>
         const tabs = document.querySelectorAll('.nav-tab');
         const navbar = document.querySelector('.navbar');

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - FAT Business Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #1d1d1f;
+        }
+        
+        .error-container {
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .error-icon {
+            margin-bottom: 20px;
+            width: 64px;
+            height: 64px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #86868b;
+            margin-bottom: 24px;
+        }
+        
+        .error-details {
+            background-color: #f5f5f7;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+            font-size: 14px;
+            text-align: left;
+            overflow-x: auto;
+            margin-bottom: 24px;
+            color: #494949;
+        }
+        
+        .back-button {
+            background-color: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #0077ed;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <h1>Something went wrong</h1>
+        <p>We encountered an issue while trying to process your request. Our team has been notified and is working on a solution.</p>
+        
+        {% if error %}
+        <div class="error-details">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <button class="back-button" onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html> 
